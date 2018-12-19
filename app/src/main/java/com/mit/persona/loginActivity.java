@@ -39,8 +39,8 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 */
 
 
-        Button login_btn = findViewById(R.id.login_button);
-        login_btn.setOnClickListener(new View.OnClickListener() {
+        TextView skip_bt = findViewById(R.id.skip);
+        skip_bt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(loginActivity.this, Persona.class));
             }
