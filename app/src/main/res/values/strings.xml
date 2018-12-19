@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Persona</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_fragment">All Fragment</string>
+    <string name="art_fragment">Art Framework</string>
+    <string name="design_fragment">Design</string>
+    <string name="tech_fragment">Technology ;) ;)</string>
 </resources>
