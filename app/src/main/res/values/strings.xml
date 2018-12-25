@@ -7,4 +7,5 @@
     <string name="art_fragment">Art Framework</string>
     <string name="design_fragment">Design</string>
     <string name="tech_fragment">Technology ;) ;)</string>
+    <string name="title_activity_test_mongo">testMongo</string>
 </resources>
