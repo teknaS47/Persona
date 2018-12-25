@@ -125,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorText"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords|textAutoComplete|textPersonName"
                 android:textColor="@color/colorText" />
         </android.support.design.widget.TextInputLayout>
 
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorText"
-                android:inputType="phone"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/colorText" />
         </android.support.design.widget.TextInputLayout>
 
@@ -191,7 +191,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorText"
-                android:inputType="phone"
+                android:inputType="text"
                 android:textColor="@color/colorText" />
         </android.support.design.widget.TextInputLayout>
 
@@ -213,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorText"
-                android:inputType="phone"
+                android:inputType="textPassword"
                 android:textColor="@color/colorText" />
         </android.support.design.widget.TextInputLayout>
 
@@ -235,8 +235,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorText"
-                android:inputType="phone"
-                android:textColor="@color/colorText"/>
+                android:inputType="textPassword"
+                android:textColor="@color/colorText" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
