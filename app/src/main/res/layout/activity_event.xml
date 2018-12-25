@@ -154,7 +154,8 @@
                                     android:id="@+id/textView6"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:text="Hmm. We’re having trouble finding that site.  We can’t connect to the server at www.google.com.  If that address is correct, here are three other things you can try:      Try again later.     Check your network connection.     If you are connected but behind a firewall, check that Firefox has permission to access the Web." />
+                                    android:text="Hmm. We’re having trouble finding that site.  We can’t connect to the server at www.google.com.  If that address is correct, here are three other things you can try:      Try again later.     Check your network connection.     If you are connected but behind a firewall, check that Firefox has permission to access the Web."
+                                />
 
                                 <Button
                                     android:id="@+id/button2"
