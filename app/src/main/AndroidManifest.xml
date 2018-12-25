@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Persona"></activity>
+        <activity android:name=".Persona">
+
+        </activity>
         <activity android:name=".loginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +24,16 @@
             android:name=".DatabaseAll"
             android:label="@string/title_activity_database_all"
             android:theme="@style/AppTheme"></activity>
+        <activity android:name=".Event"></activity>
+        <activity
+            android:name=".testMongo"
+            android:label="@string/title_activity_test_mongo"
+            android:theme="@style/AppTheme">
+
+
+
+
+        </activity>
     </application>
 
 </manifest>

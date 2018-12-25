@@ -46,15 +46,6 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             }
         });
 
-        // DATABASE
-        TextView database = findViewById(R.id.view_data);
-        database.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(loginActivity.this, DatabaseAll.class));
-            }
-        });
-
-
 
     }
 
