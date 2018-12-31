@@ -36,11 +36,31 @@ public class Events {
     @ColumnInfo(name = "event_venue")
     private String venue;
 
+    @ColumnInfo(name = "event_category")
+    private String category;
+
+    @ColumnInfo(name = "event_type")
+    private String type;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @ColumnInfo(name = "event_individual")
     private Boolean individual;
 
-    @ColumnInfo(name = "event_group")
-    private Boolean group;
 
     @ColumnInfo(name = "event_openForAll")
     private Boolean open_for_all;
@@ -143,14 +163,6 @@ public class Events {
 
     public void setIndividual(Boolean individual) {
         this.individual = individual;
-    }
-
-    public Boolean getGroup() {
-        return group;
-    }
-
-    public void setGroup(Boolean group) {
-        this.group = group;
     }
 
     public Boolean getOpen_for_all() {
@@ -260,5 +272,6 @@ public class Events {
     public String getImg() {
         return img;
     }
+
 
 }

@@ -6,6 +6,7 @@ package com.mit.persona;
         import android.support.v4.app.Fragment;
         import android.support.v7.widget.LinearLayoutManager;
         import android.support.v7.widget.RecyclerView;
+        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.MotionEvent;
         import android.view.View;
@@ -14,6 +15,16 @@ package com.mit.persona;
         import android.widget.ImageView;
         import android.widget.ViewFlipper;
 
+        import org.json.JSONException;
+        import org.json.JSONObject;
+
+        import java.io.BufferedWriter;
+        import java.io.DataOutputStream;
+        import java.io.IOException;
+        import java.io.OutputStream;
+        import java.io.OutputStreamWriter;
+        import java.net.HttpURLConnection;
+        import java.net.URL;
         import java.util.List;
 
 
@@ -75,7 +86,6 @@ public class allFragment extends Fragment {
         for(int image: images) {
             flipperImages(image);
         }
-
 
         return view;
     }
