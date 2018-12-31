@@ -69,6 +69,11 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         return super.dispatchTouchEvent( event );
     }
 
+    public void gotoregister(View view) {
+        Intent i = new Intent(this, Register.class);
+        startActivity(i);
+    }
+
 
     //private static final String TAG = "loginActivity ###################";
     /*public void onClick(View view) {
