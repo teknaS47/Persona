@@ -23,11 +23,16 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     private Button login_btn;
     private TextView email,password;
     private String e,p;
+    public static MyAppDatabase myAppDatabase;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        databaseOperations.updateLocalDB(this);
+
 
         /*TextView email = findViewById(R.id.email_text);
         TextView password = findViewById(R.id.password_text);

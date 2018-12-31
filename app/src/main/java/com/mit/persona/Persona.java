@@ -6,19 +6,22 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class Persona extends AppCompatActivity implements allFragment.OnFragmentInteractionListener, artFragment.OnFragmentInteractionListener, designFragment.OnFragmentInteractionListener, techFragment.OnFragmentInteractionListener {
 
     private TabLayout tabLayout;
     public static MyAppDatabase myAppDatabase;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         System.out.print("######################  On Create ###################");
         setContentView(R.layout.activity_persona);
+        //databaseOperations.updateLocalDB(this);
         // DATABASE
         myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
 
@@ -54,7 +57,7 @@ public class Persona extends AppCompatActivity implements allFragment.OnFragment
 
         // DATABASE
 
-        try {
+        /*try {
             Events event = new Events();
             event.setName("Painters Window");
             event.setDate("15-02-2018");
@@ -167,14 +170,58 @@ public class Persona extends AppCompatActivity implements allFragment.OnFragment
 
         catch (Exception e) {
             e.printStackTrace();
-        }
-
+        }*/
 
         // Delete From Database
         /*
         Events event = new Events();
         event.setId("B1");
         Persona.myAppDatabase.myDao().deleteEvent(event); */
+
+
+        JSONObject postparams = null;
+        try {
+            postparams = new JSONObject();
+            postparams.put("e_name", "AndroidPatched");
+//            postparams.put("e_id", "A5");
+  //          postparams.put("e_type", "group");
+    //        postparams.put("e_category", "cse");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+/*
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Register_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(Persona.this, response, Toast.LENGTH_LONG).show();
+                        System.out.println("---------------> " + response);
+                        Log.d("RESPONSE: ", response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Persona.this, error.toString(),Toast.LENGTH_LONG).show();
+                        System.out.println("---------------> " + error.toString());
+                        Log.d("ERROR: ", error.toString());
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("firstname", "AKSHAY");
+                params.put("lastname", "Yewale");
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);*/
 
     }
 
