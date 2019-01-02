@@ -80,6 +80,7 @@
             android:layout_marginBottom="3dp"
             android:backgroundTint="@color/colorText"
             android:text="Register"
+            android:onClick="gotoregister"
             app:layout_constraintBottom_toTopOf="@+id/skip"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
