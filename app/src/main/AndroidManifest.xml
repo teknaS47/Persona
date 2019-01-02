@@ -27,12 +27,6 @@
             android:label="@string/title_activity_database_all"
             android:theme="@style/AppTheme" />
         <activity android:name=".Event" />
-        <activity
-            android:name=".testMongo"
-            android:label="@string/title_activity_test_mongo"
-            android:theme="@style/AppTheme"/>
-
-
 
 
         <activity

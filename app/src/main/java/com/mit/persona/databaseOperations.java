@@ -23,7 +23,7 @@ public class databaseOperations {
     private static final String URL_events = "http://139.59.82.57:5000/events";
     private static final String URL_users = "http://139.59.82.57:5000/users";
     private static final String URL_registrations = "http://139.59.82.57:5000/registrations";
-    private static final String URL_localDbVersion = "http://139.59.82.57:5000/localDbVersion";
+
     public static MyAppDatabase myAppDatabase;
 
 
@@ -60,8 +60,14 @@ public class databaseOperations {
                                     event.setType(jsonobject.getString("e_type"));
                                     event.setCategory(jsonobject.getString("e_category"));
                                     //event.setImg(R.drawable.ic_tag_faces_black);
-                                    myAppDatabase.myDao().addEvent(event);
-                                    Log.i(String.valueOf(i), ". DATA ADDED :)\n");
+                                    try {
+                                        myAppDatabase.myDao().addEvent(event);
+                                        Log.i(String.valueOf(i), ". DATA ADDED :)\n");
+                                    }
+                                    catch (Exception e) {
+                                        Log.e("Events Insert:", e.toString());
+                                    }
+
                                 }
 
                             }

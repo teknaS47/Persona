@@ -12,7 +12,6 @@ public class Events {
     @NonNull
     private String id;
 
-
     @ColumnInfo(name = "event_img")
     private String img;
 

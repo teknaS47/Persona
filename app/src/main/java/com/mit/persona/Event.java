@@ -10,10 +10,16 @@ public class Event extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-        TextView eventDetails = (TextView) findViewById(R.id.textView6);
-        eventDetails.setText(pageDetails.eventDetails);
-        TextView date = (TextView) findViewById(R.id.textView5);
-        date.setText(pageDetails.eventDate);
+
+        TextView event_name = (TextView) findViewById(R.id.event_name);
+        TextView event_desc = (TextView) findViewById(R.id.event_desc);
+        TextView event_date = (TextView) findViewById(R.id.event_date);
+
+        event_desc.setText(getIntent().getStringExtra("e_desc"));
+        event_date.setText(getIntent().getStringExtra("e_date"));
+        event_name.setText(getIntent().getStringExtra("e_name"));
+
+
 
     }
 }
