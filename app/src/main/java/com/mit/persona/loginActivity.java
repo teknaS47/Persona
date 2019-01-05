@@ -1,9 +1,11 @@
 package com.mit.persona;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,10 @@ import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 
 public class loginActivity extends AppCompatActivity /*implements OnClickListener*/{
 
@@ -32,7 +38,6 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         databaseOperations.updateLocalDB(this);
-
 
         /*TextView email = findViewById(R.id.email_text);
         TextView password = findViewById(R.id.password_text);

@@ -1,6 +1,7 @@
 package com.mit.persona;
 
 
+
         import android.net.Uri;
         import android.os.Bundle;
         import android.support.v4.app.Fragment;
@@ -8,23 +9,11 @@ package com.mit.persona;
         import android.support.v7.widget.RecyclerView;
         import android.util.Log;
         import android.view.LayoutInflater;
-        import android.view.MotionEvent;
         import android.view.View;
         import android.view.ViewGroup;
-        import android.view.animation.AnimationUtils;
         import android.widget.ImageView;
         import android.widget.ViewFlipper;
 
-        import org.json.JSONException;
-        import org.json.JSONObject;
-
-        import java.io.BufferedWriter;
-        import java.io.DataOutputStream;
-        import java.io.IOException;
-        import java.io.OutputStream;
-        import java.io.OutputStreamWriter;
-        import java.net.HttpURLConnection;
-        import java.net.URL;
         import java.util.List;
 
 
@@ -40,6 +29,8 @@ public class allFragment extends Fragment {
     View v;
     private RecyclerView myRecycleView;
     private List<Events> event = Persona.myAppDatabase.myDao().getEvents();
+    private List<Table_Messages> messages = Persona.myAppDatabase.myDao().getMessages();
+
 
 
 
@@ -74,6 +65,12 @@ public class allFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Log.d("MESSAGES", " :)");
+        for (int i=0; i<messages.size(); i++) {
+            Log.e("Title: ", messages.get(i).getTitle());
+            Log.e("Body: ", messages.get(i).getMessage());
+        }
+
         View view = inflater.inflate(R.layout.fragment_all, container, false);
         v_flipper = (ViewFlipper) view.findViewById(R.id.slider);
 
@@ -81,7 +78,6 @@ public class allFragment extends Fragment {
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), event);
         myRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         myRecycleView.setAdapter(recyclerViewAdapter);
-
 
         for(int image: images) {
             flipperImages(image);

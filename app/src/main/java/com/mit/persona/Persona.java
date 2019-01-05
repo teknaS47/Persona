@@ -1,61 +1,86 @@
 package com.mit.persona;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.arch.persistence.room.Room;
-import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.view.MenuItem;
 
 
-public class Persona extends AppCompatActivity implements allFragment.OnFragmentInteractionListener, artFragment.OnFragmentInteractionListener, designFragment.OnFragmentInteractionListener, techFragment.OnFragmentInteractionListener {
+public class Persona extends AppCompatActivity {
 
     private TabLayout tabLayout;
     public static MyAppDatabase myAppDatabase;
+    private static String DEFAULT_CHANNEL_ID = "default_channel";
+    private static String DEFAULT_CHANNEL_NAME = "Default";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         System.out.print("######################  On Create ###################");
         setContentView(R.layout.activity_persona);
+
+
         //databaseOperations.updateLocalDB(this);
         // DATABASE
         myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
 
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout_id);
-        tabLayout.addTab(tabLayout.newTab().setText("All"));
-        tabLayout.addTab(tabLayout.newTab().setText("Art"));
-        tabLayout.addTab(tabLayout.newTab().setText("Design"));
-        tabLayout.addTab(tabLayout.newTab().setText("Technology"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager_id);
-        final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
-        viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        final FragmentManager fragmentManager = getSupportFragmentManager();
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
+        // define your fragments here
+        final Fragment fragment1 = new homePage();
+        final Fragment fragment2 = new MessageFragment();
+//        final Fragment fragment3 = new ThirdFragment();
+        fragmentManager.beginTransaction().add(R.id.display, fragment1).commit();
+        fragmentManager.beginTransaction().hide(fragment1).commit();
+        fragmentManager.beginTransaction().add(R.id.display, fragment2,"message_fragment").commit();
+        fragmentManager.beginTransaction().hide(fragment2).commit();
+        // handle navigation selection
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        Fragment fragment;
+                        switch (item.getItemId()) {
+                            case R.id.action_favorites:
+                                fragment = fragment1;
+                                break;
+                            case R.id.action_schedules:
+                                fragment = fragment2;
+                                break;
+                            case R.id.action_music:
+                            default:
+                                fragment = fragment1;
+                                break;
+                        }
+                        if (fragment != fragment1) {
+                            fragmentManager.beginTransaction().hide(fragment1).show(fragment2).commit();
+                        }
+                        else {
+                            fragmentManager.beginTransaction().hide(fragment2).show(fragment1).commit();
+                        }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+                        return true;
+                    }
+                });
+        // Set default selection
+        bottomNavigationView.setSelectedItemId(R.id.action_favorites);
+    }
 
-            }
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
 
-            }
-        });
 
-        // DATABASE
+    // DATABASE
 
         /*try {
             Events event = new Events();
@@ -179,18 +204,6 @@ public class Persona extends AppCompatActivity implements allFragment.OnFragment
         Persona.myAppDatabase.myDao().deleteEvent(event); */
 
 
-        JSONObject postparams = null;
-        try {
-            postparams = new JSONObject();
-            postparams.put("e_name", "AndroidPatched");
-//            postparams.put("e_id", "A5");
-  //          postparams.put("e_type", "group");
-    //        postparams.put("e_category", "cse");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
 
 /*
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Register_URL,
@@ -223,10 +236,16 @@ public class Persona extends AppCompatActivity implements allFragment.OnFragment
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);*/
 
+
+    public static void createNotificationChannel(NotificationManager notificationManager) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //Create channel only if it is not already created
+            if (notificationManager.getNotificationChannel(DEFAULT_CHANNEL_ID) == null) {
+                notificationManager.createNotificationChannel(new NotificationChannel(
+                        DEFAULT_CHANNEL_ID, DEFAULT_CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT
+                ));
+            }
+        }
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
