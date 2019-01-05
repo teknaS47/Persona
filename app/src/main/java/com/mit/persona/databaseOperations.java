@@ -110,14 +110,15 @@ public class databaseOperations {
             postparams.put("branch", pageDetails.reg_branch);
             postparams.put("city", pageDetails.reg_clgcity);
             postparams.put("password", pageDetails.reg_password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_events, postparams,
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_users, postparams,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.e("REST Response: ", response.toString());
-
-
                         }
                     },
                     new Response.ErrorListener() {
@@ -142,9 +143,7 @@ public class databaseOperations {
             //          postparams.put("e_type", "group");
             //        postparams.put("e_category", "cse");
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
     }
 
 
