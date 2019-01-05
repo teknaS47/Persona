@@ -29,10 +29,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Full Name"
+                android:hint="First Name"
                 android:inputType="textPersonName"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="65dp" />
+
+            <EditText
+                android:id="@+id/editText12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Last Name"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/editText3"
@@ -65,14 +73,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Male" />
+                        android:text="Male"
+                        android:onClick="male"/>
 
                     <RadioButton
                         android:id="@+id/radioButton2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Female" />
+                        android:text="Female"
+                        android:onClick="female"/>
                 </LinearLayout>
 
             </RadioGroup>
@@ -137,6 +147,7 @@
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="registerevent"
                 android:text="Register Now" />
         </LinearLayout>
     </ScrollView>
