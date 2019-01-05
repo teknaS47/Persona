@@ -5,9 +5,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.security.MessageDigest;
 
 public class Register extends AppCompatActivity {
 
@@ -22,6 +25,8 @@ public class Register extends AppCompatActivity {
     }
 
     public void registerevent(View view) {
+
+        Log.d("On Click:", "Register Event");
 
         EditText firstName = (EditText) findViewById(R.id.editText2);
         pageDetails.reg_firstname = firstName.getText().toString();
@@ -55,9 +60,12 @@ public class Register extends AppCompatActivity {
         EditText password = (EditText) findViewById(R.id.editText10);
         pageDetails.reg_password = password.getText().toString();
 
+
+
         if(pageDetails.reg_firstname!= null && pageDetails.reg_lastname!= null && pageDetails.reg_email!= null && pageDetails.reg_phno!= null
                 && pageDetails.reg_add != null && pageDetails.reg_dob != null && pageDetails.reg_clgName != null && pageDetails.reg_branch != null
                 && pageDetails.reg_clgcity != null && pageDetails.reg_password != null && pageDetails.reg_gender != null){
+            Log.d("Register Event:", "Detail Verification");
             databaseOperations.register(this);
         }
 

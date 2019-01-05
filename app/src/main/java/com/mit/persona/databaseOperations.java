@@ -60,8 +60,15 @@ public class databaseOperations {
                                     event.setType(jsonobject.getString("e_type"));
                                     event.setCategory(jsonobject.getString("e_category"));
                                     //event.setImg(R.drawable.ic_tag_faces_black);
-                                    myAppDatabase.myDao().addEvent(event);
-                                    Log.i(String.valueOf(i), ". DATA ADDED :)\n");
+                                    try {
+                                        myAppDatabase.myDao().addEvent(event);
+                                        Log.i(String.valueOf(i), ". DATA ADDED :)\n");
+                                    }
+                                    catch (Exception e){
+                                        Log.e("Events Insert: ", e.toString());
+                                    }
+
+
                                 }
 
                             }
@@ -96,6 +103,11 @@ public class databaseOperations {
 
     public static void register(Register register) {
 
+        Log.e("Call Successful", "REGISTER EVENTS");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(register);
+
+
         JSONObject postparams = null;
         try {
             postparams = new JSONObject();
@@ -111,10 +123,10 @@ public class databaseOperations {
             postparams.put("city", pageDetails.reg_clgcity);
             postparams.put("password", pageDetails.reg_password);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e(e.toString(), "");
         }
 
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_users, postparams,
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL_users, postparams,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
@@ -138,7 +150,7 @@ public class databaseOperations {
 
                     return params;
                 }
-            };
+            };requestQueue.add(jsonObjectRequest);
 //            postparams.put("e_id", "A5");
             //          postparams.put("e_type", "group");
             //        postparams.put("e_category", "cse");
