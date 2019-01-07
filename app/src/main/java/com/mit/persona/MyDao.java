@@ -20,4 +20,13 @@ public interface MyDao {
     @Delete
     public void deleteEvent(Events event);
 
+    @Insert
+    public void addMessage(Table_Messages message);
+
+    @Query("select * from table_messages ORDER BY id DESC")
+    public List<Table_Messages> getMessages();
+
+    @Delete
+    public void deleteMessage(Table_Messages message);
+
 }

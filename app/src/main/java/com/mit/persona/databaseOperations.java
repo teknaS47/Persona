@@ -159,20 +159,4 @@ public class databaseOperations {
     }
 
 
-
-
-/*
-    JSONObject postparams = null;
-        try {
-        postparams = new JSONObject();
-        postparams.put("e_name", "AndroidPatched");
-//            postparams.put("e_id", "A5");
-        //          postparams.put("e_type", "group");
-        //        postparams.put("e_category", "cse");
-
-    } catch (JSONException e) {
-        e.printStackTrace();
-    }
-
-*/
 }
