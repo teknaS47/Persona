@@ -22,17 +22,22 @@
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Register" />
+                android:text="Register"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="10dp"/>
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Add to wishlist" />
+                android:text="Add to wishlist"
+                android:background="@color/eventYellow"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
         </LinearLayout>
     </android.support.design.widget.BottomNavigationView>
 
@@ -73,6 +78,7 @@
                         android:padding="10dp"
                         android:visibility="visible"
                         app:cardElevation="0dp"
+                        android:layout_marginBottom="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -81,13 +87,13 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="10dp"
+                            android:layout_marginBottom="10dp"
                             android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_margin="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -97,7 +103,8 @@
                                     android:text="Hackathon Software"
                                     android:textAlignment="textStart"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:paddingLeft="10dp"/>
 
                                 <Space
                                     android:layout_width="wrap_content"
@@ -108,7 +115,7 @@
                                     android:id="@+id/imageView2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"
+                                    android:layout_weight="0.3"
                                     app:srcCompat="@drawable/ic_like_red" />
 
                                 <TextView
@@ -125,7 +132,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_margin="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -133,12 +140,13 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="19 Dec 2018 | 9:00AM "
-                                    android:textSize="18sp" />
+                                    android:textSize="18sp"
+                                    android:paddingLeft="10dp"/>
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_margin="10dp"
+                                android:layout_marginBottom="10dp"
                                 android:orientation="vertical">
 
                                 <LinearLayout
@@ -152,7 +160,9 @@
                                         android:layout_height="wrap_content"
                                         android:text="Venue"
                                         android:textAlignment="textStart"
-                                        android:textSize="16sp"/>
+                                        android:textSize="16dp"
+                                        android:textStyle="bold"
+                                        android:paddingLeft="10dp"/>
 
 
 
@@ -168,7 +178,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Dr APJ Kamal Hall"
-                                        android:textSize="16sp" />
+                                        android:textSize="16sp"
+                                        android:paddingLeft="10dp"/>
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -185,7 +196,7 @@
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_marginBottom="10dp"
                         android:visibility="visible"
                         app:cardBackgroundColor="@android:color/darker_gray">
 
@@ -194,28 +205,31 @@
                             android:layout_height="match_parent"
                             android:fillViewport="true">
 
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
+
+                                <TextView
+                                    android:id="@+id/descriptionTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Description"
+                                    android:textStyle="bold"
+                                    android:padding="10dp"
+                                    android:textSize="17dp"
+                                    android:background="#FFFFFF"/>
                                 <TextView
                                     android:id="@+id/event_desc"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:text="Hmm. We’re having trouble finding that site.  We can’t connect to the server at www.google.com.  If that address is correct, here are three other things you can try:      Try again later.     Check your network connection.     If you are connected but behind a firewall, check that Firefox has permission to access the Web." />
+                                    android:text="Hmm. We’re having trouble finding that site.  We can’t connect to the server at www.google.com.  If that address is correct, here are three other things you can try:      Try again later.     Check your network connection.     If you are connected but behind a firewall, check that Firefox has permission to access the Web."
+                                    android:background="#FFFFFF"
+                                    android:padding="10dp"/>
 
-                                <Button
-                                    android:id="@+id/button2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@android:color/transparent"
-                                    android:elevation="0dp"
-                                    android:text="⌄"
-                                    android:textAlignment="center"
-                                    android:textAllCaps="false"
-                                    android:textSize="36sp"
-                                    android:visibility="visible" />
+
 
                             </LinearLayout>
                         </android.support.v4.widget.NestedScrollView>
@@ -227,7 +241,7 @@
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp">
+                        android:layout_marginBottom="10dp">
 
 
                         <LinearLayout
@@ -240,7 +254,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Prizes"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:padding="10dp"
+                                android:textSize="17dp"/>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -257,14 +273,16 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
-                                        android:text="1st Prize" />
+                                        android:text="1st Prize"
+                                        android:padding="10dp"/>
 
                                     <TextView
                                         android:id="@+id/prize_1_amt"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
-                                        android:text="15000" />
+                                        android:text="15000"
+                                        android:padding="10dp"/>
 
 
                                 </LinearLayout>
@@ -285,14 +303,16 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
-                                        android:text="2nd Prize" />
+                                        android:text="2nd Prize"
+                                        android:padding="10dp"/>
 
                                     <TextView
                                         android:id="@+id/prize_2_amt"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
-                                        android:text="10000" />
+                                        android:text="10000"
+                                        android:padding="10dp"/>
 
 
                                 </LinearLayout>
@@ -313,14 +333,16 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
-                                        android:text="3 rd Prize" />
+                                        android:text="3 rd Prize"
+                                        android:padding="10dp"/>
 
                                     <TextView
                                         android:id="@+id/prize_3_amt"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
-                                        android:text="5000" />
+                                        android:text="5000"
+                                        android:padding="10dp"/>
 
 
                                 </LinearLayout>
@@ -333,7 +355,7 @@
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp">
+                        android:layout_marginBottom="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -344,16 +366,18 @@
                                 android:id="@+id/textView9"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Faculty Co-ordinator" />
+                                android:gravity="top|bottom"
+                                android:text="Faculty Co-ordinator"
+                                android:textStyle="bold"
+                                android:textSize="17dp"
+                                android:padding="10dp"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
 
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -364,7 +388,8 @@
                                             android:id="@+id/faculty_1_image"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            app:srcCompat="@mipmap/ic_launcher" />
+                                            app:srcCompat="@mipmap/ic_launcher"
+                                            android:padding="10dp"/>
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -375,28 +400,29 @@
                                                 android:id="@+id/faculty_1_name"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Name of Faculty1" />
+                                                android:text="Name of Faculty1"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
 
                                             <TextView
                                                 android:id="@+id/faculty_1_email"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Email id" />
+                                                android:text="Email id"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
 
                                             <TextView
                                                 android:id="@+id/faculty_1_phone"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Phone Number" />
+                                                android:text="Phone Number"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
                                         </LinearLayout>
 
                                     </LinearLayout>
 
-                                </android.support.v7.widget.CardView>
-
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="365dp"
-                                    android:layout_height="match_parent">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -408,7 +434,8 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             app:srcCompat="@mipmap/ic_launcher"
-                                            android:contentDescription="TODO" />
+                                            android:contentDescription="TODO"
+                                            android:padding="10dp"/>
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -419,24 +446,30 @@
                                                 android:id="@+id/faculty_2_name"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Name of Faculty 2" />
+                                                android:text="Name of Faculty 2"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
 
                                             <TextView
                                                 android:id="@+id/faculty_2_email"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Email id" />
+                                                android:text="Email id"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
 
                                             <TextView
                                                 android:id="@+id/faculty_2_phone"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Phone Number" />
+                                                android:text="Phone Number"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
                                         </LinearLayout>
 
                                     </LinearLayout>
 
-                                </android.support.v7.widget.CardView>
+
 
                             </LinearLayout>
 
@@ -449,7 +482,7 @@
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp">
+                        android:layout_marginBottom="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -460,16 +493,17 @@
                                 android:id="@+id/Student_ID"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Student Co-ordinator" />
+                                android:text="Student Co-ordinator"
+                                android:textStyle="bold"
+                                android:textSize="17dp"
+                                android:padding="10dp"/>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
 
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -481,7 +515,8 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             app:srcCompat="@mipmap/ic_launcher"
-                                            android:contentDescription="TODO" />
+                                            android:contentDescription="TODO"
+                                            android:padding="10dp"/>
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -492,28 +527,35 @@
                                                 android:id="@+id/student_1_name"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Name of Student 1" />
+                                                android:text="Name of Student 1"
+                                                android:paddingTop="4dp"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
 
                                             <TextView
                                                 android:id="@+id/student_1_email"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Email id" />
+                                                android:text="Email id"
+                                                android:paddingTop="4dp"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
 
                                             <TextView
                                                 android:id="@+id/student_1_phone"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Phone Number" />
+                                                android:text="Phone Number"
+                                                android:paddingTop="4dp"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
                                         </LinearLayout>
 
                                     </LinearLayout>
 
-                                </android.support.v7.widget.CardView>
 
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+
+
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -525,7 +567,8 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             app:srcCompat="@mipmap/ic_launcher"
-                                            android:contentDescription="TODO" />
+                                            android:contentDescription="TODO"
+                                            android:padding="10dp"/>
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -536,32 +579,65 @@
                                                 android:id="@+id/student_2_name"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Name of Student 2" />
+                                                android:text="Name of Student 2"
+                                                android:paddingTop="4dp"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
 
                                             <TextView
                                                 android:id="@+id/student_2_email"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Email id" />
+                                                android:text="Email id"
+                                                android:paddingTop="4dp"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
 
                                             <TextView
                                                 android:id="@+id/student_2_phone"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="Phone Number" />
+                                                android:paddingTop="4dp"
+                                                android:text="Phone Number"
+                                                android:paddingLeft="10dp"
+                                                android:paddingBottom="4dp"/>
                                         </LinearLayout>
 
                                     </LinearLayout>
 
-                                </android.support.v7.widget.CardView>
+
 
                             </LinearLayout>
 
                         </LinearLayout>
 
                     </android.support.v7.widget.CardView>
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="17dp"
+                            android:text="Rules And Regulation"
+                            android:padding="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 RULES RULES RULES \n2 RULES \n3 rrssn "
+                            android:paddingLeft="10dp"
+                            android:paddingBottom="10dp"/>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
 
                 </LinearLayout>
+
 
             </LinearLayout>
         </LinearLayout>

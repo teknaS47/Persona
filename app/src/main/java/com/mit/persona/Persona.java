@@ -40,11 +40,20 @@ public class Persona extends AppCompatActivity {
         // define your fragments here
         final Fragment fragment1 = new homePage();
         final Fragment fragment2 = new MessageFragment();
+        final Fragment fragment3 = new UserPanelFragment();
+        final Fragment fragment4 = new SearchFragment();
 //        final Fragment fragment3 = new ThirdFragment();
         fragmentManager.beginTransaction().add(R.id.display, fragment1).commit();
         fragmentManager.beginTransaction().hide(fragment1).commit();
         fragmentManager.beginTransaction().add(R.id.display, fragment2,"message_fragment").commit();
         fragmentManager.beginTransaction().hide(fragment2).commit();
+
+        fragmentManager.beginTransaction().add(R.id.display, fragment3,"user_panel").commit();
+        fragmentManager.beginTransaction().hide(fragment3).commit();
+
+        fragmentManager.beginTransaction().add(R.id.display, fragment4,"search_bar").commit();
+        fragmentManager.beginTransaction().hide(fragment4).commit();
+
         // handle navigation selection
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -59,15 +68,28 @@ public class Persona extends AppCompatActivity {
                                 fragment = fragment2;
                                 break;
                             case R.id.action_music:
+                                fragment = fragment3;
+                                break;
+                            case R.id.action_search:
+                                fragment = fragment4;
+                                break;
                             default:
                                 fragment = fragment1;
                                 break;
                         }
-                        if (fragment != fragment1) {
-                            fragmentManager.beginTransaction().hide(fragment1).show(fragment2).commit();
+                        if (fragment == fragment2) {
+                            fragmentManager.beginTransaction().hide(fragment3).hide(fragment4).hide(fragment1).show(fragment2).commit();
+                        }
+                        else if (fragment == fragment3)
+                        {
+                            fragmentManager.beginTransaction().hide(fragment1).hide(fragment4).hide(fragment2).show(fragment3).commit();
+                        }
+                        else if (fragment == fragment4)
+                        {
+                            fragmentManager.beginTransaction().hide(fragment1).hide(fragment3).hide(fragment2).show(fragment4).commit();
                         }
                         else {
-                            fragmentManager.beginTransaction().hide(fragment2).show(fragment1).commit();
+                            fragmentManager.beginTransaction().hide(fragment3).hide(fragment4).hide(fragment2).show(fragment1).commit();
                         }
 
                         return true;
