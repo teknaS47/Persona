@@ -18,7 +18,7 @@ public class DatabaseAll extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database_all);
 
-        TextView a = (TextView) findViewById(R.id.textView4);
+        TextView a = findViewById(R.id.textView4);
 
         List<Events> events = Persona.myAppDatabase.myDao().getEvents();
 
