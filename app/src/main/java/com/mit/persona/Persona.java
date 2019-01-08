@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 public class Persona extends AppCompatActivity {
@@ -20,6 +21,22 @@ public class Persona extends AppCompatActivity {
     public static MyAppDatabase myAppDatabase;
     private static String DEFAULT_CHANNEL_ID = "default_channel";
     private static String DEFAULT_CHANNEL_NAME = "Default";
+    int count = 1;
+    @Override
+    public void onBackPressed() {
+
+        count++;
+        if(count<=2) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Press back one more time to exit",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        if(count>2){
+            finish();
+            moveTaskToBack(true);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
