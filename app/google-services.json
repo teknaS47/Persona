@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "845555665560",
+    "firebase_url": "https://persona-4af86.firebaseio.com",
+    "project_id": "persona-4af86",
+    "storage_bucket": "persona-4af86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845555665560:android:2939d0b12878e707",
+        "android_client_info": {
+          "package_name": "com.mit.persona"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "845555665560-buukn8lb9b4t9jtfabhi7474pb0cmd7g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mit.persona",
+            "certificate_hash": "55670d0da5584e3fd280c4c9cd1205ed02ef9e52"
+          }
+        },
+        {
+          "client_id": "845555665560-n95ckd9t40aj766jh0fnpv5fshph3ha7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz3vner-Pq6yFugTMflkTfKhb9srZO-YY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "845555665560-n95ckd9t40aj766jh0fnpv5fshph3ha7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
