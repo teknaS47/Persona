@@ -67,6 +67,7 @@
             android:layout_marginBottom="1dp"
             android:backgroundTint="@color/colorText"
             android:text="Login"
+            android:onClick="loginprocess"
             app:layout_constraintBottom_toTopOf="@+id/register_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
