@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,37 +10,305 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ViewFlipper
-            android:id="@+id/slider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </ViewFlipper>
-
-    </FrameLayout>
 
     <ScrollView
-        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/cards"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/frameLayout_slider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                >
+
+                <ViewFlipper
+                    android:id="@+id/slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></ViewFlipper>
+            </FrameLayout>
+
+
+            <TextView
+        android:id="@+id/textView_artnCreativeEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Arts &amp; Creative Events"
+        android:hapticFeedbackEnabled="true"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        android:textSize="20dp"
+        android:layout_below="@id/frameLayout_slider"
+                android:padding="5dp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/artnCreativeEvents_Cards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/textView_artnCreativeEvents"
+        android:layout_below="@id/textView_artnCreativeEvents">
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/textView_danceMusicEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dance &amp; Music Events"
+        android:hapticFeedbackEnabled="true"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        android:textSize="20dp"
+        android:padding="5dp"
+        android:layout_below="@id/artnCreativeEvents_Cards"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/danceMusic_Cards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/textView_danceMusicEvents"
+        android:layout_below="@id/textView_danceMusicEvents">
+    </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView_culturalEvents"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="Cultural Events"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textSize="20dp"
+                android:layout_below="@id/danceMusic_Cards" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cultural_Cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_culturalEvents"
+                android:layout_below="@id/textView_culturalEvents">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView_ArchitectureEvents"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="Architecture"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textSize="20dp"
+                android:layout_below="@id/cultural_Cards"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/Architecture_Cards"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_ArchitectureEvents"
+                android:layout_below="@id/textView_ArchitectureEvents">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView_manet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="MANET &amp;  Institute of Design Events"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textSize="20dp"
+                android:layout_below="@id/Architecture_Cards"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/manet_Cards"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_manet"
+                android:layout_below="@id/textView_manet">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView_vedicScience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vedic Science"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:layout_below="@id/manet_Cards"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/vedicSciences_Cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_vedicScience"
+                android:layout_below="@id/textView_vedicScience">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView_management"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="Management Events"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textSize="20dp"
+                android:layout_below="@id/vedicSciences_Cards"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/management_cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_management"
+                android:layout_below="@id/textView_management">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView_electronics"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Electronics"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textSize="20dp"
+                android:layout_below="@id/management_cards"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/electronics_Cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_electronics"
+                android:layout_below="@id/textView_electronics">
+            </android.support.v7.widget.RecyclerView>
+
+
+            <TextView
+                android:id="@+id/textView_civilEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Civil Events"
+                android:padding="5dp"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textSize="20dp"
+                android:layout_below="@id/electronics_Cards"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/civil_Cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_civilEvents"
+                android:layout_below="@id/textView_civilEvents">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView_MechanicalEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mechanical Events"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:layout_below="@id/civil_Cards"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mechanical_Cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_MechanicalEvents"
+                android:layout_below="@id/textView_MechanicalEvents">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView_aerospace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aerospace Events"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textSize="20dp"
+                android:padding="5dp"
+                android:layout_below="@id/mechanical_Cards"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/aerospace_Cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_aerospace"
+                android:layout_below="@id/textView_aerospace">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView_cse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Computer &amp; Science Events"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textSize="20dp"
+                android:padding="5dp"
+                android:layout_below="@id/aerospace_Cards"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cse_Cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_cse"
+                android:layout_below="@id/textView_cse">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView_foodTechEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Food Tech Events"
+                android:hapticFeedbackEnabled="true"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textSize="20dp"
+                android:padding="5dp"
+                android:layout_below="@id/cse_Cards"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/foodTech_Cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/textView_foodTechEvents"
+                android:layout_below="@id/textView_foodTechEvents">
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
     </ScrollView>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

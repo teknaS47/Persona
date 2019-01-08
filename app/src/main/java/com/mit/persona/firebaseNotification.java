@@ -2,22 +2,12 @@ package com.mit.persona;
 
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.Service;
 import android.arch.persistence.room.Room;
-import android.content.Intent;
-import android.os.IBinder;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import static android.app.NotificationChannel.DEFAULT_CHANNEL_ID;
 import static android.content.ContentValues.TAG;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 
 
 public class firebaseNotification extends FirebaseMessagingService {

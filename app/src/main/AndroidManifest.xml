@@ -21,10 +21,6 @@
             </intent-filter>
         </activity>
         <!-- <activity android:name=".Event" /> -->
-        <activity
-            android:name=".DatabaseAll"
-            android:label="@string/title_activity_database_all"
-            android:theme="@style/AppTheme" />
         <activity android:name=".Event" />
         <activity
             android:name=".Register"

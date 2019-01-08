@@ -46,6 +46,7 @@ public class databaseOperations {
                             JSONObject jsonobject = items.getJSONObject(0);
                             version[0] = jsonobject.getDouble("version");
                             Log.e("VERSION: ", version[0].toString());
+                            Log.e("Number of Events: ", String.valueOf(items.length()));
 
                             if (local_verion < version[0]) {
 
@@ -106,7 +107,6 @@ public class databaseOperations {
         Log.e("Call Successful", "REGISTER EVENTS");
 
         RequestQueue requestQueue = Volley.newRequestQueue(register);
-
 
         JSONObject postparams = null;
         try {
