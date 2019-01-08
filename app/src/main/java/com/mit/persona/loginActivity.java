@@ -134,7 +134,8 @@ public static void contilogin()
 
     if(tmp== null){
         Log.d("error","returned string is null");
-    }else {
+    }
+    else {
         Log.d("searched data",""+tmp);
     }
 
@@ -142,7 +143,7 @@ public static void contilogin()
     int endIndex = tmp.indexOf(",\"_updated")-1;
     fetchedPassword = pageDetails.user_info.substring(startIndex,endIndex);
     //Log.d("fetched password is", "" + startIndex);
-   // Log.d("fetched password is", "" + endIndex);
+    //Log.d("fetched password is", "" + endIndex);
     Log.d("fetched password is", "" + fetchedPassword);
     Log.d("entered password is", "" + pageDetails.entered_Password);
     try{
