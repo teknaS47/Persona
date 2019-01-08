@@ -158,5 +158,68 @@ public class databaseOperations {
 
     }
 
+    public static void login(final loginActivity loginActivity, String entered_Email) {
+
+        Log.e("Call Successful", "Login");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(loginActivity);
+
+
+        /*JSONObject postparams = null;
+        try {
+            postparams = new JSONObject();
+            postparams.put("firstname", pageDetails.reg_firstname);
+            postparams.put("lastname", pageDetails.reg_lastname);
+            postparams.put("email", pageDetails.reg_email);
+            postparams.put("mobile", pageDetails.reg_phno);
+            postparams.put("address", pageDetails.reg_add);
+            postparams.put("gender", pageDetails.reg_gender);
+            postparams.put("dob", pageDetails.reg_dob);
+            postparams.put("college", pageDetails.reg_clgName);
+            postparams.put("branch", pageDetails.reg_branch);
+            postparams.put("city", pageDetails.reg_clgcity);
+            postparams.put("password", pageDetails.reg_password);
+        } catch (JSONException e) {
+            Log.e(e.toString(), "");
+        }
+*/          String URL_email = entered_Email;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST Response: ", response.toString());
+                        String tmp;
+                        tmp = response.toString();
+                        pageDetails.user_info = tmp;
+                        Log.e("returned details",""+pageDetails.user_info);
+                        Log.e("REST Response: ", pageDetails.user_info);
+                        com.mit.persona.loginActivity.contilogin();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders()  {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+
+                return params;
+            }
+        };requestQueue.add(jsonObjectRequest);
+//            postparams.put("e_id", "A5");
+        //          postparams.put("e_type", "group");
+        //        postparams.put("e_category", "cse");
+
+
+    }
+
 
 }
