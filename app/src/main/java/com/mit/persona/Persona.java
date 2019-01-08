@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.util.Log;
 
 
 public class Persona extends AppCompatActivity {
@@ -25,15 +26,26 @@ public class Persona extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        count++;
-        if(count<=2) {
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Press back one more time to exit",
-                    Toast.LENGTH_SHORT);
-            toast.show();
+
+        if(pageDetails.user_info == null) {
+            Log.d("user logged in", "false");
+            count = 0;
+            super.onBackPressed();
+        }else
+        {
+            count++;
+            Log.d("user logged in", "true");
+            if(count<=2) {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Press back one more time to exit",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
+
         if(count>2){
             finish();
+            //android.os.Process.killProcess(android.os.Process.myPid());
             moveTaskToBack(true);
         }
     }

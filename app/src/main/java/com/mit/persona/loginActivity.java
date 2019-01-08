@@ -55,6 +55,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         TextView skip_bt = findViewById(R.id.skip);
         skip_bt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                pageDetails.user_info = null;
                 startActivity(new Intent(loginActivity.this, Persona.class ));
             }
         });
