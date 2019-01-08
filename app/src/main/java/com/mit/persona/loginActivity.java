@@ -152,8 +152,7 @@ public static void contilogin()
         mContext.startActivity(i);
     }else {
         Log.d("password matching","something went wrong");
-    }}
-    catch (Exception e){
+    }}catch (Exception e){
         e.printStackTrace();
     }
 }
