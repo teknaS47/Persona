@@ -41,6 +41,7 @@ public class homePage extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Art"));
         tabLayout.addTab(tabLayout.newTab().setText("Design"));
         tabLayout.addTab(tabLayout.newTab().setText("Technology"));
+        tabLayout.addTab(tabLayout.newTab().setText("Engineering"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager_id);
