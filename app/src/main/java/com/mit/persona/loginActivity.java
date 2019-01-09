@@ -63,22 +63,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            View v = getCurrentFocus();
-            if ( v instanceof EditText) {
-                Rect outRect = new Rect();
-                v.getGlobalVisibleRect(outRect);
-                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
-                    v.clearFocus();
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                }
-            }
-        }
-        return super.dispatchTouchEvent( event );
-    }
+
 
     public void gotoregister(View view) {
         Intent i = new Intent(this, Register.class);
@@ -99,7 +84,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         EditText password_EditText = (EditText) findViewById(R.id.password_text);
         entered_Password = password_EditText.getText().toString();
         pageDetails.entered_Password = entered_Password;
-        if(entered_Email!= null && entered_Password!= null){
+        if(!entered_Email.isEmpty() && !entered_Password.isEmpty()){
           try {  //find user
               Log.d("finding user for login", "starting finding user");
               entered_Email = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + entered_Email + "\"}";
@@ -114,7 +99,10 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 
         }
         else {
-            Toast.makeText(this,"Enter Password or email ID and try again",Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(mContext,
+                    "Enter mail or password",
+                    Toast.LENGTH_SHORT);
+            toast.show();
             //Toast.makeText(getApplicationContext(),"Enter Password or email ID and try again",Toast.LENGTH_LONG).show();
         }
 
@@ -131,7 +119,7 @@ public static void contilogin()
     loginActivity l = new loginActivity();
     String tmp = pageDetails.user_info;
 
-    String fetchedPassword;
+    String fetchedPassword="";
 
     if(tmp== null){
         Log.d("error","returned string is null");
@@ -142,7 +130,12 @@ public static void contilogin()
 
     int startIndex = tmp.indexOf(",\"password\"") + 13;
     int endIndex = tmp.indexOf(",\"_updated")-1;
-    fetchedPassword = pageDetails.user_info.substring(startIndex,endIndex);
+    try {
+        fetchedPassword = pageDetails.user_info.substring(startIndex, endIndex);
+    }catch (Exception e)
+    {
+
+    }
     //Log.d("fetched password is", "" + startIndex);
     //Log.d("fetched password is", "" + endIndex);
     Log.d("fetched password is", "" + fetchedPassword);

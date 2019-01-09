@@ -31,6 +31,7 @@
                 android:ems="10"
                 android:hint="First Name"
                 android:inputType="textPersonName"
+                android:textColor="@color/colorPrimary"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="65dp" />
 
@@ -40,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Last Name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText3"
@@ -48,7 +50,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="E-mail ID"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText4"
@@ -56,7 +59,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Phone Number"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:textColor="@color/colorPrimary" />
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -73,16 +77,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="male"
                         android:text="Male"
-                        android:onClick="male"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <RadioButton
                         android:id="@+id/radioButton2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="female"
                         android:text="Female"
-                        android:onClick="female"/>
+                        android:textColor="@color/colorPrimary" />
                 </LinearLayout>
 
             </RadioGroup>
@@ -93,7 +99,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Address"
-                android:inputType="textPostalAddress" />
+                android:inputType="textPostalAddress"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText6"
@@ -101,7 +108,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="DOB(dd/mm/yyyy)"
-                android:inputType="date" />
+                android:inputType="date"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText7"
@@ -109,7 +117,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Your college Name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText8"
@@ -117,7 +126,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Branch"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText9"
@@ -125,7 +135,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Your college city"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText10"
@@ -133,7 +144,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText11"
@@ -141,14 +153,20 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Re-enter Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:background="@drawable/shapecol"
+                android:backgroundTint="@color/colorPrimary"
                 android:onClick="registerevent"
-                android:text="Register Now" />
+                android:text="Register Now"
+                android:textColor="@color/white" />
+
         </LinearLayout>
     </ScrollView>
 

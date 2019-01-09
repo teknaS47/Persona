@@ -1,5 +1,7 @@
 package com.mit.persona;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,12 +12,81 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.nio.charset.StandardCharsets;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+
 
 public class Register extends AppCompatActivity {
+
+    private static Context mContext;
+
+    public static void contilogin() {
+
+
+        String tmp = pageDetails.user_info;
+
+        String fetchedEmail = "";
+
+        if(tmp== null){
+            Log.d("error","returned string is null");
+        }
+        else {
+            Log.d("searched data",""+tmp);
+        }
+
+        int startIndex = tmp.indexOf(",\"email\"") + 10;
+        int endIndex = tmp.indexOf(",\"mobile")-1;
+        try {
+            fetchedEmail = pageDetails.user_info.substring(startIndex, endIndex);
+        }catch (Exception e){
+
+        }
+        //Log.d("fetched password is", "" + startIndex);
+        //Log.d("fetched password is", "" + endIndex);
+        Log.d("fetched Email is", "" + fetchedEmail);
+        Log.d("entered Email is", "" + pageDetails.reg_email);
+        try{
+            if(pageDetails.reg_email.equals(fetchedEmail)==true){
+                Log.d("Email status","Email matched");
+                Toast toast = Toast.makeText(mContext,
+                        "Email already exist",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+
+            }else {
+                Log.d("Email matching","Email didnt matched new user found");
+                //databaseOperations.register(mContext);
+                emailVerify backroundWorker = new emailVerify(mContext);
+                backroundWorker.execute();
+                Intent i = new Intent(mContext,Enter_OTP.class);
+                mContext.startActivity(i);
+
+            }}catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void emailVerification(View view) {
+
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +95,7 @@ public class Register extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        mContext = this;
     }
 
     public void registerevent(View view) {
@@ -62,6 +133,22 @@ public class Register extends AppCompatActivity {
 
         EditText password = (EditText) findViewById(R.id.editText10);
         pageDetails.reg_password = password.getText().toString();
+
+        EditText repassword = (EditText) findViewById(R.id.editText11);
+
+        if(pageDetails.reg_password.equals(repassword.getText().toString()))
+        {
+
+        }
+        else {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Check the password",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+
+
        /* try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(
@@ -74,11 +161,22 @@ public class Register extends AppCompatActivity {
             Log.e("error in password hash",e.toString());
         }
 */
-        if(pageDetails.reg_firstname!= null && pageDetails.reg_lastname!= null && pageDetails.reg_email!= null && pageDetails.reg_phno!= null
-                && pageDetails.reg_add != null && pageDetails.reg_dob != null && pageDetails.reg_clgName != null && pageDetails.reg_branch != null
-                && pageDetails.reg_clgcity != null && pageDetails.reg_password != null && pageDetails.reg_gender != null){
+        if(!pageDetails.reg_firstname.isEmpty() && !pageDetails.reg_lastname.isEmpty() && !pageDetails.reg_email.isEmpty() && !pageDetails.reg_phno.isEmpty()
+                && !pageDetails.reg_add .isEmpty() && !pageDetails.reg_dob .isEmpty() && !pageDetails.reg_clgName.isEmpty() && !pageDetails.reg_branch .isEmpty()
+                && !pageDetails.reg_clgcity.isEmpty() && !pageDetails.reg_password.isEmpty() && !pageDetails.reg_gender.isEmpty()){
             Log.d("Register Event:", "Detail Verification");
-            databaseOperations.register(this);
+            String entered_Email = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + pageDetails.reg_email + "\"}";
+            databaseOperations.mailExists(this,entered_Email);
+            //databaseOperations.register(this);
+        }
+        else
+        {
+            Log.d("data entered","nope");
+            Toast toast = Toast.makeText(mContext,
+                    "Some value is missing",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+
         }
 
     }
