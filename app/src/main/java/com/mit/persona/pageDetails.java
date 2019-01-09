@@ -18,7 +18,7 @@ public class pageDetails {
 
     public static String user_info;
     public static String entered_Password;
-
+    public static Boolean login_successful;
 
     public static boolean alreadyExists;
     public static String otp;

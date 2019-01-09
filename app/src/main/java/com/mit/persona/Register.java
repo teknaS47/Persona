@@ -3,30 +3,13 @@ package com.mit.persona;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.nio.charset.StandardCharsets;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Properties;
-import java.util.Random;
-
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 
 
@@ -35,7 +18,6 @@ public class Register extends AppCompatActivity {
     private static Context mContext;
 
     public static void contilogin() {
-
 
         String tmp = pageDetails.user_info;
 
@@ -171,7 +153,7 @@ public class Register extends AppCompatActivity {
         }
         else
         {
-            Log.d("data entered","nope");
+            Log.d("data entered: ","nope");
             Toast toast = Toast.makeText(mContext,
                     "Some value is missing",
                     Toast.LENGTH_SHORT);
