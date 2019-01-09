@@ -16,4 +16,7 @@ public class pageDetails {
 
     public static String user_info;
     public static String entered_Password;
-}
+
+
+    public static boolean alreadyExists;
+    }
