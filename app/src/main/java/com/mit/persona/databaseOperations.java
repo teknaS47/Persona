@@ -146,7 +146,7 @@ public class databaseOperations {
                     params.put(
                             "Authorization",
                             String.format("Basic %s", Base64.encodeToString(
-                                    String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                                        String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
                     //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
 
                     return params;

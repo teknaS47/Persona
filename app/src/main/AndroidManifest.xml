@@ -30,7 +30,9 @@
             android:name=".eventRegistration"
             android:label="@string/title_activity_event_registration"
             android:theme="@style/AppTheme" />
-
+        <activity android:name=".Enter_OTP"
+            android:label="enter_OTP"
+            android:theme="@style/AppTheme"/>
         <service
             android:name=".firebaseNotification"
             android:enabled="true"
