@@ -18,6 +18,16 @@ import java.nio.charset.StandardCharsets;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 
 
 public class Register extends AppCompatActivity {
@@ -59,7 +69,12 @@ public class Register extends AppCompatActivity {
 
             }else {
                 Log.d("Email matching","Email didnt matched new user found");
-                databaseOperations.register(mContext);
+                //databaseOperations.register(mContext);
+                emailVerify backroundWorker = new emailVerify(mContext);
+                backroundWorker.execute();
+                Intent i = new Intent(mContext,Enter_OTP.class);
+                mContext.startActivity(i);
+
             }}catch (Exception e){
             e.printStackTrace();
         }
@@ -67,7 +82,11 @@ public class Register extends AppCompatActivity {
 
     }
 
+    public void emailVerification(View view) {
 
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -166,6 +166,7 @@
                 android:onClick="registerevent"
                 android:text="Register Now"
                 android:textColor="@color/white" />
+
         </LinearLayout>
     </ScrollView>
 

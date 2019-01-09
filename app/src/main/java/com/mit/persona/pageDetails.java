@@ -19,4 +19,5 @@ public class pageDetails {
 
 
     public static boolean alreadyExists;
-    }
+    public static String otp;
+}

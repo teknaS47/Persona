@@ -40,7 +40,11 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".teacher_coordinator"></activity>
+        <activity android:name=".teacher_coordinator" />
+        <activity
+            android:name=".Enter_OTP"
+            android:label="@string/title_activity_enter__otp"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
