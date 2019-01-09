@@ -14,11 +14,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Persona" />
         <activity android:name=".loginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- <activity android:name=".Event" /> -->
         <activity android:name=".Event" />
@@ -40,7 +36,15 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".teacher_coordinator"></activity>
+        <activity android:name=".teacher_coordinator" />
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
