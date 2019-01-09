@@ -15,6 +15,7 @@ public class pageDetails {
 
     public static String entered_Email;
 
+
     public static String user_info;
     public static String entered_Password;
 

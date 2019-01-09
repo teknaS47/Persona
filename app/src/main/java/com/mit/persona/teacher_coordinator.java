@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class teacher_coordinator extends AppCompatActivity {
 
     //private TextInputEditText t;
-    private static Context mContext;
+    public static Context mContext;
     static String email;
     private TextInputEditText t;
     @Override
@@ -58,6 +58,7 @@ public class teacher_coordinator extends AppCompatActivity {
         String tmp = pageDetails.user_info;
 
         String fetchedEmail = "";
+        String fetchedEtag = "";
 
         if(tmp== null){
             Log.d("error","returned string is null");
@@ -68,12 +69,15 @@ public class teacher_coordinator extends AppCompatActivity {
 
         int startIndex = tmp.indexOf(",\"email\"") + 10;
         int endIndex = tmp.indexOf(",\"mobile")-1;
+        int startIndexe = tmp.indexOf(",\"_etag\"") + 10;
+        int endIndexe = tmp.indexOf(",\"_links")-1;
         try {
             fetchedEmail = pageDetails.user_info.substring(startIndex, endIndex);
+            fetchedEtag = pageDetails.user_info.substring(startIndexe,endIndexe);
         }catch (Exception e){
 
         }
-        //Log.d("fetched password is", "" + startIndex);
+        Log.d("fetched etag is", "" + fetchedEtag);
         //Log.d("fetched password is", "" + endIndex);
         Log.d("fetched Email is", "" + fetchedEmail);
         Log.d("entered Email is", "" + email);
@@ -82,7 +86,10 @@ public class teacher_coordinator extends AppCompatActivity {
 
                 // TODO: 09-01-2019 Add functionality
 
-                Log.d("Email status","Email matched");
+                
+                databaseOperations.userTypeChange((teacher_coordinator) mContext, fetchedEtag);
+
+                Log.d("etag_sent","etag_sent");
                 Toast toast = Toast.makeText(mContext,
                         "Verified as Coordinator",
                         Toast.LENGTH_SHORT);
