@@ -23,8 +23,8 @@ public class databaseOperations {
 
     private static final String URL_events = "http://139.59.82.57:5000/events";
     private static final String URL_users = "http://139.59.82.57:5000/users";
-    private static final String URL_registrations = "http://139.59.82.57:5000/registrations";
-    private static final String URL_localDbVersion = "http://139.59.82.57:5000/localDbVersion";
+    private static final String URL_registrations = "http://139.59.82.57:5000/event_registrations";
+
     public static MyAppDatabase myAppDatabase;
 
 
@@ -127,27 +127,6 @@ public class databaseOperations {
             Log.e(e.toString(), "");
         }
 
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL_users, postparams,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Log.e("REST Response: ", response.toString());
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e("REST Error: ", error.toString());
-                        }
-                    }) {
-                @Override
-                public Map<String, String> getHeaders()  {
-                    Map<String, String> params = new HashMap<>();
-                    params.put(
-                            "Authorization",
-                            String.format("Basic %s", Base64.encodeToString(
-                                    String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
-                    //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL_users, postparams,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -162,7 +141,7 @@ public class databaseOperations {
                     }
                 }) {
             @Override
-            public Map<String, String> getHeaders() {
+            public Map<String, String> getHeaders()  {
                 Map<String, String> params = new HashMap<>();
                 params.put(
                         "Authorization",
@@ -170,12 +149,12 @@ public class databaseOperations {
                                 String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
                 //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
 
-                    return params;
-                }
-            };requestQueue.add(jsonObjectRequest);
+                return params;
+            }
+        };requestQueue.add(jsonObjectRequest);
 //            postparams.put("e_id", "A5");
-            //          postparams.put("e_type", "group");
-            //        postparams.put("e_category", "cse");
+        //          postparams.put("e_type", "group");
+        //        postparams.put("e_category", "cse");
 
 
     }
@@ -246,7 +225,7 @@ public class databaseOperations {
                 return params;
             }
         };
-jsonObjectRequest.setShouldCache(false);
+        jsonObjectRequest.setShouldCache(false);
 
         requestQueue.add(jsonObjectRequest);
 //            postparams.put("e_id", "A5");
@@ -291,7 +270,7 @@ jsonObjectRequest.setShouldCache(false);
                         pageDetails.user_info = tmp;
                         Log.e("returned details",""+pageDetails.user_info);
                         Log.e("REST Response: ", pageDetails.user_info);
-                        com.mit.persona.loginActivity.contilogin();
+                        com.mit.persona.Register.contilogin();
                     }
                 },
                 new Response.ErrorListener() {
@@ -312,12 +291,9 @@ jsonObjectRequest.setShouldCache(false);
                 return params;
             }
         };
-jsonObjectRequest.setShouldCache(false);
+        jsonObjectRequest.setShouldCache(false);
 
         requestQueue.add(jsonObjectRequest);
-//            postparams.put("e_id", "A5");
-        //          postparams.put("e_type", "group");
-        //        postparams.put("e_category", "cse");
 
 
     }
@@ -338,7 +314,7 @@ jsonObjectRequest.setShouldCache(false);
                         String tmp;
                         tmp = response.toString();
                         pageDetails.user_info = tmp;
-                        Log.e("returned details", "" + pageDetails.user_info);
+                        Log.e("returned details",""+pageDetails.user_info);
                         Log.e("REST Response: ", pageDetails.user_info);
                         com.mit.persona.teacher_coordinator.addCoordinator();
                     }
@@ -369,49 +345,7 @@ jsonObjectRequest.setShouldCache(false);
         //        postparams.put("e_category", "cse");
 
 
-    }
 
-    public static void verify(teacher_coordinator teacher_coordinator, String email) {
-
-        Log.e("Call Successful", "Verify coordinator mail");
-
-        RequestQueue requestQueue = Volley.newRequestQueue(teacher_coordinator);
-
-
-        String URL_email = email;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("REST Response: ", response.toString());
-                        String tmp;
-                        tmp = response.toString();
-                        pageDetails.user_info = tmp;
-                        Log.e("returned details", "" + pageDetails.user_info);
-                        Log.e("REST Response: ", pageDetails.user_info);
-                        com.mit.persona.teacher_coordinator.addCoordinator();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("REST Error: ", error.toString());
-                    }
-                }) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<>();
-                params.put(
-                        "Authorization",
-                        String.format("Basic %s", Base64.encodeToString(
-                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
-                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
-                return params;
-            }
-        };
-        jsonObjectRequest.setShouldCache(false);
-
-        requestQueue.add(jsonObjectRequest);
     }
     public static void userTypeChange(teacher_coordinator teacher_coordinator, final String e_tag) {
 
@@ -423,7 +357,7 @@ jsonObjectRequest.setShouldCache(false);
         JSONObject postparams = null;
         try {
             postparams = new JSONObject();
-            postparams.put("user_type",2);
+            postparams.put("user_type", 2);
         } catch (JSONException e) {
             Log.e(e.toString(), "");
         }
@@ -456,6 +390,7 @@ jsonObjectRequest.setShouldCache(false);
                         String.format("Basic %s", Base64.encodeToString(
                                 String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
                 params.put("If-Match", e_tag);
+                params.put("X-HTTP-Method-Override","PATCH");
                 return params;
             }
         };
@@ -463,4 +398,5 @@ jsonObjectRequest.setShouldCache(false);
 
         requestQueue.add(jsonObjectRequest);
     }
+
 }
