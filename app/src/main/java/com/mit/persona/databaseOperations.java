@@ -23,8 +23,8 @@ public class databaseOperations {
 
     private static final String URL_events = "http://139.59.82.57:5000/events";
     private static final String URL_users = "http://139.59.82.57:5000/users";
-    private static final String URL_registrations = "http://139.59.82.57:5000/registrations";
-    private static final String URL_localDbVersion = "http://139.59.82.57:5000/localDbVersion";
+    private static final String URL_registrations = "http://139.59.82.57:5000/event_registrations";
+
     public static MyAppDatabase myAppDatabase;
 
 
@@ -294,9 +294,6 @@ jsonObjectRequest.setShouldCache(false);
         jsonObjectRequest.setShouldCache(false);
 
         requestQueue.add(jsonObjectRequest);
-//            postparams.put("e_id", "A5");
-        //          postparams.put("e_type", "group");
-        //        postparams.put("e_category", "cse");
 
 
     }
