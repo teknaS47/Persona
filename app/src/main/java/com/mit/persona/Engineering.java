@@ -45,11 +45,11 @@ public class Engineering extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_engineering, container, false);
 
-        LinearLayoutManager layoutManager0= new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        LinearLayoutManager layoutManager1= new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        LinearLayoutManager layoutManager2= new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        LinearLayoutManager layoutManager3= new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        LinearLayoutManager layoutManager4= new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager0= new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager1= new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager2= new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager3= new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager4= new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
 
 
