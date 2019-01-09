@@ -103,11 +103,11 @@ public class databaseOperations {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public static void register(Context register) {
+    public static void register(Enter_OTP enter_otp) {
 
         Log.e("Call Successful", "REGISTER EVENTS");
 
-        RequestQueue requestQueue = Volley.newRequestQueue(register);
+        RequestQueue requestQueue = Volley.newRequestQueue(enter_otp);
 
         JSONObject postparams = null;
         try {
