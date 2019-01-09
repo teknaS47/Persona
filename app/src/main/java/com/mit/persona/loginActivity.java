@@ -60,6 +60,14 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             }
         });
 
+        Button t_login = findViewById(R.id.t_login_button);
+        t_login.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pageDetails.user_info = null;
+                startActivity(new Intent(loginActivity.this, teacher_coordinator.class ));
+            }
+        });
+
 
     }
 

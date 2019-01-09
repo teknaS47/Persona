@@ -13,6 +13,8 @@ public class pageDetails {
     public static String reg_password;
     public static String reg_gender;
 
+    public static String entered_Email;
+
 
     public static String user_info;
     public static String entered_Password;

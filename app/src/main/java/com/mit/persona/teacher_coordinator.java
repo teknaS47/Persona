@@ -1,6 +1,7 @@
 package com.mit.persona;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -16,20 +17,22 @@ import android.widget.Toast;
 public class teacher_coordinator extends AppCompatActivity {
 
     //private TextInputEditText t;
-    private static Context mContext;
+    public static Context mContext;
     static String email;
-
+    private TextInputEditText t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_coordinator);
         mContext=this;
+        t = findViewById(R.id.add_coordinator_text_field);
     }
 
-    public void verify()
+    public void verify(View view)
     {
-        TextInputEditText t = findViewById(R.id.add_coordinator_text);
+
         email = t.getText().toString();
+        pageDetails.entered_Email = email;
         if(!email.isEmpty()) {
             try {
                 email = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + email + "\"}";
@@ -43,16 +46,19 @@ public class teacher_coordinator extends AppCompatActivity {
             toast.show();
             //Toast.makeText(getApplicationContext(),"Enter Password or email ID and try again",Toast.LENGTH_LONG).show();
         }
+    }
 
-
-
-
+    public void backToMain(View view){
+        Intent i = new Intent(mContext,Persona.class);
+        startActivity(i);
+        finish();
     }
     public static void addCoordinator()
     {
         String tmp = pageDetails.user_info;
 
         String fetchedEmail = "";
+        String fetchedEtag = "";
 
         if(tmp== null){
             Log.d("error","returned string is null");
@@ -63,21 +69,27 @@ public class teacher_coordinator extends AppCompatActivity {
 
         int startIndex = tmp.indexOf(",\"email\"") + 10;
         int endIndex = tmp.indexOf(",\"mobile")-1;
+        int startIndexe = tmp.indexOf(",\"_etag\"") + 10;
+        int endIndexe = tmp.indexOf(",\"_links")-1;
         try {
             fetchedEmail = pageDetails.user_info.substring(startIndex, endIndex);
+            fetchedEtag = pageDetails.user_info.substring(startIndexe,endIndexe);
         }catch (Exception e){
 
         }
-        //Log.d("fetched password is", "" + startIndex);
+        Log.d("fetched etag is", "" + fetchedEtag);
         //Log.d("fetched password is", "" + endIndex);
         Log.d("fetched Email is", "" + fetchedEmail);
-        Log.d("entered Email is", "" + pageDetails.reg_email);
+        Log.d("entered Email is", "" + email);
         try{
-            if(email.equals(fetchedEmail)==true){
+            if(pageDetails.entered_Email.equals(fetchedEmail)){
 
                 // TODO: 09-01-2019 Add functionality
 
-                Log.d("Email status","Email matched");
+                
+                databaseOperations.userTypeChange((teacher_coordinator) mContext, fetchedEtag);
+
+                Log.d("etag_sent","etag_sent");
                 Toast toast = Toast.makeText(mContext,
                         "Verified as Coordinator",
                         Toast.LENGTH_SHORT);
@@ -90,6 +102,9 @@ public class teacher_coordinator extends AppCompatActivity {
             }}catch (Exception e){
             e.printStackTrace();
         }
+
+
+
     }
 
     @Override
