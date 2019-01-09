@@ -29,6 +29,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 3:
                 techFragment techfragment = new techFragment();
                 return techfragment;
+            case 4:
+                Engineering engineering = new Engineering();
+                return engineering;
             default:
                 return null;
         }
