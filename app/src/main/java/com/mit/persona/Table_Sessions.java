@@ -8,19 +8,21 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "sessions")
 public class Table_Sessions {
 
-    @PrimaryKey
-    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    private Integer id;
+
+    @ColumnInfo(name = "username")
     private String username;
 
     @ColumnInfo(name = "user_type")
     private Integer type;
 
-    @NonNull
+
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(@NonNull String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -30,5 +32,13 @@ public class Table_Sessions {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

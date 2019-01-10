@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.mit.persona.Persona.myAppDatabase;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +37,12 @@ public class UserPanelFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Sign out Clicked", Toast.LENGTH_SHORT).show();
+                if (pageDetails.session) {
+                    Table_Sessions session = new Table_Sessions();
+                    session.setId(1);
+                    myAppDatabase.myDao().deleteSession(session);
+                }
+
             }
         });
 

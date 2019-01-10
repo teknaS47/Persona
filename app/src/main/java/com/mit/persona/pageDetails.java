@@ -20,6 +20,8 @@ public class pageDetails {
     public static String entered_Password;
     public static Boolean login_successful;
 
+    public static Boolean session = false;
+
     public static boolean alreadyExists;
     public static String otp;
 }

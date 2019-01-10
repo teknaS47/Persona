@@ -49,6 +49,7 @@ public class homePage extends Fragment {
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager_id);
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager(), tabLayout.getTabCount());
 
+
         viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
