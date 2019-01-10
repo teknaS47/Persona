@@ -117,7 +117,7 @@
                     android:id="@+id/textView8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Talent Hub" />
+                    android:text="Arts &amp; Creative Events" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -130,7 +130,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="#BDD6EE"
-                        android:text="Painting" />
+                        android:text="Painters Window" />
 
                     <CheckBox
                         android:id="@+id/A2"
@@ -138,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="#C5E0B3"
-                        android:text="Movie Making" />
+                        android:text="Rang Rangilee" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -152,15 +152,22 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="#BDD6EE"
-                        android:text="Photography and Exhibition" />
+                        android:text="Photography Competition" />
 
+                    <CheckBox
+                        android:id="@+id/A4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Kala Kriti" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Masti Magic" />
+                    android:text="Dance and Music Events" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -168,20 +175,60 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:id="@+id/A4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#D0CECE"
-                        android:text="Personality Profiling " />
-
-                    <CheckBox
                         android:id="@+id/A5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="#D0CECE"
-                        android:text="Poster Exhibition" />
+                        android:text="Nartana" />
+
+                    <CheckBox
+                        android:id="@+id/A6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#D0CECE"
+                        android:text="Ghoomar" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <CheckBox
+                        android:id="@+id/A7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#D0CECE"
+                        android:text="Saptasur" />
+
+                    <CheckBox
+                        android:id="@+id/A8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#D0CECE"
+                        android:text="Intone" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <CheckBox
+                        android:id="@+id/A9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#D0CECE"
+                        android:text="Trance" />
+
+                    <CheckBox
+                        android:id="@+id/A10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#D0CECE"
+                        android:text="Persona Film-maker" />
                 </LinearLayout>
 
                 <TextView
@@ -196,152 +243,80 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:id="@+id/A6"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="#D0CECE"
-                        android:text="Two Interactive Session" />
-
-                    <CheckBox
-                        android:id="@+id/A7"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="#BDD6EE"
-                        android:text="Solo Singing" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/A8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#BDD6EE"
-                        android:text="Eater’s Paradise" />
-
-                    <CheckBox
-                        android:id="@+id/A9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#D0CECE"
-                        android:text="Selfie Contest" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/A10"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#BDD6EE"
-                        android:text="Persona Grata and Mr and Mrs Persona" />
-
-                    <CheckBox
                         android:id="@+id/A11"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="Street Play contest" />
+                        android:background="#D0CECE"
+                        android:text="Mega Jamm" />
 
+                    <CheckBox
+                        android:id="@+id/A12"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Persona Show Stopper" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/A12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#BDD6EE"
-                        android:text="Solo Dance" />
 
                     <CheckBox
                         android:id="@+id/A13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
-                        android:text="Rangoli" />
+                        android:background="#BDD6EE"
+                        android:text="Street-Art:Street-Play" />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/A14"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="Music Band Contest" />
-
-                    <CheckBox
-                        android:id="@+id/A15"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="Group Dance Contest" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/A16"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#D0CECE"
-                        android:text="Fashion Show" />
-
-                    <CheckBox
-                        android:id="@+id/A17"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#D0CECE"
-                        android:text="Fusion Dance" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/DESIGN"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="                                              DESIGN" />
+                    android:text="Architecture" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
+                    <CheckBox
+                        android:id="@+id/R1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Archit-Design" />
+
+                    <CheckBox
+                        android:id="@+id/R2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Archit-Quiz" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/R3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="#BDD6EE"
+                            android:text="KorMSculpture Design" />
+                </LinearLayout>
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="MANET and Institute of Design" />
-
+                    android:text="Manet and Institure of Design" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -352,7 +327,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
+                        android:background="#BDD6EE"
                         android:text="Naval Show" />
 
                     <CheckBox
@@ -360,10 +335,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
-                        android:text="Design Shows" />
+                        android:background="#BDD6EE"
+                        android:text="T Shirt-Redesign" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -374,18 +348,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="UDAAN" />
-
+                        android:background="#BDD6EE"
+                        android:text="Business Design 2050" />
                     <CheckBox
                         android:id="@+id/D4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="Car Pull" />
+                        android:background="#BDD6EE"
+                        android:text="Smart Neighbourhoods" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -396,29 +368,113 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="Campus Katta" />
+                        android:background="#BDD6EE"
+                        android:text="Be Seated" />
+                    <CheckBox
+                        android:id="@+id/D6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Fashion Upcycle" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <CheckBox
+                        android:id="@+id/D7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Giant Spinners" />
+                    <CheckBox
+                        android:id="@+id/D8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Build to Race" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/MANAGEMENT"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
+                    <CheckBox
+                        android:id="@+id/D9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Animator In You" />
+                </LinearLayout>
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/textView14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="                                          MANAGEMENT" />
+                    android:text="Vedic Scieneces" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/V1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Rhythm Divine Drum Circle" />
+                    <CheckBox
+                        android:id="@+id/V2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Expresso" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/V3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Aao Kabhi Ground Pe" />
+                    <CheckBox
+                        android:id="@+id/V4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Ginipic" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/V5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#BDD6EE"
+                        android:text="Yogethon" />
+                </LinearLayout>
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/textView15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Management and Other Events" />
+                    android:text="Management an Other Events" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -432,16 +488,14 @@
                         android:layout_weight="1"
                         android:background="#BDD6EE"
                         android:text="Best Manager" />
-
                     <CheckBox
                         android:id="@+id/M2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#C5E0B3"
+                        android:background="#BDD6EE"
                         android:text="Ad Mad Show" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -454,16 +508,14 @@
                         android:layout_weight="1"
                         android:background="#BDD6EE"
                         android:text="Extempore" />
-
                     <CheckBox
                         android:id="@+id/M4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="Quiz “B”" />
+                        android:background="#BDD6EE"
+                        android:text="Quiz 'b'" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -474,18 +526,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="Business Plan" />
-
+                        android:background="#BDD6EE"
+                        android:text="Buisness Plan" />
                     <CheckBox
                         android:id="@+id/M6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#C5E0B3"
+                        android:background="#BDD6EE"
                         android:text="Box Cricket" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -496,108 +546,89 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#C5E0B3"
+                        android:background="#BDD6EE"
                         android:text="Treasure Hunt" />
-
                     <CheckBox
                         android:id="@+id/M8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
+                        android:background="#BDD6EE"
                         android:text="Case Mania" />
                 </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/TECHNOLOGY"
+            <TextView
+                android:id="@+id/textView19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:text="Electronics and Engineering" />
 
-                <TextView
-                    android:id="@+id/textView14"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/T1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="                                          TECHNOLOGY" />
-
-                <TextView
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Game of Drones" />
+                <CheckBox
+                    android:id="@+id/T2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Electronics Engineering" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/T1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="Game of Drones" />
-
-                    <CheckBox
-                        android:id="@+id/T2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="4 X 4 Road Rally Race " />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/T3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="Innovative Technical Idea" />
-
-                    <CheckBox
-                        android:id="@+id/T4"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="#C5E0B3"
-                        android:text="Project Competition" />
-                </LinearLayout>
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="4 x 4 Road Rally Race" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
+                <CheckBox
+                    android:id="@+id/T3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Innovative technical Idea" />
+                <CheckBox
+                    android:id="@+id/T4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Jigyasa" />
+            </LinearLayout>
             <TextView
+                android:id="@+id/textView20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Civil Engineering" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/T5"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#D0CECE"
+                    android:background="#BDD6EE"
                     android:text="Poster Presentation" />
-
                 <CheckBox
                     android:id="@+id/T6"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#D0CECE"
+                    android:background="#BDD6EE"
                     android:text="Innovative Solutions to Civil Engineering Problems" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -608,42 +639,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
+                    android:background="#BDD6EE"
                     android:text="Model Making" />
-
                 <CheckBox
                     android:id="@+id/T8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
+                    android:background="#BDD6EE"
                     android:text="Smart City" />
-
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/T9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Auto Drifting Competition" />
                 <CheckBox
                     android:id="@+id/T10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Innovative Ideas in Mathematics" />
             </LinearLayout>
-
             <TextView
+                android:id="@+id/textView21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mechanical Engineering and Aerospace Engineering " />
+                android:text="Mechanical Engineering" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -655,18 +685,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="Nitrobustor" />
-
+                    android:background="#BDD6EE"
+                    android:text="Auto Drigt" />
                 <CheckBox
                     android:id="@+id/T12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
+                    android:background="#BDD6EE"
                     android:text="Rocket Launcher" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -677,18 +705,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="Contrption" />
-
+                    android:background="#BDD6EE"
+                    android:text="Game Zone VR" />
                 <CheckBox
                     android:id="@+id/T14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="Robo Race " />
+                    android:background="#BDD6EE"
+                    android:text="Robo Race" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -701,20 +727,19 @@
                     android:layout_weight="1"
                     android:background="#BDD6EE"
                     android:text="CAD War" />
-
                 <CheckBox
                     android:id="@+id/T16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="Non-ckt branch Quiz" />
+                    android:background="#BDD6EE"
+                    android:text="Project Expo" />
             </LinearLayout>
-
             <TextView
+                android:id="@+id/textView22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Computer and IT Engineering" />
+                android:text="Aerospace Engineering" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -724,20 +749,18 @@
                 <CheckBox
                     android:id="@+id/T17"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="Smart MIT-ADTU Hackathon 2018" />
-
+                    android:background="#BDD6EE"
+                    android:text="Poster Presentation" />
                 <CheckBox
                     android:id="@+id/T18"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#BDD6EE"
-                    android:text="Java Coding" />
+                    android:text="Glider Design Competition" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -746,35 +769,119 @@
                 <CheckBox
                     android:id="@+id/T19"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#BDD6EE"
-                    android:text="Gaming (NFS, CS, FIFA)" />
-
+                    android:text="RC Aircraft Competition" />
                 <CheckBox
                     android:id="@+id/T20"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#BDD6EE"
-                    android:text="Black out Coding" />
+                    android:text="Astronomy Quiz Competition" />
             </LinearLayout>
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Computer and IT Engineering" />
 
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/T21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#BDD6EE"
+                android:text="Hackathon Software" />
+            <CheckBox
+                android:id="@+id/T22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#BDD6EE"
+                android:text="Hackathon Hardware" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/T21"
+                    android:id="@+id/T23"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="ckt branch Quiz" />
+                    android:background="#BDD6EE"
+                    android:text="Talash:Technical Treasure Hunt" />
+                <CheckBox
+                    android:id="@+id/T24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Quiz Bowl" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
+                <CheckBox
+                    android:id="@+id/T25"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Box Cricket Staff" />
+                <CheckBox
+                    android:id="@+id/T26"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Gaming Park(NFS)" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/T27"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Poster and Project Competition" />
+                <CheckBox
+                    android:id="@+id/T28"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Gaming Park(CS)" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/T29"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Smart Boat" />
+            </LinearLayout>
             <TextView
+                android:id="@+id/textView24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Food Technology" />
@@ -785,72 +892,88 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/T22"
+                    android:id="@+id/T30"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="Innovative food product contest" />
-
+                    android:background="#BDD6EE"
+                    android:text="Intrinsic Foodpreneurship" />
                 <CheckBox
-                    android:id="@+id/T23"
+                    android:id="@+id/T31"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="Food Quiz Clash contest" />
+                    android:background="#BDD6EE"
+                    android:text="Clash of Debations" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/T24"
+                    android:id="@+id/T32"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="Model making contest" />
-
+                    android:background="#BDD6EE"
+                    android:text="Free Style Poster Making" />
                 <CheckBox
-                    android:id="@+id/T25"
+                    android:id="@+id/T33"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="Food Business plan contest" />
+                    android:background="#BDD6EE"
+                    android:text="Food-o-Pedia" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/T26"
+                    android:id="@+id/T34"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3"
-                    android:text="Video making competition" />
+                    android:background="#BDD6EE"
+                    android:text="Food Hunt" />
+                <CheckBox
+                    android:id="@+id/T35"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Innovative Food Product Competition" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/T27"
+                    android:id="@+id/T36"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#C5E0B3" />
+                    android:background="#BDD6EE"
+                    android:text="Food-o-Graphy" />
+                <CheckBox
+                    android:id="@+id/T37"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BDD6EE"
+                    android:text="Food Taste Aptitude" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Register" />
+
+
+
+
 
 
         </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
