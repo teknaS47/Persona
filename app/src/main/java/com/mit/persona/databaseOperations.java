@@ -103,11 +103,11 @@ public class databaseOperations {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public static void register(Context register) {
+    public static void register(Enter_OTP enter_otp) {
 
         Log.e("Call Successful", "REGISTER EVENTS");
 
-        RequestQueue requestQueue = Volley.newRequestQueue(register);
+        RequestQueue requestQueue = Volley.newRequestQueue(enter_otp);
 
         JSONObject postparams = null;
         try {
@@ -146,7 +146,7 @@ public class databaseOperations {
                     params.put(
                             "Authorization",
                             String.format("Basic %s", Base64.encodeToString(
-                                    String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                                        String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
                     //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
 
                     return params;
@@ -159,108 +159,52 @@ public class databaseOperations {
 
     }
 
-    public static void login(final loginActivity loginActivity, String entered_Email) {
+    public static void login(final loginActivity loginActivity, String entered_Email, final String entered_password) {
 
         Log.e("Call Successful", "Login");
 
         RequestQueue requestQueue = Volley.newRequestQueue(loginActivity);
 
-
-        /*JSONObject postparams = null;
-        try {
-            postparams = new JSONObject();
-            postparams.put("firstname", pageDetails.reg_firstname);
-            postparams.put("lastname", pageDetails.reg_lastname);
-            postparams.put("email", pageDetails.reg_email);
-            postparams.put("mobile", pageDetails.reg_phno);
-            postparams.put("address", pageDetails.reg_add);
-            postparams.put("gender", pageDetails.reg_gender);
-            postparams.put("dob", pageDetails.reg_dob);
-            postparams.put("college", pageDetails.reg_clgName);
-            postparams.put("branch", pageDetails.reg_branch);
-            postparams.put("city", pageDetails.reg_clgcity);
-            postparams.put("password", pageDetails.reg_password);
-        } catch (JSONException e) {
-            Log.e(e.toString(), "");
-        }
-*/          String URL_email = entered_Email;
+        String URL_email = entered_Email;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("REST Response: ", response.toString());
-                        String tmp;
-                        tmp = response.toString();
-                        pageDetails.user_info = tmp;
-                        Log.e("returned details",""+pageDetails.user_info);
-                        Log.e("REST Response: ", pageDetails.user_info);
-                        com.mit.persona.loginActivity.contilogin();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("REST Error: ", error.toString());
-                    }
-                }) {
-            @Override
-            public Map<String, String> getHeaders()  {
-                Map<String, String> params = new HashMap<>();
-                params.put(
-                        "Authorization",
-                        String.format("Basic %s", Base64.encodeToString(
-                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
-                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+                        JSONArray items = null;
+                        String password = null;
+                        Integer user_type = 10;
+                        String username = null;
+                        try {
+                            items = response.getJSONArray("_items");
+                            JSONObject jsonobject = items.getJSONObject(0);
+                            password = jsonobject.getString("password");
+                            username = jsonobject.getString("email");
+                            if (jsonobject.has("user_type")) {
+                                user_type = jsonobject.getInt("user_type");
+                            }
+                            Log.e("Password: ", password);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                return params;
-            }
-        };
-jsonObjectRequest.setShouldCache(false);
+                        if (String.valueOf(entered_password).equals(String.valueOf(password))) {
+                            pageDetails.login_successful = true;
+                            Log.e("Am i here?", String.valueOf(pageDetails.login_successful));
+                        }
+                        else {
+                            pageDetails.login_successful = false;
+                            Log.e("Or Am i here?", String.valueOf(pageDetails.login_successful));
 
-        requestQueue.add(jsonObjectRequest);
-//            postparams.put("e_id", "A5");
-        //          postparams.put("e_type", "group");
-        //        postparams.put("e_category", "cse");
+                        }
 
-
-    }
-
-    public static void mailExists(Register register, String entered_Email) {
-
-        Log.e("Call Successful", "Login");
-
-        RequestQueue requestQueue = Volley.newRequestQueue(register);
-
-
-        /*JSONObject postparams = null;
-        try {
-            postparams = new JSONObject();
-            postparams.put("firstname", pageDetails.reg_firstname);
-            postparams.put("lastname", pageDetails.reg_lastname);
-            postparams.put("email", pageDetails.reg_email);
-            postparams.put("mobile", pageDetails.reg_phno);
-            postparams.put("address", pageDetails.reg_add);
-            postparams.put("gender", pageDetails.reg_gender);
-            postparams.put("dob", pageDetails.reg_dob);
-            postparams.put("college", pageDetails.reg_clgName);
-            postparams.put("branch", pageDetails.reg_branch);
-            postparams.put("city", pageDetails.reg_clgcity);
-            postparams.put("password", pageDetails.reg_password);
-        } catch (JSONException e) {
-            Log.e(e.toString(), "");
-        }
-*/          String URL_email = entered_Email;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("REST Response: ", response.toString());
-                        String tmp;
-                        tmp = response.toString();
-                        pageDetails.user_info = tmp;
-                        Log.e("returned details",""+pageDetails.user_info);
-                        Log.e("REST Response: ", pageDetails.user_info);
-                        com.mit.persona.Register.contilogin();
+                        //JSONObject jsonobject = response.getJSONObject();
+                        //Log.e("REST Response: ", jsonobject.toString());
+                        //String tmp;
+                        //tmp = response.toString();
+                        //pageDetails.user_info = tmp;
+                        //Log.e("returned details",""+pageDetails.user_info);
+                        //Log.e("REST Response: ", pageDetails.user_info);
+                        com.mit.persona.loginActivity.FinishLogin(user_type, username);
                     }
                 },
                 new Response.ErrorListener() {
@@ -290,5 +234,191 @@ jsonObjectRequest.setShouldCache(false);
 
 
     }
+    public static void mailExists(Register register,String email_url, final String entered_Email) {
 
+        Log.e("Call Successful: ", "mailExists");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(register);
+
+
+        /*JSONObject postparams = null;
+        try {
+            postparams = new JSONObject();
+            postparams.put("firstname", pageDetails.reg_firstname);
+            postparams.put("lastname", pageDetails.reg_lastname);
+            postparams.put("email", pageDetails.reg_email);
+            postparams.put("mobile", pageDetails.reg_phno);
+            postparams.put("address", pageDetails.reg_add);
+            postparams.put("gender", pageDetails.reg_gender);
+            postparams.put("dob", pageDetails.reg_dob);
+            postparams.put("college", pageDetails.reg_clgName);
+            postparams.put("branch", pageDetails.reg_branch);
+            postparams.put("city", pageDetails.reg_clgcity);
+            postparams.put("password", pageDetails.reg_password);
+        } catch (JSONException e) {
+            Log.e(e.toString(), "");
+        }
+*/
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, email_url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("RESPONSE CHECK: ", response.toString());
+                        JSONArray items = null;
+                        String email = null;
+                        Boolean email_exists = true;
+                        try {
+                            items = response.getJSONArray("_items");
+                            if (items.length() == 0) {
+                                email_exists = false;
+                            }
+
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
+                        com.mit.persona.Register.contilogin(email_exists);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders()  {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+    public static void verify(teacher_coordinator teacher_coordinator, String email_url, final String fetched_email) {
+
+        Log.e("Call Successful", "Verify coordinator mail");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(teacher_coordinator);
+
+        final String URL_email = email_url;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        JSONArray items = null;
+                        String email = null;
+                        Integer user_type = 10;
+                        Boolean emailExists = true;
+                        String username, objectId = null;
+                        String etag = null;
+                        try {
+                            items = response.getJSONArray("_items");
+                            if (items.length() == 0) {
+                                emailExists = false;
+                            }
+                            else {
+                                JSONObject jsonobject = items.getJSONObject(0);
+                                if (jsonobject.has("email")) {
+                                    email = jsonobject.getString("email");
+                                    if (String.valueOf(fetched_email).equals(String.valueOf(email))) {
+                                        etag = jsonobject.getString("_etag");
+                                        objectId = jsonobject.getString("_id");
+                                    }
+                                }
+                            }
+                            com.mit.persona.teacher_coordinator.addCoordinator(etag, objectId, URL_users, emailExists);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders()  {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
+//            postparams.put("e_id", "A5");
+        //          postparams.put("e_type", "group");
+        //        postparams.put("e_category", "cse");
+
+
+
+    }
+    public static void userTypeChange(teacher_coordinator teacher_coordinator, final String e_tag, final String url) {
+
+        Log.e("Call Successful", "Verify coordinator mail");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(teacher_coordinator);
+
+
+        JSONObject postparams = null;
+        try {
+            postparams = new JSONObject();
+            postparams.put("user_type", 2);
+        } catch (JSONException e) {
+            Log.e(e.toString(), "");
+        }
+
+//        final String URL_user_type = user_type;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PATCH, url, postparams,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST Response: ", response.toString());
+//                        String tmp;
+//                        tmp = response.toString();
+//                        pageDetails.user_info = tmp;
+                        Log.e("returned details", "" + pageDetails.user_info);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                params.put("If-Match", e_tag);
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
+    }
 }

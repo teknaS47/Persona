@@ -17,9 +17,12 @@
             android:id="@+id/tabLayout_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/design_default_color_primary"
+            android:background="@color/colorPrimaryDark"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_gravity="center_horizontal"
+            app:tabMode="scrollable"
+            app:tabTextColor="@color/colorText"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             />
 

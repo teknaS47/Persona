@@ -108,7 +108,10 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="DOB(dd/mm/yyyy)"
-                android:inputType="date"
+                android:editable="false"
+                android:inputType="none"
+                android:focusable="false"
+                android:onClick="showDatePickerDialog"
                 android:textColor="@color/colorPrimary" />
 
             <EditText
@@ -166,6 +169,7 @@
                 android:onClick="registerevent"
                 android:text="Register Now"
                 android:textColor="@color/white" />
+
         </LinearLayout>
     </ScrollView>
 
