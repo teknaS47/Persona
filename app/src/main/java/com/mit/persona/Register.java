@@ -59,33 +59,11 @@ public class Register extends AppCompatActivity {
         }
         return check;
     }
-    public static void contilogin() {
+    public static void contilogin(Boolean email_exists) {
 
 
-        String tmp = pageDetails.user_info;
-
-        String fetchedEmail = "";
-
-        if(tmp== null){
-            Log.d("error","returned string is null");
-        }
-        else {
-            Log.d("searched data",""+tmp);
-        }
-
-        int startIndex = tmp.indexOf(",\"email\"") + 10;
-        int endIndex = tmp.indexOf(",\"mobile")-1;
-        try {
-            fetchedEmail = pageDetails.user_info.substring(startIndex, endIndex);
-        }catch (Exception e){
-
-        }
-        //Log.d("fetched password is", "" + startIndex);
-        //Log.d("fetched password is", "" + endIndex);
-        Log.d("fetched Email is", "" + fetchedEmail);
-        Log.d("entered Email is", "" + pageDetails.reg_email);
         try{
-            if(pageDetails.reg_email.equals(fetchedEmail)==true){
+            if(email_exists){
                 Log.d("Email status","Email matched");
                 Toast toast = Toast.makeText(mContext,
                         "Email already exist",
@@ -93,11 +71,11 @@ public class Register extends AppCompatActivity {
                 toast.show();
 
             }else {
-                Log.d("Email matching","Email didnt matched new user found");
+                Log.d("Email matching","Email didn't matched new user found");
                 //databaseOperations.register(mContext);
                 emailVerify backroundWorker = new emailVerify(mContext);
                 backroundWorker.execute();
-                Intent i = new Intent(mContext,Enter_OTP.class);
+                Intent i = new Intent(mContext, Enter_OTP.class);
                 mContext.startActivity(i);
 
             }}catch (Exception e){
@@ -155,18 +133,24 @@ public class Register extends AppCompatActivity {
 
         EditText repassword = (EditText) findViewById(R.id.editText11);
 
-        if(pageDetails.reg_password.equals(repassword.getText().toString()))
-        {
+        if (pageDetails.reg_password.equals(repassword.getText().toString())) {
 
-        }
-        else {
+        } else {
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Check the password",
                     Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
+        if (isValidMail(pageDetails.reg_email) == false) {
+            Toast.makeText(this, "Enter a valid Email-id", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        if (isValidMobile(pageDetails.reg_phno) == false) {
+            Toast.makeText(this, "Enter a valid Mobile number", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
        /* try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -179,29 +163,16 @@ public class Register extends AppCompatActivity {
         {
             Log.e("error in password hash",e.toString());
         }
-*/if(isValidMail(pageDetails.reg_email) == false)
-        {
-            Toast.makeText(this, "Enter a valid Email-id", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if(isValidMobile(pageDetails.reg_phno) == false)
-        {
-            Toast.makeText(this, "Enter a valid Mobile number", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if(!pageDetails.reg_firstname.isEmpty() && !pageDetails.reg_lastname.isEmpty() && !pageDetails.reg_email.isEmpty() && !pageDetails.reg_phno.isEmpty()
-                && !pageDetails.reg_add .isEmpty() && !pageDetails.reg_dob .isEmpty() && !pageDetails.reg_clgName.isEmpty() && !pageDetails.reg_branch .isEmpty()
-                && !pageDetails.reg_clgcity.isEmpty() && !pageDetails.reg_password.isEmpty() && !pageDetails.reg_gender.isEmpty()){
+*/
+        if (!pageDetails.reg_firstname.isEmpty() && !pageDetails.reg_lastname.isEmpty() && !pageDetails.reg_email.isEmpty() && !pageDetails.reg_phno.isEmpty()
+                && !pageDetails.reg_add.isEmpty() && !pageDetails.reg_dob.isEmpty() && !pageDetails.reg_clgName.isEmpty() && !pageDetails.reg_branch.isEmpty()
+                && !pageDetails.reg_clgcity.isEmpty() && !pageDetails.reg_password.isEmpty() && !pageDetails.reg_gender.isEmpty()) {
             Log.d("Register Event:", "Detail Verification");
-            String entered_Email = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + pageDetails.reg_email + "\"}";
-            databaseOperations.mailExists(this,entered_Email);
+            String email_url = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + pageDetails.reg_email + "\"}";
+            databaseOperations.mailExists(this, email_url, pageDetails.reg_email);
             //databaseOperations.register(this);
-        }
-        else
-        {
-            Log.d("data entered","nope");
+        } else {
+            Log.d("data entered: ", "nope");
             Toast toast = Toast.makeText(mContext,
                     "Some value is missing",
                     Toast.LENGTH_SHORT);
@@ -209,9 +180,6 @@ public class Register extends AppCompatActivity {
 
         }
 
-    }
-    public void setDtae()
-    {
 
     }
     public void male(View view) {

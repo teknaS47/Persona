@@ -22,9 +22,9 @@ import java.util.Map;
 public class databaseOperations {
 
     private static final String URL_events = "http://139.59.82.57:5000/events";
-    private static final String URL_users = "http://139.59.82.57:5000/users/";
-    private static final String URL_registrations = "http://139.59.82.57:5000/event_registrations";
-
+    private static final String URL_users = "http://139.59.82.57:5000/users";
+    private static final String URL_registrations = "http://139.59.82.57:5000/registrations";
+    private static final String URL_localDbVersion = "http://139.59.82.57:5000/localDbVersion";
     public static MyAppDatabase myAppDatabase;
 
 
@@ -127,34 +127,34 @@ public class databaseOperations {
             Log.e(e.toString(), "");
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL_users, postparams,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("REST Response: ", response.toString());
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("REST Error: ", error.toString());
-                    }
-                }) {
-            @Override
-            public Map<String, String> getHeaders()  {
-                Map<String, String> params = new HashMap<>();
-                params.put(
-                        "Authorization",
-                        String.format("Basic %s", Base64.encodeToString(
-                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
-                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL_users, postparams,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.e("REST Response: ", response.toString());
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("REST Error: ", error.toString());
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders()  {
+                    Map<String, String> params = new HashMap<>();
+                    params.put(
+                            "Authorization",
+                            String.format("Basic %s", Base64.encodeToString(
+                                        String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                    //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
 
-                return params;
-            }
-        };requestQueue.add(jsonObjectRequest);
+                    return params;
+                }
+            };requestQueue.add(jsonObjectRequest);
 //            postparams.put("e_id", "A5");
-        //          postparams.put("e_type", "group");
-        //        postparams.put("e_category", "cse");
+            //          postparams.put("e_type", "group");
+            //        postparams.put("e_category", "cse");
 
 
     }
@@ -234,7 +234,6 @@ public class databaseOperations {
 
 
     }
-
     public static void mailExists(Register register,String email_url, final String entered_Email) {
 
         Log.e("Call Successful: ", "mailExists");
@@ -264,24 +263,20 @@ public class databaseOperations {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        Log.e("RESPONSE CHECK: ", response.toString());
                         JSONArray items = null;
                         String email = null;
-                        Boolean email_exists = false;
+                        Boolean email_exists = true;
                         try {
                             items = response.getJSONArray("_items");
-                            JSONObject jsonobject = items.getJSONObject(0);
-                            if (jsonobject.has("user_type")) {
-                                email= jsonobject.getString("email");
-                                if( String.valueOf(entered_Email).equals(String.valueOf(email)))    {
-                                    email_exists = true;
-                                }
-
+                            if (items.length() == 0) {
+                                email_exists = false;
                             }
-                            com.mit.persona.Register.contilogin(email_exists);
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
                         }
+                        com.mit.persona.Register.contilogin(email_exists);
 
                     }
                 },
@@ -308,7 +303,6 @@ public class databaseOperations {
         requestQueue.add(jsonObjectRequest);
 
     }
-
     public static void verify(teacher_coordinator teacher_coordinator, String email_url, final String fetched_email) {
 
         Log.e("Call Successful", "Verify coordinator mail");
@@ -323,18 +317,25 @@ public class databaseOperations {
                         JSONArray items = null;
                         String email = null;
                         Integer user_type = 10;
-                        String username, etag, objectId = null;
+                        Boolean emailExists = true;
+                        String username, objectId = null;
+                        String etag = null;
                         try {
                             items = response.getJSONArray("_items");
-                            JSONObject jsonobject = items.getJSONObject(0);
-                            if (jsonobject.has("email")) {
-                                email = jsonobject.getString("email");
-                                if (String.valueOf(fetched_email).equals(String.valueOf(email))) {
-                                    etag = jsonobject.getString("_etag");
-                                    objectId = jsonobject.getString("_id");
-                                    com.mit.persona.teacher_coordinator.addCoordinator(etag, objectId, URL_users);
+                            if (items.length() == 0) {
+                                emailExists = false;
+                            }
+                            else {
+                                JSONObject jsonobject = items.getJSONObject(0);
+                                if (jsonobject.has("email")) {
+                                    email = jsonobject.getString("email");
+                                    if (String.valueOf(fetched_email).equals(String.valueOf(email))) {
+                                        etag = jsonobject.getString("_etag");
+                                        objectId = jsonobject.getString("_id");
+                                    }
                                 }
                             }
+                            com.mit.persona.teacher_coordinator.addCoordinator(etag, objectId, URL_users, emailExists);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -420,5 +421,4 @@ public class databaseOperations {
 
         requestQueue.add(jsonObjectRequest);
     }
-
 }

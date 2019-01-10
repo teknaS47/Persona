@@ -27,7 +27,7 @@ public class Persona extends AppCompatActivity {
     public void onBackPressed() {
 
 
-        if(!pageDetails.session) {
+        if(pageDetails.user_info == null) {
             Log.d("user logged in", "false");
             count = 0;
             super.onBackPressed();
@@ -127,8 +127,6 @@ public class Persona extends AppCompatActivity {
         // Set default selection
         bottomNavigationView.setSelectedItemId(R.id.action_favorites);
     }
-
-
 
 
 

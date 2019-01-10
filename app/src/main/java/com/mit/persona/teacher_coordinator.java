@@ -54,7 +54,7 @@ public class teacher_coordinator extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-    public static void addCoordinator(String etag, String ObjectId, String url) {
+    public static void addCoordinator(String etag, String ObjectId, String url, Boolean emailExists) {
         /*String tmp = pageDetails.user_info;
 
         String fetchedEmail = "";
@@ -85,6 +85,7 @@ public class teacher_coordinator extends AppCompatActivity {
         try{
             // TODO: 09-01-2019 Add functionality
 
+            if (emailExists)    {
                 databaseOperations.userTypeChange((teacher_coordinator) mContext, etag, String.valueOf(url + ObjectId));
 
                 Log.d("etag_sent","etag_sent");
@@ -92,8 +93,17 @@ public class teacher_coordinator extends AppCompatActivity {
                         "Verified as Coordinator",
                         Toast.LENGTH_SHORT);
                 toast.show();
+            }
+            else {
+                Toast toast = Toast.makeText(mContext,
+                        "Email Not Registered!",
+                        Toast.LENGTH_SHORT);
+                toast.show();
 
-            }catch (Exception e){
+            }
+
+
+        }catch (Exception e){
             e.printStackTrace();
         }
 
@@ -119,4 +129,3 @@ public class teacher_coordinator extends AppCompatActivity {
     }
 
 }
-
