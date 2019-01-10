@@ -41,6 +41,196 @@ public class Events {
     @ColumnInfo(name = "event_type")
     private String type;
 
+    @ColumnInfo(name = "e_1_prize")
+    private String e_1_prize;
+
+    @ColumnInfo(name = "e_2_prize")
+    private String e_2_prize;
+
+    @ColumnInfo(name = "e_3_prize")
+    private String e_3_prize;
+
+    @ColumnInfo(name = "event_e_staff_1")
+    private String event_e_staff_1;
+
+    @ColumnInfo(name = "event_e_staff_1_email")
+    private String event_e_staff_1_email;
+
+    @ColumnInfo(name = "event_e_staff_1_phone")
+    private String event_e_staff_1_phone;
+
+    @ColumnInfo(name = "event_e_staff_2")
+    private String event_e_staff_2;
+
+    @ColumnInfo(name = "event_e_staff_2_email")
+    private String event_e_staff_2_email;
+
+    @ColumnInfo(name = "event_e_staff_2_phone")
+    private String event_e_staff_2_phone;
+
+    @ColumnInfo(name = "event_e_student_1")
+    private String event_e_student_1;
+
+    @ColumnInfo(name = "event_e_student_1_email")
+    private String event_e_student_1_email;
+
+    @ColumnInfo(name = "event_e_student_1_phone")
+    private String event_e_student_1_phone;
+
+    @ColumnInfo(name = "event_e_student_2")
+    private String event_e_student_2;
+
+    @ColumnInfo(name = "event_e_student_2_email")
+    private String event_e_student_2_email;
+
+    @ColumnInfo(name = "event_e_student_2_phone")
+    private String event_e_student_2_phone;
+
+    @ColumnInfo(name = "event_e_whatsappLink")
+    private String event_e_whatsappLink;
+
+    @ColumnInfo(name = "event_e_likes")
+    private String event_e_likes;
+
+
+    public String getEvent_e_staff_1() {
+        return event_e_staff_1;
+    }
+
+    public void setEvent_e_staff_1(String event_e_staff_1) {
+        this.event_e_staff_1 = event_e_staff_1;
+    }
+
+    public String getEvent_e_staff_1_email() {
+        return event_e_staff_1_email;
+    }
+
+    public void setEvent_e_staff_1_email(String event_e_staff_1_email) {
+        this.event_e_staff_1_email = event_e_staff_1_email;
+    }
+
+    public String getEvent_e_staff_1_phone() {
+        return event_e_staff_1_phone;
+    }
+
+    public void setEvent_e_staff_1_phone(String event_e_staff_1_phone) {
+        this.event_e_staff_1_phone = event_e_staff_1_phone;
+    }
+
+    public String getEvent_e_staff_2() {
+        return event_e_staff_2;
+    }
+
+    public void setEvent_e_staff_2(String event_e_staff_2) {
+        this.event_e_staff_2 = event_e_staff_2;
+    }
+
+    public String getEvent_e_staff_2_email() {
+        return event_e_staff_2_email;
+    }
+
+    public void setEvent_e_staff_2_email(String event_e_staff_2_email) {
+        this.event_e_staff_2_email = event_e_staff_2_email;
+    }
+
+    public String getEvent_e_staff_2_phone() {
+        return event_e_staff_2_phone;
+    }
+
+    public void setEvent_e_staff_2_phone(String event_e_staff_2_phone) {
+        this.event_e_staff_2_phone = event_e_staff_2_phone;
+    }
+
+    public String getEvent_e_student_1() {
+        return event_e_student_1;
+    }
+
+    public void setEvent_e_student_1(String event_e_student_1) {
+        this.event_e_student_1 = event_e_student_1;
+    }
+
+    public String getEvent_e_student_1_email() {
+        return event_e_student_1_email;
+    }
+
+    public void setEvent_e_student_1_email(String event_e_student_1_email) {
+        this.event_e_student_1_email = event_e_student_1_email;
+    }
+
+    public String getEvent_e_student_1_phone() {
+        return event_e_student_1_phone;
+    }
+
+    public void setEvent_e_student_1_phone(String event_e_student_1_phone) {
+        this.event_e_student_1_phone = event_e_student_1_phone;
+    }
+
+    public String getEvent_e_student_2() {
+        return event_e_student_2;
+    }
+
+    public void setEvent_e_student_2(String event_e_student_2) {
+        this.event_e_student_2 = event_e_student_2;
+    }
+
+    public String getEvent_e_student_2_email() {
+        return event_e_student_2_email;
+    }
+
+    public void setEvent_e_student_2_email(String event_e_student_2_email) {
+        this.event_e_student_2_email = event_e_student_2_email;
+    }
+
+    public String getEvent_e_student_2_phone() {
+        return event_e_student_2_phone;
+    }
+
+    public void setEvent_e_student_2_phone(String event_e_student_2_phone) {
+        this.event_e_student_2_phone = event_e_student_2_phone;
+    }
+
+    public String getEvent_e_whatsappLink() {
+        return event_e_whatsappLink;
+    }
+
+    public void setEvent_e_whatsappLink(String event_e_whatsappLink) {
+        this.event_e_whatsappLink = event_e_whatsappLink;
+    }
+
+    public String getEvent_e_likes() {
+        return event_e_likes;
+    }
+
+    public void setEvent_e_likes(String event_e_likes) {
+        this.event_e_likes = event_e_likes;
+    }
+
+    public String getE_1_prize() {
+        return e_1_prize;
+    }
+
+    public void setE_1_prize(String e_1_prize) {
+        this.e_1_prize = e_1_prize;
+    }
+
+    public String getE_2_prize() {
+        return e_2_prize;
+    }
+
+    public void setE_2_prize(String e_2_prize) {
+        this.e_2_prize = e_2_prize;
+    }
+
+    public String getE_3_prize() {
+        return e_3_prize;
+    }
+
+    public void setE_3_prize(String e_3_prize) {
+        this.e_3_prize = e_3_prize;
+    }
+
+
+
     public String getCategory() {
         return category;
     }
