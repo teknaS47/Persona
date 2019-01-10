@@ -45,8 +45,8 @@
                         android:layout_marginRight="12dp"
                         android:layout_marginBottom="12dp"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
-                        android:backgroundTint="#BDD6EE"
+                        android:background="#fefcc1"
+                        android:backgroundTint="#fefcc1"
                         app:srcCompat="@android:color/transparent" />
 
                     <TextView
@@ -68,7 +68,7 @@
                         android:layout_marginBottom="12dp"
                         android:layout_weight="1"
                         android:background="@android:color/background_light"
-                        android:backgroundTint="#C5E0B3"
+                        android:backgroundTint="#fddc8b"
                         app:srcCompat="@android:color/transparent" />
 
                     <TextView
@@ -89,7 +89,7 @@
                         android:layout_marginRight="12dp"
                         android:layout_marginBottom="12dp"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
+                        android:background="#f0bfc2"
                         app:srcCompat="@android:color/transparent" />
 
                     <TextView
@@ -129,7 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Painters Window" />
 
                     <CheckBox
@@ -137,7 +137,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#C5E0B3"
+                        android:background="#fddc8b"
                         android:text="Rang Rangilee" />
                 </LinearLayout>
 
@@ -151,7 +151,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Photography Competition" />
 
                     <CheckBox
@@ -159,7 +159,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Kala Kriti" />
                 </LinearLayout>
 
@@ -179,7 +179,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
+                        android:background="#fefcc1"
                         android:text="Nartana" />
 
                     <CheckBox
@@ -187,7 +187,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
+                        android:background="#fefcc1"
                         android:text="Ghoomar" />
                 </LinearLayout>
                 <LinearLayout
@@ -199,7 +199,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
+                        android:background="#fefcc1"
                         android:text="Saptasur" />
 
                     <CheckBox
@@ -207,7 +207,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
+                        android:background="#fefcc1"
                         android:text="Intone" />
                 </LinearLayout>
                 <LinearLayout
@@ -219,7 +219,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
+                        android:background="#fddc8b"
                         android:text="Trance" />
 
                     <CheckBox
@@ -227,7 +227,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
+                        android:background="#fddc8b"
                         android:text="Persona Film-maker" />
                 </LinearLayout>
 
@@ -247,7 +247,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="#D0CECE"
+                        android:background="#fddc8b"
                         android:text="Mega Jamm" />
 
                     <CheckBox
@@ -255,7 +255,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Persona Show Stopper" />
                 </LinearLayout>
 
@@ -269,7 +269,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Street-Art:Street-Play" />
                 </LinearLayout>
                 <TextView
@@ -287,7 +287,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Archit-Design" />
 
                     <CheckBox
@@ -295,7 +295,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Archit-Quiz" />
                 </LinearLayout>
 
@@ -309,7 +309,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="#BDD6EE"
+                            android:background="#fddc8b"
                             android:text="KorMSculpture Design" />
                 </LinearLayout>
                 <TextView
@@ -327,7 +327,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#f0bfc2"
                         android:text="Naval Show" />
 
                     <CheckBox
@@ -335,7 +335,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="T Shirt-Redesign" />
                 </LinearLayout>
                 <LinearLayout
@@ -348,14 +348,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Business Design 2050" />
                     <CheckBox
                         android:id="@+id/D4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Smart Neighbourhoods" />
                 </LinearLayout>
                 <LinearLayout
@@ -368,14 +368,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Be Seated" />
                     <CheckBox
                         android:id="@+id/D6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Fashion Upcycle" />
                 </LinearLayout>
                 <LinearLayout
@@ -388,14 +388,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Giant Spinners" />
                     <CheckBox
                         android:id="@+id/D8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Build to Race" />
                 </LinearLayout>
                 <LinearLayout
@@ -408,7 +408,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Animator In You" />
                 </LinearLayout>
                 <TextView
@@ -427,14 +427,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Rhythm Divine Drum Circle" />
                     <CheckBox
                         android:id="@+id/V2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Expresso" />
                 </LinearLayout>
                 <LinearLayout
@@ -447,14 +447,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Aao Kabhi Ground Pe" />
                     <CheckBox
                         android:id="@+id/V4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Ginipic" />
                 </LinearLayout>
                 <LinearLayout
@@ -467,7 +467,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Yogethon" />
                 </LinearLayout>
                 <TextView
@@ -486,14 +486,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fefcc1"
                         android:text="Best Manager" />
                     <CheckBox
                         android:id="@+id/M2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Ad Mad Show" />
                 </LinearLayout>
                 <LinearLayout
@@ -506,14 +506,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Extempore" />
                     <CheckBox
                         android:id="@+id/M4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Quiz 'b'" />
                 </LinearLayout>
                 <LinearLayout
@@ -526,14 +526,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Buisness Plan" />
                     <CheckBox
                         android:id="@+id/M6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Box Cricket" />
                 </LinearLayout>
                 <LinearLayout
@@ -546,14 +546,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Treasure Hunt" />
                     <CheckBox
                         android:id="@+id/M8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#BDD6EE"
+                        android:background="#fddc8b"
                         android:text="Case Mania" />
                 </LinearLayout>
             </LinearLayout>
@@ -573,14 +573,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Game of Drones" />
                 <CheckBox
                     android:id="@+id/T2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="4 x 4 Road Rally Race" />
             </LinearLayout>
             <LinearLayout
@@ -593,14 +593,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Innovative technical Idea" />
                 <CheckBox
                     android:id="@+id/T4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Jigyasa" />
             </LinearLayout>
             <TextView
@@ -619,14 +619,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Poster Presentation" />
                 <CheckBox
                     android:id="@+id/T6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Innovative Solutions to Civil Engineering Problems" />
             </LinearLayout>
             <LinearLayout
@@ -639,14 +639,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="Model Making" />
                 <CheckBox
                     android:id="@+id/T8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="Smart City" />
             </LinearLayout>
             <LinearLayout
@@ -659,14 +659,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Auto Drifting Competition" />
                 <CheckBox
                     android:id="@+id/T10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Innovative Ideas in Mathematics" />
             </LinearLayout>
             <TextView
@@ -685,14 +685,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Auto Drigt" />
                 <CheckBox
                     android:id="@+id/T12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Rocket Launcher" />
             </LinearLayout>
             <LinearLayout
@@ -705,14 +705,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Game Zone VR" />
                 <CheckBox
                     android:id="@+id/T14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Robo Race" />
             </LinearLayout>
             <LinearLayout
@@ -725,14 +725,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="CAD War" />
                 <CheckBox
                     android:id="@+id/T16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Project Expo" />
             </LinearLayout>
             <TextView
@@ -751,14 +751,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="Poster Presentation" />
                 <CheckBox
                     android:id="@+id/T18"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Glider Design Competition" />
             </LinearLayout>
             <LinearLayout
@@ -771,14 +771,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="RC Aircraft Competition" />
                 <CheckBox
                     android:id="@+id/T20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="Astronomy Quiz Competition" />
             </LinearLayout>
             <TextView
@@ -797,14 +797,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#BDD6EE"
+                android:background="#fddc8b"
                 android:text="Hackathon Software" />
             <CheckBox
                 android:id="@+id/T22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#BDD6EE"
+                android:background="#fddc8b"
                 android:text="Hackathon Hardware" />
             </LinearLayout>
             <LinearLayout
@@ -817,14 +817,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Talash:Technical Treasure Hunt" />
                 <CheckBox
                     android:id="@+id/T24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Quiz Bowl" />
             </LinearLayout>
             <LinearLayout
@@ -837,14 +837,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Box Cricket Staff" />
                 <CheckBox
                     android:id="@+id/T26"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="Gaming Park(NFS)" />
             </LinearLayout>
             <LinearLayout
@@ -857,14 +857,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Poster and Project Competition" />
                 <CheckBox
                     android:id="@+id/T28"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Gaming Park(CS)" />
             </LinearLayout>
             <LinearLayout
@@ -877,7 +877,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Smart Boat" />
             </LinearLayout>
             <TextView
@@ -896,14 +896,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Intrinsic Foodpreneurship" />
                 <CheckBox
                     android:id="@+id/T31"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="Clash of Debations" />
             </LinearLayout>
             <LinearLayout
@@ -916,14 +916,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="Free Style Poster Making" />
                 <CheckBox
                     android:id="@+id/T33"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Food-o-Pedia" />
             </LinearLayout>
             <LinearLayout
@@ -936,14 +936,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="Food Hunt" />
                 <CheckBox
                     android:id="@+id/T35"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fddc8b"
                     android:text="Innovative Food Product Competition" />
             </LinearLayout>
             <LinearLayout
@@ -956,14 +956,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="Food-o-Graphy" />
                 <CheckBox
                     android:id="@+id/T37"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#BDD6EE"
+                    android:background="#fefcc1"
                     android:text="Food Taste Aptitude" />
             </LinearLayout>
 
