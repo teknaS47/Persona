@@ -24,14 +24,20 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 artFragment artfragment = new artFragment();
                 return artfragment;
             case 2:
-                designFragment designfragment = new designFragment();
-                return  designfragment;
+                architectureFragment architecturefragment = new architectureFragment();
+                return architecturefragment;
             case 3:
+                navelShowDesignFragment navelshowdesignfragment = new navelShowDesignFragment();
+                return navelshowdesignfragment;
+             case 4:
+                vedicScienceFragment vedicSciencefragment = new vedicScienceFragment();
+                return vedicSciencefragment;
+            case 5:
+                managementFragment managementfragment = new managementFragment();
+                return managementfragment;
+            case 6 :
                 techFragment techfragment = new techFragment();
                 return techfragment;
-            case 4:
-                Engineering engineering = new Engineering();
-                return engineering;
             default:
                 return null;
         }
