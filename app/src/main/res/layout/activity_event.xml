@@ -372,7 +372,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView9"
+                                android:id="@+id/faculty_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="top|bottom"
@@ -499,7 +499,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/Student_ID"
+                                android:id="@+id/student_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Student Co-ordinator"
@@ -630,6 +630,7 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical">
                         <TextView
+                            android:id="@+id/rule_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
@@ -637,6 +638,7 @@
                             android:text="Rules And Regulation"
                             android:padding="10dp"/>
                         <TextView
+                            android:id="@+id/rules"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1 RULES RULES RULES \n2 RULES \n3 rrssn "
