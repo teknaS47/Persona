@@ -29,4 +29,14 @@ public interface MyDao {
     @Delete
     public void deleteMessage(Table_Messages message);
 
+    @Query("select * from table_session")
+    public List<Table_Sessions> getsession();
+
+    @Insert
+    public void addSession(Table_Sessions session);
+
+    @Query("DELETE FROM table_session")
+    public void clearSessionTable();
+
+
 }

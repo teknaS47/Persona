@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import android.util.Log;
 
+import java.util.List;
+
 
 public class Persona extends AppCompatActivity {
 
@@ -22,17 +24,18 @@ public class Persona extends AppCompatActivity {
     public static MyAppDatabase myAppDatabase;
     private static String DEFAULT_CHANNEL_ID = "default_channel";
     private static String DEFAULT_CHANNEL_NAME = "Default";
+    private List<Table_Sessions> session;
+
     int count = 1;
     @Override
     public void onBackPressed() {
 
-
-        if(pageDetails.user_info == null) {
+        if(!pageDetails.login_successful) {
             Log.d("user logged in", "false");
             count = 0;
             super.onBackPressed();
-        }else
-        {
+        }
+        if(pageDetails.login_successful) {
             count++;
             Log.d("user logged in", "true");
             if(count<=2) {
@@ -45,7 +48,6 @@ public class Persona extends AppCompatActivity {
 
         if(count>2){
             finish();
-            //android.os.Process.killProcess(android.os.Process.myPid());
             moveTaskToBack(true);
         }
     }
@@ -56,10 +58,17 @@ public class Persona extends AppCompatActivity {
         System.out.print("######################  On Create ###################");
         setContentView(R.layout.activity_persona);
 
-
         //databaseOperations.updateLocalDB(this);
         // DATABASE
         myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
+        session = myAppDatabase.myDao().getsession();
+        Log.e("Session: ", String.valueOf(session));
+        try {
+            Log.e("Session: ", String.valueOf(session.get(0).getId()));
+        }
+        catch (Exception e) {
+            Log.e("Session Check: ", e.toString());
+        }
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
