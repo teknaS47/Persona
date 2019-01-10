@@ -1,24 +1,20 @@
 package com.mit.persona;
 
-import android.app.Activity;
-import android.app.ExpandableListActivity;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.AttributeSet;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 
 public class loginActivity extends AppCompatActivity /*implements OnClickListener*/{
     static loginActivity instance;
@@ -38,20 +34,6 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         setContentView(R.layout.activity_login);
         databaseOperations.updateLocalDB(this);
 
-        /*TextView email = findViewById(R.id.email_text);
-        TextView password = findViewById(R.id.password_text);
-        loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-        loginPrefsEditor = loginPreferences.edit();
-
-        saveLogin = loginPreferences.getBoolean("saveLogin", false);
-        if (saveLogin == true) {
-            email.setText(loginPreferences.getString("e", ""));
-            password.setText(loginPreferences.getString("p", ""));
-        }
-*/
-
-        mContext = this;
-
         TextView skip_bt = findViewById(R.id.skip);
         skip_bt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -59,6 +41,38 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
                 startActivity(new Intent(loginActivity.this, Persona.class ));
             }
         });
+
+        Log.e("### Second Run ### ", "# PLEASE");
+
+/*
+        try {
+            if (!String.valueOf(id).isEmpty()) {
+                pageDetails.session = true;
+                Log.e("SESSION: ", String.valueOf(pageDetails.session));
+            }
+            else {
+                Log.e("SESSION ID Value: ", String.valueOf(id));
+            }
+            if (pageDetails.session) {
+                Toast toast = Toast.makeText(this,
+                        "Welcome User",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+                Log.e("SESSION FOUND", "logged in");
+
+                startActivity(new Intent(loginActivity.this, Persona.class ));
+            }
+            else {
+                Log.e("SESSION NOT FOUND", "Couln't log in");
+            }
+
+        }
+        catch (Exception e) {
+            Log.e("Session Check: ", e.toString());
+        }
+        */
+
+        mContext = this;
 
         Button t_login = findViewById(R.id.t_login_button);
         t_login.setOnClickListener(new View.OnClickListener() {
@@ -118,11 +132,13 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 
 public static void FinishLogin(Integer user_type, String username)    {
 
+    myAppDatabase = Room.databaseBuilder(loginActivity.mContext, MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
+
     loginActivity l = new loginActivity();
     Log.e("LOGIN_SUCCESSFUL:", String.valueOf(pageDetails.login_successful));
     if (pageDetails.login_successful == true) {
         Table_Sessions session = new Table_Sessions();
-
+        pageDetails.session = true;
         session.setUsername(username);
         if (user_type <=3) {
             session.setType(user_type);

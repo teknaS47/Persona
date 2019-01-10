@@ -18,6 +18,7 @@ public class teacher_coordinator extends AppCompatActivity {
 
     //private TextInputEditText t;
     public static Context mContext;
+    static String email_url;
     static String email;
     private TextInputEditText t;
     @Override
@@ -35,8 +36,8 @@ public class teacher_coordinator extends AppCompatActivity {
         pageDetails.entered_Email = email;
         if(!email.isEmpty()) {
             try {
-                email = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + email + "\"}";
-                databaseOperations.verify(this, email);
+                email_url = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + email + "\"}";
+                databaseOperations.verify(this, email_url, pageDetails.entered_Email);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -53,9 +54,8 @@ public class teacher_coordinator extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-    public static void addCoordinator()
-    {
-        String tmp = pageDetails.user_info;
+    public static void addCoordinator(String etag, String ObjectId, String url) {
+        /*String tmp = pageDetails.user_info;
 
         String fetchedEmail = "";
         String fetchedEtag = "";
@@ -81,13 +81,11 @@ public class teacher_coordinator extends AppCompatActivity {
         //Log.d("fetched password is", "" + endIndex);
         Log.d("fetched Email is", "" + fetchedEmail);
         Log.d("entered Email is", "" + email);
+        */
         try{
-            if(pageDetails.entered_Email.equals(fetchedEmail)){
+            // TODO: 09-01-2019 Add functionality
 
-                // TODO: 09-01-2019 Add functionality
-
-                
-                databaseOperations.userTypeChange((teacher_coordinator) mContext, fetchedEtag);
+                databaseOperations.userTypeChange((teacher_coordinator) mContext, etag, String.valueOf(url + ObjectId));
 
                 Log.d("etag_sent","etag_sent");
                 Toast toast = Toast.makeText(mContext,
@@ -95,11 +93,7 @@ public class teacher_coordinator extends AppCompatActivity {
                         Toast.LENGTH_SHORT);
                 toast.show();
 
-            }else {
-                Log.d("Email matching","Email didnt matched no user found");
-                Toast.makeText(mContext, "User not found!", Toast.LENGTH_SHORT).show();
-                //databaseOperations.register(mContext);
-            }}catch (Exception e){
+            }catch (Exception e){
             e.printStackTrace();
         }
 

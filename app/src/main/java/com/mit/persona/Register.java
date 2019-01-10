@@ -17,9 +17,9 @@ public class Register extends AppCompatActivity {
 
     private static Context mContext;
 
-    public static void contilogin() {
+    public static void contilogin(Boolean email_exists) {
 
-        String tmp = pageDetails.user_info;
+/*        String tmp = pageDetails.user_info;
 
         String fetchedEmail = "";
 
@@ -41,8 +41,9 @@ public class Register extends AppCompatActivity {
         //Log.d("fetched password is", "" + endIndex);
         Log.d("fetched Email is", "" + fetchedEmail);
         Log.d("entered Email is", "" + pageDetails.reg_email);
+        */
         try{
-            if(pageDetails.reg_email.equals(fetchedEmail)==true){
+            if(email_exists){
                 Log.d("Email status","Email matched");
                 Toast toast = Toast.makeText(mContext,
                         "Email already exist",
@@ -50,7 +51,7 @@ public class Register extends AppCompatActivity {
                 toast.show();
 
             }else {
-                Log.d("Email matching","Email didnt matched new user found");
+                Log.d("Email matching","Email didn't matched new user found");
                 //databaseOperations.register(mContext);
                 emailVerify backroundWorker = new emailVerify(mContext);
                 backroundWorker.execute();
@@ -60,12 +61,6 @@ public class Register extends AppCompatActivity {
             }}catch (Exception e){
             e.printStackTrace();
         }
-
-
-    }
-
-    public void emailVerification(View view) {
-
 
 
     }
@@ -147,8 +142,8 @@ public class Register extends AppCompatActivity {
                 && !pageDetails.reg_add .isEmpty() && !pageDetails.reg_dob .isEmpty() && !pageDetails.reg_clgName.isEmpty() && !pageDetails.reg_branch .isEmpty()
                 && !pageDetails.reg_clgcity.isEmpty() && !pageDetails.reg_password.isEmpty() && !pageDetails.reg_gender.isEmpty()){
             Log.d("Register Event:", "Detail Verification");
-            String entered_Email = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + pageDetails.reg_email + "\"}";
-            databaseOperations.mailExists(this,entered_Email);
+            String email_url = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + pageDetails.reg_email + "\"}";
+            databaseOperations.mailExists(this, email_url, pageDetails.reg_email);
             //databaseOperations.register(this);
         }
         else

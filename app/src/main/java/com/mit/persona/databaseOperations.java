@@ -22,7 +22,7 @@ import java.util.Map;
 public class databaseOperations {
 
     private static final String URL_events = "http://139.59.82.57:5000/events";
-    private static final String URL_users = "http://139.59.82.57:5000/users";
+    private static final String URL_users = "http://139.59.82.57:5000/users/";
     private static final String URL_registrations = "http://139.59.82.57:5000/event_registrations";
 
     public static MyAppDatabase myAppDatabase;
@@ -235,9 +235,9 @@ public class databaseOperations {
 
     }
 
-    public static void mailExists(Register register, String entered_Email) {
+    public static void mailExists(Register register,String email_url, final String entered_Email) {
 
-        Log.e("Call Successful", "Login");
+        Log.e("Call Successful: ", "mailExists");
 
         RequestQueue requestQueue = Volley.newRequestQueue(register);
 
@@ -259,18 +259,30 @@ public class databaseOperations {
         } catch (JSONException e) {
             Log.e(e.toString(), "");
         }
-*/          String URL_email = entered_Email;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
+*/
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, email_url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("REST Response: ", response.toString());
-                        String tmp;
-                        tmp = response.toString();
-                        pageDetails.user_info = tmp;
-                        Log.e("returned details",""+pageDetails.user_info);
-                        Log.e("REST Response: ", pageDetails.user_info);
-                        com.mit.persona.Register.contilogin();
+                        JSONArray items = null;
+                        String email = null;
+                        Boolean email_exists = false;
+                        try {
+                            items = response.getJSONArray("_items");
+                            JSONObject jsonobject = items.getJSONObject(0);
+                            if (jsonobject.has("user_type")) {
+                                email= jsonobject.getString("email");
+                                if( String.valueOf(entered_Email).equals(String.valueOf(email)))    {
+                                    email_exists = true;
+                                }
+
+                            }
+                            com.mit.persona.Register.contilogin(email_exists);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -295,28 +307,40 @@ public class databaseOperations {
 
         requestQueue.add(jsonObjectRequest);
 
-
     }
 
-    public static void verify(teacher_coordinator teacher_coordinator, String email) {
+    public static void verify(teacher_coordinator teacher_coordinator, String email_url, final String fetched_email) {
 
         Log.e("Call Successful", "Verify coordinator mail");
 
         RequestQueue requestQueue = Volley.newRequestQueue(teacher_coordinator);
 
-
-        String URL_email = email;
+        final String URL_email = email_url;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("REST Response: ", response.toString());
-                        String tmp;
-                        tmp = response.toString();
-                        pageDetails.user_info = tmp;
-                        Log.e("returned details",""+pageDetails.user_info);
-                        Log.e("REST Response: ", pageDetails.user_info);
-                        com.mit.persona.teacher_coordinator.addCoordinator();
+                        JSONArray items = null;
+                        String email = null;
+                        Integer user_type = 10;
+                        String username, etag, objectId = null;
+                        try {
+                            items = response.getJSONArray("_items");
+                            JSONObject jsonobject = items.getJSONObject(0);
+                            if (jsonobject.has("email")) {
+                                email = jsonobject.getString("email");
+                                if (String.valueOf(fetched_email).equals(String.valueOf(email))) {
+                                    etag = jsonobject.getString("_etag");
+                                    objectId = jsonobject.getString("_id");
+                                    com.mit.persona.teacher_coordinator.addCoordinator(etag, objectId, URL_users);
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -347,7 +371,7 @@ public class databaseOperations {
 
 
     }
-    public static void userTypeChange(teacher_coordinator teacher_coordinator, final String e_tag) {
+    public static void userTypeChange(teacher_coordinator teacher_coordinator, final String e_tag, final String url) {
 
         Log.e("Call Successful", "Verify coordinator mail");
 
@@ -363,7 +387,7 @@ public class databaseOperations {
         }
 
 //        final String URL_user_type = user_type;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PATCH, URL_users, postparams,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PATCH, url, postparams,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -372,8 +396,7 @@ public class databaseOperations {
 //                        tmp = response.toString();
 //                        pageDetails.user_info = tmp;
                         Log.e("returned details", "" + pageDetails.user_info);
-                        Log.e("REST Response: ", pageDetails.user_info);
-                        //com.mit.persona.teacher_coordinator.addCoordinator();
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -390,7 +413,6 @@ public class databaseOperations {
                         String.format("Basic %s", Base64.encodeToString(
                                 String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
                 params.put("If-Match", e_tag);
-                params.put("X-HTTP-Method-Override","PATCH");
                 return params;
             }
         };
