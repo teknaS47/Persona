@@ -42,9 +42,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".teacher_coordinator" />
-        <activity android:name=".edit_details" />
-        <activity android:name=".editDetails"></activity>
+        <activity android:name=".teacher_coordinator"></activity>
     </application>
 
 </manifest>

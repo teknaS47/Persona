@@ -1,98 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:gravity="center"
-android:orientation="vertical"
-tools:context=".artFragment">
-
-<!-- TODO: Update blank fragment layout -->
-
-
-<ScrollView
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".artFragment">
 
-    <RelativeLayout
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/art_fragment"
+        android:textStyle="bold"
+        android:textSize="50dp"/>
 
-
-
-
-
-        <TextView
-            android:id="@+id/textView_arts"
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Arts and Creative Event"
-            android:hapticFeedbackEnabled="true"
-            android:textStyle="bold"
-            android:typeface="monospace"
-            android:textSize="20dp"
-            android:layout_below="@id/management_cards"
-            />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/artnCreativeEvents_Cards"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_arts">
-        </android.support.v7.widget.RecyclerView>
-
-
-
-        <TextView
-            android:id="@+id/textView_dance"
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dance and Music Event"
-            android:hapticFeedbackEnabled="true"
-            android:textStyle="bold"
-            android:typeface="monospace"
-            android:textSize="20dp"
-            android:layout_below="@id/artnCreativeEvents_Cards"
-            />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/artnCreativeEvents_dance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_dance">
-        </android.support.v7.widget.RecyclerView>
-
-
-        <TextView
-            android:id="@+id/textView_cultural"
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cultural Events"
-            android:hapticFeedbackEnabled="true"
-            android:textStyle="bold"
-            android:typeface="monospace"
-            android:textSize="20dp"
-            android:layout_below="@id/artnCreativeEvents_dance"
-            />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/artnCreativeEvents_cultural"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_cultural">
-        </android.support.v7.widget.RecyclerView>
-
-
-
-
-
-
-    </RelativeLayout>
-
-</ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
