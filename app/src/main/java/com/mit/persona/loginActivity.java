@@ -60,6 +60,14 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             }
         });
 
+        Button t_login = findViewById(R.id.t_login_button);
+        t_login.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pageDetails.user_info = null;
+                startActivity(new Intent(loginActivity.this, teacher_coordinator.class ));
+            }
+        });
+
 
     }
 
@@ -89,8 +97,8 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
               Log.d("finding user for login", "starting finding user");
               entered_Email = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + entered_Email + "\"}";
               Log.d("created email query", "" + entered_Email);
-              Log.d("searched data", "" + pageDetails.user_info);
-              databaseOperations.login(this, entered_Email);
+              //Log.d("searched data", "" + pageDetails.user_info);
+              databaseOperations.login(this, entered_Email, pageDetails.entered_Password);
 
           }catch (Exception e)
           {
@@ -108,12 +116,38 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 
     }
 
-   /* public void gotopersona()
-    {
+public static void FinishLogin(Integer user_type, String username)    {
+
+    loginActivity l = new loginActivity();
+    Log.e("LOGIN_SUCCESSFUL:", String.valueOf(pageDetails.login_successful));
+    if (pageDetails.login_successful == true) {
+        Table_Sessions session = new Table_Sessions();
+
+        session.setUsername(username);
+        if (user_type <=3) {
+            session.setType(user_type);
+        }
+
+        try {
+            myAppDatabase.myDao().addSession(session);
+        }
+        catch(Exception e) {
+            Log.e("SESSION INSERTION: ", e.toString());
+        }
+
+        Log.d("password status","password matched going to main page");
         Intent i = new Intent(mContext,Persona.class);
-        startActivity(i);
-    }*/
-public static void contilogin()
+        mContext.startActivity(i);
+
+
+    }
+    else {
+        Log.d("Login Unsuccessful","Passwords may not have been matched");
+    }
+
+}
+
+/*public static void contilogin()
 {
 
     loginActivity l = new loginActivity();
@@ -136,8 +170,6 @@ public static void contilogin()
     {
 
     }
-    //Log.d("fetched password is", "" + startIndex);
-    //Log.d("fetched password is", "" + endIndex);
     Log.d("fetched password is", "" + fetchedPassword);
     Log.d("entered password is", "" + pageDetails.entered_Password);
     try{
@@ -150,7 +182,9 @@ public static void contilogin()
     }}catch (Exception e){
         e.printStackTrace();
     }
-}
+
+
+}*/
 
 
 

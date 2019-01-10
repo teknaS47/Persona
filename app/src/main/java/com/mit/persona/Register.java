@@ -1,20 +1,15 @@
 package com.mit.persona;
 
-import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +18,8 @@ import java.nio.charset.StandardCharsets;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Calendar;
 import java.util.Properties;
 import java.util.Random;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.regex.Pattern;
 
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -41,24 +33,7 @@ import javax.mail.internet.MimeMessage;
 public class Register extends AppCompatActivity {
 
     private static Context mContext;
-    private boolean isValidMail(String email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-    private boolean isValidMobile(String phone) {
-        boolean check=false;
-        if(!Pattern.matches("[a-zA-Z]+", phone)) {
-            //if(phone.length() < 6 || phone.length() > 13) {
-                 if(phone.length() != 10) {
-                check = false;
 
-            } else {
-                check = true;
-            }
-        } else {
-            check=false;
-        }
-        return check;
-    }
     public static void contilogin() {
 
 
@@ -103,6 +78,12 @@ public class Register extends AppCompatActivity {
             }}catch (Exception e){
             e.printStackTrace();
         }
+
+
+    }
+
+    public void emailVerification(View view) {
+
 
 
     }
@@ -179,18 +160,7 @@ public class Register extends AppCompatActivity {
         {
             Log.e("error in password hash",e.toString());
         }
-*/if(isValidMail(pageDetails.reg_email) == false)
-        {
-            Toast.makeText(this, "Enter a valid Email-id", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if(isValidMobile(pageDetails.reg_phno) == false)
-        {
-            Toast.makeText(this, "Enter a valid Mobile number", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
+*/
         if(!pageDetails.reg_firstname.isEmpty() && !pageDetails.reg_lastname.isEmpty() && !pageDetails.reg_email.isEmpty() && !pageDetails.reg_phno.isEmpty()
                 && !pageDetails.reg_add .isEmpty() && !pageDetails.reg_dob .isEmpty() && !pageDetails.reg_clgName.isEmpty() && !pageDetails.reg_branch .isEmpty()
                 && !pageDetails.reg_clgcity.isEmpty() && !pageDetails.reg_password.isEmpty() && !pageDetails.reg_gender.isEmpty()){
@@ -210,10 +180,7 @@ public class Register extends AppCompatActivity {
         }
 
     }
-    public void setDtae()
-    {
 
-    }
     public void male(View view) {
         pageDetails.reg_gender = "male";
 
@@ -222,46 +189,5 @@ public class Register extends AppCompatActivity {
     public void female(View view) {
 
         pageDetails.reg_gender = "female";
-    }
-
-    public void showDatePickerDialog(View view) {
-        DialogFragment newFragment = new DatePickerFragment(this);
-        newFragment.show(getSupportFragmentManager(), "datePicker");
-
-    }
-}
-@SuppressLint("ValidFragment")
-class DatePickerFragment extends DialogFragment
-        implements DatePickerDialog.OnDateSetListener {
-
-    Context context;
-    public DatePickerFragment(Context context) {
-        this.context = context;
-
-    }
-
-
-
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the current date as the default date in the picker
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-
-        // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this, year, month, day);
-    }
-
-    public void onDateSet(DatePicker view, int year, int month, int day) {
-        // Do something with the date chosen by the user
-
-        String date = ""+day+"/"+ (month+1)+"/"+year;
-        pageDetails.reg_dob = date;
-        TextView txtView = (TextView) (getActivity().findViewById(R.id.editText6));
-        txtView.setText(date);
-
-
     }
 }

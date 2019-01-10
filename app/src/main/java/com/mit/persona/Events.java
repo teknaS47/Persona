@@ -19,7 +19,6 @@ public class Events {
         this.img = img;
     }
 
-
     @ColumnInfo(name = "event_name")
     private String name;
 

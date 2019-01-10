@@ -29,4 +29,8 @@ public interface MyDao {
     @Delete
     public void deleteMessage(Table_Messages message);
 
+    @Insert
+    public void addSession(Table_Sessions session);
+
+
 }
