@@ -145,7 +145,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
-
                     <CheckBox
                         android:id="@+id/A3"
                         android:layout_width="match_parent"
@@ -153,7 +152,6 @@
                         android:layout_weight="1"
                         android:background="#fddc8b"
                         android:text="Photography Competition" />
-
                     <CheckBox
                         android:id="@+id/A4"
                         android:layout_width="match_parent"
