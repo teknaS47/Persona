@@ -96,7 +96,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-        if (VERBOSE) Log.v("RESUME CHECK: ", "I'm Here?");
+        Log.e("onResume (Session Size)",String.valueOf(session.size()));
 
         if (session.size() == 1) {
             Log.e("Session check: ", "session found");
@@ -106,11 +106,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         else {
             Log.e("Session check: ", "session NOT found");
         }
-
-
     }
-
-
 
 
     public void gotoregister(View view) {

@@ -54,7 +54,7 @@ public class databaseOperations {
 
                             Log.e("global_version: ", String.valueOf(version[0]));
                             Log.e("local_version: ", String.valueOf(l_version.getVersion()));
-                            Log.e("local_version2 : ", String.valueOf(local_version.get(0).getVersion()));
+                            //Log.e("local_version2 : ", String.valueOf(local_version.get(0).getVersion()));
 
                             if ( local_version.size() == 0 ) {
                                 Log.e("local_version == 0", String.valueOf(version[0]));
@@ -248,13 +248,6 @@ public class databaseOperations {
 
                         }
 
-                        //JSONObject jsonobject = response.getJSONObject();
-                        //Log.e("REST Response: ", jsonobject.toString());
-                        //String tmp;
-                        //tmp = response.toString();
-                        //pageDetails.user_info = tmp;
-                        //Log.e("returned details",""+pageDetails.user_info);
-                        //Log.e("REST Response: ", pageDetails.user_info);
                         com.mit.persona.loginActivity.FinishLogin(user_type, username);
                     }
                 },
