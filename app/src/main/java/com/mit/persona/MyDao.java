@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -38,5 +39,10 @@ public interface MyDao {
     @Query("DELETE FROM table_session")
     public void clearSessionTable();
 
+    @Query("UPDATE table_version SET 'version' = :updated_version WHERE id=1")
+    public void updateVersion(Number updated_version);
+
+    @Query("select * from table_version")
+    public List<Table_DbVersionCheck> getversion();
 
 }
