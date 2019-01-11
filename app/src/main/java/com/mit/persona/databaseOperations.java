@@ -78,6 +78,8 @@ public class databaseOperations {
                                     event.setEvent_e_student_2_phone(jsonobject.getString("e_student_2_phone"));
                                     event.setEvent_e_whatsappLink(jsonobject.getString("e_whatsappLink"));
                                     event.setEvent_e_likes(jsonobject.getString("e_likes"));
+                                    event.setE_rules(jsonobject.getString("e_rules"));
+
 
 
                                     //event.setImg(R.drawable.ic_tag_faces_black);
