@@ -2,7 +2,6 @@ package com.mit.persona;
 
 import android.app.Activity;
 import android.app.ExpandableListActivity;
-import android.app.ProgressDialog;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,6 +32,8 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     private String e,p;
     public static MyAppDatabase myAppDatabase;
     public  loginActivity loginactivity;
+    private List<Table_Sessions> session;
+    private static final boolean VERBOSE = true;
 
 
     private static Context mContext;
@@ -39,7 +41,25 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        databaseOperations.updateLocalDB(this);
+        myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
+        session = myAppDatabase.myDao().getsession();
+
+        if (session.size() == 1) {
+            Log.e("Session check: ", "session found");
+            pageDetails.login_successful = true;
+            startActivity(new Intent(loginActivity.this, Persona.class ));
+        }
+        else {
+            Log.e("Session check: ", "session NOT found");
+        }
+
+        /*try {
+            myAppDatabase.myDao().clearSessionTable();
+        }
+        catch (Exception e) {
+            Log.e("Clear Session Table: ", e.toString());
+        }*/
+         databaseOperations.updateLocalDB(this);
         Button t_login = findViewById(R.id.t_login_button);
         t_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -65,9 +85,33 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         skip_bt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pageDetails.user_info = null;
+                startActivity(new Intent(loginActivity.this, Persona.class ));
             }
         });
+
+
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (VERBOSE) Log.v("RESUME CHECK: ", "I'm Here?");
+
+        if (session.size() == 1) {
+            Log.e("Session check: ", "session found");
+            pageDetails.login_successful = true;
+            startActivity(new Intent(loginActivity.this, Persona.class ));
+        }
+        else {
+            Log.e("Session check: ", "session NOT found");
+        }
+
+
+    }
+
+
+
 
     public void gotoregister(View view) {
         Intent i = new Intent(this, Register.class);
@@ -119,14 +163,22 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         Log.e("LOGIN_SUCCESSFUL:", String.valueOf(pageDetails.login_successful));
         if (pageDetails.login_successful == true) {
 
-
+            Table_Sessions session = new Table_Sessions();
+            session.setUsername(username);
+            session.setUser_type(user_type);
+            myAppDatabase.myDao().addSession(session);
+            pageDetails.login_successful = true;
             Log.d("password status","password matched going to main page");
             Intent i = new Intent(mContext,Persona.class);
             mContext.startActivity(i);
 
-
         }
         else {
+            Toast toast = Toast.makeText(mContext,
+                    "Email or Password is Wrong",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+
             Log.d("Login Unsuccessful","Passwords may not have been matched");
         }
 

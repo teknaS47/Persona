@@ -71,7 +71,31 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     i.putExtra("e_name",eventsList.get(getAdapterPosition()).getName());
                     i.putExtra("e_desc",eventsList.get(getAdapterPosition()).getDescription());
                     i.putExtra("e_date",eventsList.get(getAdapterPosition()).getDate());
+                    i.putExtra("e_type",eventsList.get(getAdapterPosition()).getType());
                     i.putExtra("e_venue",eventsList.get(getAdapterPosition()).getVenue());
+                    i.putExtra("e_category",eventsList.get(getAdapterPosition()).getCategory());
+                    i.putExtra("prize_1_amt",eventsList.get(getAdapterPosition()).getE_1_prize());
+                    i.putExtra("prize_2_amt",eventsList.get(getAdapterPosition()).getE_2_prize());
+                    i.putExtra("prize_3_amt",eventsList.get(getAdapterPosition()).getE_3_prize());
+                    i.putExtra("e_venue",eventsList.get(getAdapterPosition()).getVenue());
+                    i.putExtra("event_e_staff_1",eventsList.get(getAdapterPosition()).getEvent_e_staff_1());
+                    i.putExtra("event_e_staff_1_email",eventsList.get(getAdapterPosition()).getEvent_e_staff_1_email());
+                    i.putExtra("event_e_staff_1_phone",eventsList.get(getAdapterPosition()).getEvent_e_staff_1_phone());
+                    i.putExtra("event_e_staff_2",eventsList.get(getAdapterPosition()).getEvent_e_staff_2());
+                    i.putExtra("event_e_staff_2_email",eventsList.get(getAdapterPosition()).getEvent_e_staff_2_email());
+                    i.putExtra("event_e_staff_2_phone",eventsList.get(getAdapterPosition()).getEvent_e_staff_2_phone());
+                    i.putExtra("event_e_student_1",eventsList.get(getAdapterPosition()).getEvent_e_student_1());
+                    i.putExtra("event_e_student_1_email",eventsList.get(getAdapterPosition()).getEvent_e_student_1_email());
+                    i.putExtra("event_e_student_1_phone",eventsList.get(getAdapterPosition()).getEvent_e_student_1_phone());
+                    i.putExtra("event_e_student_2",eventsList.get(getAdapterPosition()).getEvent_e_student_2());
+                    i.putExtra("event_e_student_2_email",eventsList.get(getAdapterPosition()).getEvent_e_student_2_email());
+                    i.putExtra("event_e_student_2_phone",eventsList.get(getAdapterPosition()).getEvent_e_student_2_phone());
+                    i.putExtra("event_e_whatsappLink",eventsList.get(getAdapterPosition()).getEvent_e_whatsappLink());
+                    i.putExtra("event_e_likes",eventsList.get(getAdapterPosition()).getEvent_e_likes());
+                    i.putExtra("e_rules",eventsList.get(getAdapterPosition()).getE_rules());
+
+
+
                     itemView.getContext().startActivity(i);
                 }
             });

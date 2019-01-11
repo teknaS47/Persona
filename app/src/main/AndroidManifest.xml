@@ -30,9 +30,11 @@
             android:name=".eventRegistration"
             android:label="@string/title_activity_event_registration"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Enter_OTP"
+        <activity
+            android:name=".Enter_OTP"
             android:label="enter_OTP"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+
         <service
             android:name=".firebaseNotification"
             android:enabled="true"
@@ -42,7 +44,11 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".teacher_coordinator"></activity>
+        <activity android:name=".teacher_coordinator" />
+        <activity
+            android:name=".markPaid"
+            android:label="@string/title_activity_mark_paid"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

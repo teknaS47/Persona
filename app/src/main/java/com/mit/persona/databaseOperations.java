@@ -61,6 +61,27 @@ public class databaseOperations {
                                     event.setVenue(jsonobject.getString("e_venue"));
                                     event.setType(jsonobject.getString("e_type"));
                                     event.setCategory(jsonobject.getString("e_category"));
+                                    event.setE_1_prize(jsonobject.getString("e_1_prize"));
+                                    event.setE_2_prize(jsonobject.getString("e_2_prize"));
+                                    event.setE_3_prize(jsonobject.getString("e_3_prize"));
+                                    event.setEvent_e_staff_1(jsonobject.getString("e_staff_1"));
+                                    event.setEvent_e_staff_1_email(jsonobject.getString("e_staff_1_email"));
+                                    event.setEvent_e_staff_1_phone(jsonobject.getString("e_staff_1_phone"));
+                                    event.setEvent_e_staff_2(jsonobject.getString("e_staff_2"));
+                                    event.setEvent_e_staff_2_email(jsonobject.getString("e_staff_2_email"));
+                                    event.setEvent_e_staff_2_phone(jsonobject.getString("e_staff_2_phone"));
+                                    event.setEvent_e_student_1(jsonobject.getString("e_student_1"));
+                                    event.setEvent_e_student_1_email(jsonobject.getString("e_student_1_email"));
+                                    event.setEvent_e_student_1_phone(jsonobject.getString("e_student_1_phone"));
+                                    event.setEvent_e_student_2(jsonobject.getString("e_student_2"));
+                                    event.setEvent_e_student_2_email(jsonobject.getString("e_student_2_email"));
+                                    event.setEvent_e_student_2_phone(jsonobject.getString("e_student_2_phone"));
+                                    event.setEvent_e_whatsappLink(jsonobject.getString("e_whatsappLink"));
+                                    event.setEvent_e_likes(jsonobject.getString("e_likes"));
+                                    event.setE_rules(jsonobject.getString("e_rules"));
+
+
+
                                     //event.setImg(R.drawable.ic_tag_faces_black);
                                     try {
                                         myAppDatabase.myDao().addEvent(event);
@@ -421,4 +442,5 @@ public class databaseOperations {
 
         requestQueue.add(jsonObjectRequest);
     }
+
 }
