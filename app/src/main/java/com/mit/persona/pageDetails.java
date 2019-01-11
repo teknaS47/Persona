@@ -22,5 +22,7 @@ public class pageDetails {
     public static String otp;
     public static String entered_Email;
 
+    public static boolean insertEvents;
+
     public static boolean login_successful;
 }

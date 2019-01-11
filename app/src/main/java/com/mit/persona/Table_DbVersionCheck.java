@@ -12,6 +12,21 @@ public class Table_DbVersionCheck {
     private int id;
 
     @ColumnInfo(name = "version")
-    private Number version;
+    private Double version;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Double getVersion() {
+        return version;
+    }
+
+    public void setVersion(Double version) {
+        this.version = version;
+    }
 }

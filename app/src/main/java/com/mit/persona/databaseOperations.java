@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class databaseOperations {
@@ -24,8 +25,8 @@ public class databaseOperations {
     private static final String URL_events = "http://139.59.82.57:5000/events";
     private static final String URL_users = "http://139.59.82.57:5000/users";
     private static final String URL_registrations = "http://139.59.82.57:5000/registrations";
-    private static final String URL_localDbVersion = "http://139.59.82.57:5000/localDbVersion";
     public static MyAppDatabase myAppDatabase;
+    private static List<Table_DbVersionCheck> local_version;
 
 
     public static void updateLocalDB(loginActivity persona) {
@@ -34,6 +35,8 @@ public class databaseOperations {
 
         final Double local_verion = -0.1;
         final Double[] version = new Double[1];
+        local_version = myAppDatabase.myDao().getVersion();
+        final Table_DbVersionCheck l_version = new Table_DbVersionCheck();
 
         RequestQueue requestQueue = Volley.newRequestQueue(persona);
 
@@ -49,7 +52,38 @@ public class databaseOperations {
                             Log.e("VERSION: ", version[0].toString());
                             Log.e("Number of Events: ", String.valueOf(items.length()));
 
-                            if (local_verion < version[0]) {
+                            Log.e("global_version: ", String.valueOf(version[0]));
+                            Log.e("local_version: ", String.valueOf(l_version.getVersion()));
+                            Log.e("local_version2 : ", String.valueOf(local_version.get(0).getVersion()));
+
+                            if ( local_version.size() == 0 ) {
+                                Log.e("local_version == 0", String.valueOf(version[0]));
+                                l_version.setVersion(version[0]);
+                                myAppDatabase.myDao().addVersion(l_version);
+
+                                // INSERT EVENTS DIRECTLY
+                                pageDetails.insertEvents = true;
+
+                            }
+                            else if ( local_version.size() == 1 ) {
+                                Log.e("local_version == 1: ", String.valueOf(local_version.get(0).getVersion()));
+                                Log.e("local_version == 1: ", String.valueOf(local_version.get(0).getId()));
+                                try {
+                                    if (local_version.get(0).getVersion() < version[0]) {
+                                        pageDetails.insertEvents = true;
+                                        myAppDatabase.myDao().updateVersion(version[0]);
+                                        myAppDatabase.myDao().deleteAllEvents();
+                                    }
+                                    else {
+                                        pageDetails.insertEvents = false;
+                                    }
+                                }
+                                catch (Exception e){
+                                    Log.e("local_version == 1: ", e.toString());
+                                }
+                            }
+
+                            if (pageDetails.insertEvents) {
 
                                 for (int i=1; i<items.length(); i++) {
                                     jsonobject = items.getJSONObject(i);
@@ -80,8 +114,6 @@ public class databaseOperations {
                                     event.setEvent_e_likes(jsonobject.getString("e_likes"));
                                     event.setE_rules(jsonobject.getString("e_rules"));
 
-
-
                                     //event.setImg(R.drawable.ic_tag_faces_black);
                                     try {
                                         myAppDatabase.myDao().addEvent(event);
@@ -90,8 +122,6 @@ public class databaseOperations {
                                     catch (Exception e){
                                         Log.e("Events Insert: ", e.toString());
                                     }
-
-
                                 }
 
                             }
