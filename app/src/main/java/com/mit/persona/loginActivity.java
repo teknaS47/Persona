@@ -54,7 +54,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         }
 
         /*try {
-            myAppDatabase.myDao().clearSessionTable();
+            myAppDatabase.myDao().clearSessionTable();K
         }
         catch (Exception e) {
             Log.e("Clear Session Table: ", e.toString());
