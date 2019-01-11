@@ -2,6 +2,7 @@ package com.mit.persona;
 
 import android.app.Activity;
 import android.app.ExpandableListActivity;
+import android.app.ProgressDialog;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +32,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     private String e,p;
     public static MyAppDatabase myAppDatabase;
     public  loginActivity loginactivity;
+
 
     private static Context mContext;
     @Override
@@ -63,14 +65,9 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         skip_bt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pageDetails.user_info = null;
-                startActivity(new Intent(loginActivity.this, Persona.class ));
             }
         });
-
-
     }
-
-
 
     public void gotoregister(View view) {
         Intent i = new Intent(this, Register.class);
