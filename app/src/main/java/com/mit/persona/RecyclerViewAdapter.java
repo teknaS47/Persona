@@ -92,6 +92,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     i.putExtra("event_e_student_2_phone",eventsList.get(getAdapterPosition()).getEvent_e_student_2_phone());
                     i.putExtra("event_e_whatsappLink",eventsList.get(getAdapterPosition()).getEvent_e_whatsappLink());
                     i.putExtra("event_e_likes",eventsList.get(getAdapterPosition()).getEvent_e_likes());
+                    i.putExtra("e_rules",eventsList.get(getAdapterPosition()).getE_rules());
+
 
 
                     itemView.getContext().startActivity(i);

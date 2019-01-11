@@ -92,6 +92,17 @@ public class Events {
     @ColumnInfo(name = "event_e_likes")
     private String event_e_likes;
 
+    public String getE_rules() {
+        return e_rules;
+    }
+
+    public void setE_rules(String e_rules) {
+        this.e_rules = e_rules;
+    }
+
+    @ColumnInfo(name = "e_rules")
+    private String e_rules;
+
 
     public String getEvent_e_staff_1() {
         return event_e_staff_1;
