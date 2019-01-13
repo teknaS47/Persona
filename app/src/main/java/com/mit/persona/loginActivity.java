@@ -3,6 +3,7 @@ package com.mit.persona;
 import android.app.Activity;
 import android.app.ExpandableListActivity;
 import android.arch.persistence.room.Room;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -89,8 +90,15 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             }
         });
 
-
+        TextView item_search = findViewById(R.id.action_search);
+        item_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(loginActivity.this,search1.class));
+            }
+        });
     }
+
 
 
     @Override

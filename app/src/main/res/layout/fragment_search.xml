@@ -6,9 +6,56 @@
     tools:context=".SearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:paddingTop="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorText"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+
+                </LinearLayout>
+            <EditText
+                android:id="@+id/textsearch"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/ic_chat_bubble_outline_black_24dp"
+                android:ems="10"
+                android:hint="Search Event By Name"
+                android:drawableLeft="@drawable/ic_search_black_24dp"
+                android:paddingTop="1dp">
+
+            </EditText>
+                <ListView
+                    android:id="@+id/listView"
+                    android:layout_width="395dp"
+                    android:layout_height="643dp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="8dp"
+                    tools:ignore="MissingConstraints" />
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
 </FrameLayout>

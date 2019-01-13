@@ -15,4 +15,5 @@
     <string name="title_activity_event_registration">eventRegistration</string>
     <string name="home_button">HOME</string>
     <string name="title_activity_enter__otp">Enter OTP</string>
+    <string name="title_activity_search_fragment">SearchFragment</string>
 </resources>

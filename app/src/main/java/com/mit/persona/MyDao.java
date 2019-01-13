@@ -17,6 +17,9 @@ public interface MyDao {
     @Query("select * from events where event_category = :event_category")
     public List<Events> getEvents(String event_category);
 
+    @Query("select * from events")
+    public List<Events> listEvents();
+
     @Delete
     public void deleteEvent(Events event);
 
