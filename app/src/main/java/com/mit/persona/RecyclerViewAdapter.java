@@ -94,8 +94,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     i.putExtra("event_e_likes",eventsList.get(getAdapterPosition()).getEvent_e_likes());
                     i.putExtra("e_rules",eventsList.get(getAdapterPosition()).getE_rules());
 
-
-
                     itemView.getContext().startActivity(i);
                 }
             });

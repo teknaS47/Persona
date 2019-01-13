@@ -45,10 +45,9 @@
         </service>
 
         <activity android:name=".teacher_coordinator" />
-        <activity android:name=".search1" />
         <activity
-            android:name=".SearchFragment"
-            android:label="@string/title_activity_search_fragment"
+            android:name=".markPaid"
+            android:label="@string/title_activity_mark_paid"
             android:theme="@style/AppTheme"></activity>
     </application>
 
