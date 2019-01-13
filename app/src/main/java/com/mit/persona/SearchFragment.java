@@ -54,12 +54,10 @@ public class SearchFragment extends Fragment {
 
         for (int i=0;i<eventsList.size();i++)
         {
-            items[i] = eventsList.get(i).getName();
-            listItems.add(items[i]);
-
+            myArray[i] = eventsList.get(i).getName();
         }
 
-        adapter = new ArrayAdapter<>(view.getContext(), R.layout.list_items, R.id.txtitem, listItems);
+        adapter = new ArrayAdapter<>(view.getContext(), R.layout.list_items, R.id.txtitem, myArray);
 
         listView.setAdapter(adapter);
 

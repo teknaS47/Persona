@@ -90,13 +90,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             }
         });
 
-        TextView item_search = findViewById(R.id.action_search);
-        item_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(loginActivity.this,search1.class));
-            }
-        });
+
     }
 
 
