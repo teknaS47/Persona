@@ -29,7 +29,7 @@
 
                 </LinearLayout>
             <EditText
-                android:id="@+id/textsearch"
+                android:id="@+id/txtsearch"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_margin="5dp"

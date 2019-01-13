@@ -8,14 +8,15 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-import static com.mit.persona.R.layout.list_items;
 
 
 /**
@@ -48,14 +49,19 @@ public class SearchFragment extends Fragment {
 
         listView = view.findViewById(R.id.listView);
 
-        editText = view.findViewById(R.id.textsearch);
+        editText = view.findViewById(R.id.txtsearch);
 
         String[] myArray = new String[eventsList.size()];
 
         for (int i=0;i<eventsList.size();i++)
         {
             myArray[i] = eventsList.get(i).getName();
+
         }
+
+        items = myArray;
+
+        listItems = new ArrayList<>(Arrays.asList(myArray));
 
         adapter = new ArrayAdapter<>(view.getContext(), R.layout.list_items, R.id.txtitem, myArray);
 
@@ -78,13 +84,18 @@ public class SearchFragment extends Fragment {
                         myArray[i] = eventsList.get(i).getName();
                     }
 
+                    items = myArray;
+
+                    listItems = new ArrayList<>(Arrays.asList(myArray));
+
                     adapter = new ArrayAdapter<String>(view.getContext(), R.layout.list_items,R.id.txtitem,listItems);
                     listView.setAdapter(adapter);
 
+
+
+
                 }
-                else {
-                    searchItems(s.toString());
-                }
+                else searchItem(s.toString());
             }
 
             @Override
@@ -98,9 +109,9 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
-    public void searchItems(String textToSearch){
+    public void searchItem(String textToSearch){
         for (String item:items){
-            if (item.contains(textToSearch)){
+            if (!item.contains(textToSearch)){
                 listItems.remove(item);
             }
         }
