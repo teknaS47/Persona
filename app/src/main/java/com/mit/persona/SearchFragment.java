@@ -71,6 +71,27 @@ public class SearchFragment extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+                if(s.toString().equals("")){
+                    String[] myArray = new String[eventsList.size()];
+
+                    for (int i=0;i<eventsList.size();i++)
+                    {
+                        myArray[i] = eventsList.get(i).getName();
+                    }
+
+                    items = myArray;
+
+                    listItems = new ArrayList<>(Arrays.asList(myArray));
+
+                    adapter = new ArrayAdapter<String>(view.getContext(), R.layout.list_items,R.id.txtitem,listItems);
+                    listView.setAdapter(adapter);
+
+
+
+
+                }
+                else searchItem(s.toString());
+
             }
 
             @Override
@@ -100,6 +121,25 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
+
+                if(s.toString().equals("")){
+                    String[] myArray = new String[eventsList.size()];
+
+                    for (int i=0;i<eventsList.size();i++)
+                    {
+                        myArray[i] = eventsList.get(i).getName();
+                    }
+
+                    items = myArray;
+
+                    listItems = new ArrayList<>(Arrays.asList(myArray));
+
+                    adapter = new ArrayAdapter<String>(view.getContext(), R.layout.list_items,R.id.txtitem,listItems);
+                    listView.setAdapter(adapter);
+
+
+                }
+                else searchItem(s.toString());
 
             }
         });
