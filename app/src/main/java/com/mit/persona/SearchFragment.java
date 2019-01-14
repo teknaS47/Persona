@@ -142,8 +142,8 @@ public class SearchFragment extends Fragment {
                 else searchItem(s.toString());
 
             }
-        });
 
+        });
 
 
         return view;
