@@ -2,6 +2,7 @@ package com.mit.persona;
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -303,8 +304,55 @@ public class Event extends AppCompatActivity {
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 }
+                else if(getIntent().getStringExtra("e_type").equals("group"))
+                {
+                    Log.e("Event register", "session found : ");
+                    alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
+                    alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name"));
+                    alertDialogBuilder.setPositiveButton("yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    pageDetails.event_name = getIntent().getStringExtra("e_name");
+                                    pageDetails.event_type = getIntent().getStringExtra("e_type");
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+
+                                    databaseOperations.event_register(Event.this);
+                                    Toast.makeText(Event.this, "Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
+                                }
+                            });
+                    alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }
             }
             else {
+
+                Log.e("Event register", "session found : ");
+                alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
+                alertDialogBuilder.setMessage("Please Log in to register for " + getIntent().getStringExtra("e_name")+". Do you want to log in or continue? ");
+                alertDialogBuilder.setPositiveButton("Log in",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent i = new Intent(Event.this, loginActivity.class);
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
 
                 Log.d("Not registered with app", "No session found: ");
                 Toast.makeText(Event.this, "Please login to register for event ", Toast.LENGTH_SHORT).show();
@@ -312,4 +360,6 @@ public class Event extends AppCompatActivity {
             }
 
     }
+
+
 }
