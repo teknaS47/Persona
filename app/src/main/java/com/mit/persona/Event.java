@@ -1,12 +1,26 @@
 package com.mit.persona;
+import android.app.AlertDialog;
+import android.arch.persistence.room.Room;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
+
 
 public class Event extends AppCompatActivity {
+
+    public static MyAppDatabase myAppDatabase;
+    public  loginActivity loginactivity;
+    private List<Table_Sessions> session;
+
+//    private String name = getIntent().getStringExtra("e_name"), desc=getIntent().getStringExtra("e_desc");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +59,7 @@ public class Event extends AppCompatActivity {
         TextView student_title = findViewById(R.id.student_title);
         TextView faculty_title = findViewById(R.id.faculty_title);
 
-
-
+        //Button reg_btn = findViewById(R.id.event_reg_btn);
 
 
 
@@ -250,9 +263,53 @@ public class Event extends AppCompatActivity {
         event_name.setText(getIntent().getStringExtra("e_name"));
 
 
+        }
+
+        public void registerevent(View view) {
+
+            myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
+            session = myAppDatabase.myDao().getsession();
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
 
+            if (session.size() == 1) {
 
+                if(getIntent().getStringExtra("e_type").equals("individual")) {
+
+                    Log.e("Event register", "session found : ");
+                    alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
+                    alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name"));
+                    alertDialogBuilder.setPositiveButton("yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    pageDetails.event_name = getIntent().getStringExtra("e_name");
+                                    pageDetails.event_type = getIntent().getStringExtra("e_type");
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+
+                                    databaseOperations.event_register(Event.this);
+                                    Toast.makeText(Event.this, "Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
+                                }
+                            });
+                    alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }
+            }
+            else {
+
+                Log.d("Not registered with app", "No session found: ");
+                Toast.makeText(Event.this, "Please login to register for event ", Toast.LENGTH_SHORT).show();
+
+            }
 
     }
 }
