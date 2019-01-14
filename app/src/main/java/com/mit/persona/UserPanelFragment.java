@@ -53,6 +53,17 @@ public class UserPanelFragment extends Fragment {
             }
         });
 
+        TextView bulkregi = view.findViewById(R.id.bulkregi);
+
+        bulkregi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                startActivity(new Intent(view.getContext(), eventRegistration.class));
+            }
+        });
+
         return view;
     }
 
