@@ -199,7 +199,7 @@ public class Event extends AppCompatActivity {
         }
         else
         {
-            student_1_email.setText(getIntent().getStringExtra("event_e_student_2_email"));
+            student_2_email.setText(getIntent().getStringExtra("event_e_student_2_email"));
             Log.e("Student 2",String.valueOf(getIntent().getStringExtra("event_e_staff_2_email")));
         }
         if (getIntent().getStringExtra("event_e_student_2_phone").equals("null"))
