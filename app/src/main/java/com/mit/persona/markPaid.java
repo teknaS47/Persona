@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class markPaid extends AppCompatActivity {
@@ -19,7 +21,23 @@ public class markPaid extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final int N = 10; // total number of textviews to add
+        LinearLayout ll = (LinearLayout) findViewById(R.id.myLinearLayout);
+        final TextView[] myTextViews = new TextView[N]; // create an empty array;
 
+        for (int i = 0; i < N; i++) {
+            // create a new textview
+            final TextView rowTextView = new TextView(this);
+
+            // set some properties of rowTextView or something
+            rowTextView.setText("This is row #" + i);
+
+            // add the textview to the linearlayout
+            ll.addView(rowTextView);
+
+            // save a reference to the textview for later
+            myTextViews[i] = rowTextView;
+        }
     }
     private boolean isValidMail(String email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();

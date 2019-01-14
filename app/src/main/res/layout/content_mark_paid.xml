@@ -47,13 +47,19 @@
                 android:background="@drawable/shapecol"
                 android:backgroundTint="@color/colorPrimary"
                 android:gravity="center"
+                android:onClick="findRegisteredEvents"
                 android:padding="15dp"
                 android:text="Find Events"
-                android:onClick="findRegisteredEvents"
                 android:textColor="@color/white"
                 tools:layout_editor_absoluteX="148dp"
                 tools:layout_editor_absoluteY="100dp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/myLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
 
     </LinearLayout>
 
