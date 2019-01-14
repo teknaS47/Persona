@@ -26,4 +26,10 @@
         android:icon="@drawable/ic_menu_black_24dp"
         android:title="User Panel"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_cartForm"
+        android:enabled="true"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        android:title="Cart Form"
+        app:showAsAction="ifRoom" />
 </menu>
