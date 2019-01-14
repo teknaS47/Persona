@@ -1,5 +1,7 @@
 package com.mit.persona;
 
+import org.json.JSONArray;
+
 public class pageDetails {
     public static String reg_firstname;
     public static String reg_lastname;
@@ -18,6 +20,14 @@ public class pageDetails {
     public static String entered_Password;
 
 
+    public static String event_name;
+    public static String event_type;
+    public static String group_list;
+    public static String paid_by;
+    public static String payment_status;
+
+
+
     public static boolean alreadyExists;
     public static String otp;
     public static String entered_Email;
@@ -25,4 +35,6 @@ public class pageDetails {
     public static boolean insertEvents;
 
     public static boolean login_successful;
+    public static JSONArray registeredEvent;
+    public static  boolean eventsFound;
 }

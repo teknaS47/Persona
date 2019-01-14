@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Persona" />
+        <activity android:name=".Persona">
+
+        </activity>
         <activity android:name=".loginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +50,10 @@
         <activity
             android:name=".markPaid"
             android:label="@string/title_activity_mark_paid"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+
+
+        </activity>
     </application>
 
 </manifest>
