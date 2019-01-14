@@ -40,7 +40,7 @@ public class homePage extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("All"));
         tabLayout.addTab(tabLayout.newTab().setText("Art"));
         tabLayout.addTab(tabLayout.newTab().setText("Architecture"));
-        tabLayout.addTab(tabLayout.newTab().setText("Navel Show & Design"));
+        tabLayout.addTab(tabLayout.newTab().setText("Naval Show & Design"));
         tabLayout.addTab(tabLayout.newTab().setText("Vedic Science"));
         tabLayout.addTab(tabLayout.newTab().setText("Management"));
         tabLayout.addTab(tabLayout.newTab().setText("Technology"));
