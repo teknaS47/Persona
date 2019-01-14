@@ -1,11 +1,13 @@
 package com.mit.persona;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.arch.persistence.room.Room;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -304,33 +306,31 @@ public class Event extends AppCompatActivity {
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 }
-                else if(getIntent().getStringExtra("e_type").equals("group"))
-                {
-                    Log.e("Event register", "session found : ");
-                    alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
-                    alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name"));
-                    alertDialogBuilder.setPositiveButton("yes",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    pageDetails.event_name = getIntent().getStringExtra("e_name");
-                                    pageDetails.event_type = getIntent().getStringExtra("e_type");
-//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
-//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
-//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+                else if(getIntent().getStringExtra("e_type").equals("Team")) {
 
-                                    databaseOperations.event_register(Event.this);
-                                    Toast.makeText(Event.this, "Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                        builder.setTitle("" + getIntent().getStringExtra("e_name"));
+                        builder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name")+". Please enter email ids for all the team members. Make sure they have an account on the app.");
+                        LayoutInflater inflater = Event.this.getLayoutInflater();
+
+                        builder.setView(inflater.inflate(R.layout.dialog_group_registration, null))
+                                // Add action buttons
+                                .setPositiveButton("Register", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // sign in the user ...
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        builder.create();
+                        builder.show();
+
+
                 }
             }
             else {
