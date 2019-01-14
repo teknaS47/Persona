@@ -1,5 +1,7 @@
 package com.mit.persona;
 
+import org.json.JSONArray;
+
 public class pageDetails {
     public static String reg_firstname;
     public static String reg_lastname;
@@ -23,4 +25,6 @@ public class pageDetails {
     public static String entered_Email;
 
     public static boolean login_successful;
+    public static JSONArray registeredEvent;
+    public static  boolean eventsFound;
 }

@@ -393,6 +393,69 @@ public class databaseOperations {
 
 
     }
+    public static void fetchEventData(markPaid markPaid, String email_url) {
+
+        Log.e("Call Successful", "Verify coordinator mail");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(markPaid);
+
+        final String URL_email = email_url;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        JSONArray items = null;
+                        String email = null;
+                        Integer user_type = 10;
+                        Boolean emailExists = true;
+                        String username, objectId = null;
+                        String etag = null;
+                        try {
+                            items = response.getJSONArray("_items");
+                            Log.e("Items length:", String.valueOf(items.length()));
+                            if (items.length() == 0) {
+                                pageDetails.eventsFound = false;
+                            }
+                            else {
+                                pageDetails.eventsFound = true;
+                            }
+                            pageDetails.registeredEvent = items;
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders()  {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
+//            postparams.put("e_id", "A5");
+        //          postparams.put("e_type", "group");
+        //        postparams.put("e_category", "cse");
+
+
+
+    }
     public static void userTypeChange(teacher_coordinator teacher_coordinator, final String e_tag, final String url) {
 
         Log.e("Call Successful", "Verify coordinator mail");
