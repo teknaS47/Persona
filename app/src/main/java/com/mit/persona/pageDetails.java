@@ -15,10 +15,8 @@ public class pageDetails {
     public static String reg_password;
     public static String reg_gender;
 
-
     public static String user_info;
     public static String entered_Password;
-
 
     public static String event_name;
     public static String event_type;
@@ -26,6 +24,13 @@ public class pageDetails {
     public static String paid_by;
     public static String payment_status;
 
+    public static String username;
+    public static String firstname;
+    public static String lastname;
+    public static String mobile;
+    public static String college;
+    public static String branch;
+    public static Integer user_type;
 
 
     public static boolean alreadyExists;

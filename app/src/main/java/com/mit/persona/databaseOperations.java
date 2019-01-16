@@ -224,17 +224,25 @@ public class databaseOperations {
                     public void onResponse(JSONObject response) {
                         JSONArray items = null;
                         String password = null;
-                        Integer user_type = 10;
+                        Integer user_type = null;
+                        String college= null;
+                        String firstname= null;
+                        String lastname= null;
+                        String branch= null;
                         String username = null;
+                        String mobile= null;
                         try {
                             items = response.getJSONArray("_items");
                             JSONObject jsonobject = items.getJSONObject(0);
                             password = jsonobject.getString("password");
                             username = jsonobject.getString("email");
-                            if (jsonobject.has("user_type")) {
-                                user_type = jsonobject.getInt("user_type");
-                            }
-                            Log.e("Password: ", password);
+                            firstname = jsonobject.getString("firstname");
+                            lastname = jsonobject.getString("lastname");
+                            branch = jsonobject.getString("branch");
+                            college = jsonobject.getString("college");
+                            mobile = jsonobject.getString("mobile");
+                            user_type = jsonobject.getInt("user_type");
+                            Log.e("USER TYPE: ", String.valueOf(user_type));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -249,7 +257,7 @@ public class databaseOperations {
 
                         }
 
-                        com.mit.persona.loginActivity.FinishLogin(user_type, username);
+                        com.mit.persona.loginActivity.FinishLogin(user_type, username, firstname, lastname, mobile, college, branch);
                     }
                 },
                 new Response.ErrorListener() {
@@ -341,7 +349,7 @@ public class databaseOperations {
                     public void onResponse(JSONObject response) {
                         JSONArray items = null;
                         String email = null;
-                        Integer user_type = 10;
+                        Integer user_type = null;
                         Boolean emailExists = true;
                         String username, objectId = null;
                         String etag = null;
@@ -410,7 +418,7 @@ public class databaseOperations {
                     public void onResponse(JSONObject response) {
                         JSONArray items = null;
                         String email = null;
-                        Integer user_type = 10;
+                        Integer user_type = null;
                         Boolean emailExists = true;
                         String username, objectId = null;
                         String etag = null;

@@ -1,9 +1,6 @@
 package com.mit.persona;
 
-import android.app.Activity;
-import android.app.ExpandableListActivity;
 import android.arch.persistence.room.Room;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,8 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class loginActivity extends AppCompatActivity /*implements OnClickListener*/{
     static loginActivity instance;
@@ -46,6 +41,14 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         session = myAppDatabase.myDao().getsession();
 
         if (session.size() == 1) {
+            pageDetails.username = session.get(0).getUsername();
+            pageDetails.college = session.get(0).getCollege();
+            pageDetails.branch = session.get(0).getBranch();
+            pageDetails.firstname = session.get(0).getFirstname();
+            pageDetails.lastname = session.get(0).getLastname();
+            pageDetails.mobile = session.get(0).getMobile();
+            pageDetails.user_type = session.get(0).getUser_type();
+
             Log.e("Session check: ", "session found");
             pageDetails.login_successful = true;
             startActivity(new Intent(loginActivity.this, Persona.class ));
@@ -59,15 +62,15 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         }
         catch (Exception e) {
             Log.e("Clear Session Table: ", e.toString());
-        }*/
-         databaseOperations.updateLocalDB(this);
+        }
+        databaseOperations.updateLocalDB(this);
         Button t_login = findViewById(R.id.t_login_button);
         t_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pageDetails.user_info = null;
                 startActivity(new Intent(loginActivity.this, teacher_coordinator.class ));
             }
-        });
+        });*/
         /*TextView email = findViewById(R.id.email_text);
         TextView password = findViewById(R.id.password_text);
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
@@ -85,14 +88,13 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         TextView skip_bt = findViewById(R.id.skip);
         skip_bt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                
                 pageDetails.user_info = null;
                 startActivity(new Intent(loginActivity.this, Persona.class ));
             }
         });
 
-
     }
-
 
 
     @Override
@@ -101,6 +103,15 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         Log.e("onResume (Session Size)",String.valueOf(session.size()));
 
         if (session.size() == 1) {
+
+            pageDetails.username = session.get(0).getUsername();
+            pageDetails.college = session.get(0).getCollege();
+            pageDetails.branch = session.get(0).getBranch();
+            pageDetails.firstname = session.get(0).getFirstname();
+            pageDetails.lastname = session.get(0).getLastname();
+            pageDetails.mobile = session.get(0).getMobile();
+            pageDetails.user_type = session.get(0).getUser_type();
+
             Log.e("Session check: ", "session found");
             pageDetails.login_successful = true;
             startActivity(new Intent(loginActivity.this, Persona.class ));
@@ -154,19 +165,32 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 
     }
 
-    public static void FinishLogin(Integer user_type, String username)    {
+    public static void FinishLogin(Integer user_type, String username, String firstname, String lastname, String mobile, String college, String branch)    {
 
         myAppDatabase = Room.databaseBuilder(loginActivity.mContext, MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
 
         loginActivity l = new loginActivity();
         Log.e("LOGIN_SUCCESSFUL:", String.valueOf(pageDetails.login_successful));
         if (pageDetails.login_successful == true) {
-
+            myAppDatabase.myDao().clearSessionTable();
             Table_Sessions session = new Table_Sessions();
             session.setUsername(username);
             session.setUser_type(user_type);
+            session.setBranch(branch);
+            session.setCollege(college);
+            session.setFirstname(firstname);
+            session.setLastname(lastname);
+            session.setMobile(mobile);
             myAppDatabase.myDao().addSession(session);
             pageDetails.login_successful = true;
+            pageDetails.username = username;
+            pageDetails.college = college;
+            pageDetails.branch = branch;
+            pageDetails.firstname = firstname;
+            pageDetails.lastname = lastname;
+            pageDetails.mobile = mobile;
+            pageDetails.user_type = user_type;
+
             Log.d("password status","password matched going to main page");
             Intent i = new Intent(mContext,Persona.class);
             mContext.startActivity(i);

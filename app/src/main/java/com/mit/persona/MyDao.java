@@ -24,7 +24,6 @@ public interface MyDao {
     @Query("DELETE FROM events")
     public void deleteAllEvents();
 
-
     @Delete
     public void deleteEvent(Events event);
 

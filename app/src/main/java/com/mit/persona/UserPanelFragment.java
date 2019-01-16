@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +39,36 @@ public class UserPanelFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_user_panel, container, false);
         TextView signOut = view.findViewById(R.id.signOut);
 
+        LinearLayout header_panel = view.findViewById(R.id.user_info_header);
+        TextView user_name = view.findViewById(R.id.user_name);
+        TextView user_email = view.findViewById(R.id.user_email);
+        TextView user_mobile = view.findViewById(R.id.user_mobile);
+        TextView add_volunteers = view.findViewById(R.id.addvolunteer);
+
         myAppDatabase = Room.databaseBuilder(view.getContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
+
+        if ( !pageDetails.login_successful )  {
+
+            signOut.setVisibility(view.GONE);
+            header_panel.setVisibility(view.GONE);
+        }else {
+            Log.e("USER TYPE: ", String.valueOf(pageDetails.user_type) );
+            if (pageDetails.user_type > 1 ) {
+                add_volunteers.setVisibility(view.GONE);
+            }
+            else if (pageDetails.user_type == 1 || pageDetails.user_type == 0) {
+                add_volunteers.setVisibility(view.VISIBLE);
+                add_volunteers.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        pageDetails.user_info = null;
+                        startActivity(new Intent(view.getContext(), teacher_coordinator.class ));
+                    }
+                });
+            }
+            user_name.setText(String.valueOf(pageDetails.firstname + " " + pageDetails.lastname));
+            user_email.setText(String.valueOf(pageDetails.username));
+            user_mobile.setText(String.valueOf(pageDetails.mobile));
+        }
 
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +77,11 @@ public class UserPanelFragment extends Fragment {
                 Toast.makeText(getContext(), "Log out Successful", Toast.LENGTH_SHORT).show();
                 myAppDatabase.myDao().clearSessionTable();
                 session_list = myAppDatabase.myDao().getsession();
+                pageDetails.firstname = null;
+                pageDetails.lastname = null;
+                pageDetails.mobile = null;
+                pageDetails.username = null;
+                pageDetails.user_type = null;
                 Log.e("Session size:", String.valueOf(session_list.size()));
                 pageDetails.login_successful = false;
                 startActivity(new Intent(view.getContext(), loginActivity.class));
