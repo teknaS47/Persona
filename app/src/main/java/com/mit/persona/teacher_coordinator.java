@@ -86,7 +86,7 @@ public class teacher_coordinator extends AppCompatActivity {
             // TODO: 09-01-2019 Add functionality
 
             if (emailExists)    {
-                databaseOperations.userTypeChange((teacher_coordinator) mContext, etag, String.valueOf(url + ObjectId));
+                databaseOperations.userTypeChange((teacher_coordinator) mContext, etag, String.valueOf(url + "/" + ObjectId));
 
                 Log.d("etag_sent","etag_sent");
                 Toast toast = Toast.makeText(mContext,

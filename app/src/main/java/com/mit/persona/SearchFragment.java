@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -31,7 +29,6 @@ public class SearchFragment extends Fragment {
     public SearchFragment() {
         // Required empty public constructor
     }
-
 
     String[] items;
     ArrayList<String> listItems;
@@ -86,9 +83,6 @@ public class SearchFragment extends Fragment {
                     adapter = new ArrayAdapter<String>(view.getContext(), R.layout.list_items,R.id.txtitem,listItems);
                     listView.setAdapter(adapter);
 
-
-
-
                 }
                 else searchItem(s.toString());
 
@@ -111,9 +105,6 @@ public class SearchFragment extends Fragment {
 
                     adapter = new ArrayAdapter<String>(view.getContext(), R.layout.list_items,R.id.txtitem,listItems);
                     listView.setAdapter(adapter);
-
-
-
 
                 }
                 else searchItem(s.toString());
