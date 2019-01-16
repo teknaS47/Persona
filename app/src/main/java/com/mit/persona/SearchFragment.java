@@ -47,9 +47,6 @@ public class SearchFragment extends Fragment {
     EditText editText;
     String eventName;
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,8 +98,6 @@ public class SearchFragment extends Fragment {
                     }
                 }
 
-
-
                 i.putExtra("ID",temppos);
                 i.putExtra("e_name",eventsList.get(temppos).getName());
                 i.putExtra("e_desc",eventsList.get(temppos).getDescription());
@@ -145,8 +140,6 @@ public class SearchFragment extends Fragment {
                     for (int j=0;j<eventsList.size();j++)
                     {
                         myArray[j] = eventsList.get(j).getName();
-
-
                     }
 
                     items = myArray;
@@ -367,8 +360,6 @@ public class SearchFragment extends Fragment {
                             i.putExtra("event_e_whatsappLink",eventsList.get(temppos).getEvent_e_whatsappLink());
                             i.putExtra("event_e_likes",eventsList.get(temppos).getEvent_e_likes());
                             i.putExtra("e_rules",eventsList.get(temppos).getE_rules());
-
-
 
                             startActivity(i);
 

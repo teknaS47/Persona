@@ -57,13 +57,14 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             Log.e("Session check: ", "session NOT found");
         }
 
+        databaseOperations.updateLocalDB(this);
+
         /*try {
             myAppDatabase.myDao().clearSessionTable();K
         }
         catch (Exception e) {
             Log.e("Clear Session Table: ", e.toString());
         }
-        databaseOperations.updateLocalDB(this);
         Button t_login = findViewById(R.id.t_login_button);
         t_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
