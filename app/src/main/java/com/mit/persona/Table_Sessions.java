@@ -3,7 +3,6 @@ package com.mit.persona;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 
 @Entity(tableName = "table_session")
 public class Table_Sessions {
@@ -16,6 +15,61 @@ public class Table_Sessions {
 
     @ColumnInfo(name = "user_type")
     private Integer user_type;
+
+    @ColumnInfo(name = "firstname")
+    private String firstname;
+
+    @ColumnInfo(name = "lastname")
+    private String lastname;
+
+    @ColumnInfo(name = "mobile")
+    private String mobile;
+
+    @ColumnInfo(name = "college")
+    private String college;
+
+    @ColumnInfo(name = "branch")
+    private String branch;
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getCollege() {
+        return college;
+    }
+
+    public void setCollege(String college) {
+        this.college = college;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
 
     public Integer getId() {
         return id;
