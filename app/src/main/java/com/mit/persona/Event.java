@@ -335,7 +335,7 @@ public class Event extends AppCompatActivity {
             }
             else {
 
-                Log.e("Event register", "session found : ");
+                Log.e("Event register", "session not found : ");
                 alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
                 alertDialogBuilder.setMessage("Please Log in to register for " + getIntent().getStringExtra("e_name")+". Do you want to log in or continue? ");
                 alertDialogBuilder.setPositiveButton("Log in",
@@ -343,6 +343,7 @@ public class Event extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
                                 Intent i = new Intent(Event.this, loginActivity.class);
+                                startActivity(i);
                             }
                         });
                 alertDialogBuilder.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
