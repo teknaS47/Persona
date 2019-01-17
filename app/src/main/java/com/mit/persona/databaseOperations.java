@@ -518,6 +518,8 @@ public class databaseOperations {
         requestQueue.add(jsonObjectRequest);
     }
 
+//
+
     public static void event_register(Event event) {
 
         Log.e("Call Successful", "REGISTER EVENT");
@@ -573,6 +575,154 @@ public class databaseOperations {
                 return params;
             }
         };requestQueue.add(jsonObjectRequest);
+
+    }
+
+    public static void userEditFetch(final UserPanelEdit userPanelEdit, String user_url, final String session_email) {
+
+        Log.e("Call Successful", "Verify coordinator mail");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(userPanelEdit);
+
+        final String User_url = user_url;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, User_url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        JSONArray items = null;
+                        String email = null;
+                        Integer user_type = null;
+                        Boolean emailExists = true;
+                        String username, objectId = null;
+                        String etag = null;
+                        try {
+                            items = response.getJSONArray("_items");
+                            if (items.length() == 0) {
+                                emailExists = false;
+                            }
+                            else {
+                                JSONObject jsonobject = items.getJSONObject(0);
+                                if (jsonobject.has("email")) {
+                                    email = jsonobject.getString("email");
+                                    if (String.valueOf(session_email).equals(String.valueOf(email))) {
+                                        etag = jsonobject.getString("_etag");
+                                        objectId = jsonobject.getString("_id");
+                                    }
+                                }
+                            }
+                            userPanelEdit.changeInfo(etag,String.valueOf(URL_users+ "/"+objectId));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders()  {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
+//            postparams.put("e_id", "A5");
+        //          postparams.put("e_type", "group");
+        //        postparams.put("e_category", "cse");
+
+
+
+    }
+    public static void updateUserInfo(final UserPanelEdit userPanelEdit, final String etag, String URL, final String fname, final String lname, final String phoneno, final String collegename, final String branch){
+
+        Log.e("Updating user info", etag);
+        Log.e("Updating user info", String.valueOf(fname + " " + lname + " " + phoneno + " " + collegename + " " + branch));
+
+        RequestQueue requestQueue = Volley.newRequestQueue(userPanelEdit);
+
+        Persona.myAppDatabase.myDao().clearSessionTable();
+        Table_Sessions session = new Table_Sessions();
+        session.setUsername(pageDetails.username);
+        session.setBranch(branch);
+        session.setCollege(collegename);
+        session.setFirstname(fname);
+        session.setLastname(lname);
+        session.setMobile(phoneno);
+        myAppDatabase.myDao().addSession(session);
+        pageDetails.login_successful = true;
+        pageDetails.college = collegename;
+        pageDetails.branch = branch;
+        pageDetails.firstname = fname;
+        pageDetails.lastname = lname;
+        pageDetails.mobile = phoneno;
+
+
+
+        JSONObject postparams = null;
+        try {
+            postparams = new JSONObject();
+            postparams.put("firstname", fname);
+            postparams.put("lastname", lname);
+            postparams.put("mobile", phoneno);
+            postparams.put("college", collegename);
+            postparams.put("branch", branch);
+
+            Log.e("updateUserInfo: ","### here after getting var" );
+
+
+        } catch (JSONException e) {
+            Log.e(e.toString(), "");
+        }
+
+//        final String URL_user_type = user_type;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PATCH, URL, postparams,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                        Log.e("REST Response: ", response.toString());
+//                        String tmp;
+//                        tmp = response.toString();
+//                        pageDetails.user_info = tmp;
+                        Log.e("returned details", "" + pageDetails.user_info);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                params.put("If-Match", etag);
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
 
     }
 }

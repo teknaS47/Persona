@@ -99,6 +99,18 @@ public class UserPanelFragment extends Fragment {
             }
         });
 
+        LinearLayout useredit = view.findViewById(R.id.user_info_header);
+
+
+        useredit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                startActivity(new Intent(view.getContext(), UserPanelEdit.class));
+            }
+        });
+
         return view;
     }
 
