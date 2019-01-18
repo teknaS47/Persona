@@ -12,17 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Persona">
-
-        </activity>
+        <activity
+            android:name=".UserPanelEdit"
+            android:label="@string/title_activity_user_panel_edit"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Persona" />
         <activity android:name=".loginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- <activity android:name=".Event" /> -->
+        </activity> <!-- <activity android:name=".Event" /> -->
         <activity android:name=".Event" />
         <activity
             android:name=".Register"
@@ -50,10 +51,7 @@
         <activity
             android:name=".markPaid"
             android:label="@string/title_activity_mark_paid"
-            android:theme="@style/AppTheme">
-
-
-        </activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
