@@ -57,7 +57,7 @@ public class databaseOperations {
                             Log.e("local_version: ", String.valueOf(l_version.getVersion()));
                             //Log.e("local_version2 : ", String.valueOf(local_version.get(0).getVersion()));
 
-                            if ( local_version.size() == 0 ) {
+                            if (local_version.size() == 0) {
                                 Log.e("local_version == 0", String.valueOf(version[0]));
                                 l_version.setVersion(version[0]);
                                 myAppDatabase.myDao().addVersion(l_version);
@@ -65,8 +65,7 @@ public class databaseOperations {
                                 // INSERT EVENTS DIRECTLY
                                 pageDetails.insertEvents = true;
 
-                            }
-                            else if ( local_version.size() == 1 ) {
+                            } else if (local_version.size() == 1) {
                                 Log.e("local_version == 1: ", String.valueOf(local_version.get(0).getVersion()));
                                 Log.e("local_version == 1: ", String.valueOf(local_version.get(0).getId()));
                                 try {
@@ -74,19 +73,17 @@ public class databaseOperations {
                                         pageDetails.insertEvents = true;
                                         myAppDatabase.myDao().updateVersion(version[0]);
                                         myAppDatabase.myDao().deleteAllEvents();
-                                    }
-                                    else {
+                                    } else {
                                         pageDetails.insertEvents = false;
                                     }
-                                }
-                                catch (Exception e){
+                                } catch (Exception e) {
                                     Log.e("local_version == 1: ", e.toString());
                                 }
                             }
 
                             if (pageDetails.insertEvents) {
 
-                                for (int i=1; i<items.length(); i++) {
+                                for (int i = 1; i < items.length(); i++) {
                                     jsonobject = items.getJSONObject(i);
                                     Events event = new Events();
                                     event.setName(jsonobject.getString("e_name"));
@@ -119,8 +116,7 @@ public class databaseOperations {
                                     try {
                                         myAppDatabase.myDao().addEvent(event);
                                         Log.i(String.valueOf(i), ". DATA ADDED :)\n");
-                                    }
-                                    catch (Exception e){
+                                    } catch (Exception e) {
                                         Log.e("Events Insert: ", e.toString());
                                     }
                                 }
@@ -141,7 +137,7 @@ public class databaseOperations {
                     }
                 }) {
             @Override
-            public Map<String, String> getHeaders()  {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put(
                         "Authorization",
@@ -179,34 +175,35 @@ public class databaseOperations {
             Log.e(e.toString(), "");
         }
 
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL_users, postparams,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Log.e("REST Response: ", response.toString());
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e("REST Error: ", error.toString());
-                        }
-                    }) {
-                @Override
-                public Map<String, String> getHeaders()  {
-                    Map<String, String> params = new HashMap<>();
-                    params.put(
-                            "Authorization",
-                            String.format("Basic %s", Base64.encodeToString(
-                                        String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
-                    //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL_users, postparams,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST Response: ", response.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
 
-                    return params;
-                }
-            };requestQueue.add(jsonObjectRequest);
+                return params;
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
 //            postparams.put("e_id", "A5");
-            //          postparams.put("e_type", "group");
-            //        postparams.put("e_category", "cse");
+        //          postparams.put("e_type", "group");
+        //        postparams.put("e_category", "cse");
 
 
     }
@@ -225,12 +222,12 @@ public class databaseOperations {
                         JSONArray items = null;
                         String password = null;
                         Integer user_type = null;
-                        String college= null;
-                        String firstname= null;
-                        String lastname= null;
-                        String branch= null;
+                        String college = null;
+                        String firstname = null;
+                        String lastname = null;
+                        String branch = null;
                         String username = null;
-                        String mobile= null;
+                        String mobile = null;
                         try {
                             items = response.getJSONArray("_items");
                             JSONObject jsonobject = items.getJSONObject(0);
@@ -250,8 +247,7 @@ public class databaseOperations {
                         if (String.valueOf(entered_password).equals(String.valueOf(password))) {
                             pageDetails.login_successful = true;
                             Log.e("Am i here?", String.valueOf(pageDetails.login_successful));
-                        }
-                        else {
+                        } else {
                             pageDetails.login_successful = false;
                             Log.e("Or Am i here?", String.valueOf(pageDetails.login_successful));
 
@@ -267,7 +263,7 @@ public class databaseOperations {
                     }
                 }) {
             @Override
-            public Map<String, String> getHeaders()  {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put(
                         "Authorization",
@@ -287,7 +283,8 @@ public class databaseOperations {
 
 
     }
-    public static void mailExists(Register register,String email_url, final String entered_Email) {
+
+    public static void mailExists(Register register, String email_url, final String entered_Email) {
 
         Log.e("Call Successful: ", "mailExists");
 
@@ -320,7 +317,7 @@ public class databaseOperations {
                     }
                 }) {
             @Override
-            public Map<String, String> getHeaders()  {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put(
                         "Authorization",
@@ -336,6 +333,7 @@ public class databaseOperations {
         requestQueue.add(jsonObjectRequest);
 
     }
+
     public static void verify(teacher_coordinator teacher_coordinator, String email_url, final String fetched_email) {
 
         Log.e("Call Successful", "Verify coordinator mail");
@@ -357,8 +355,7 @@ public class databaseOperations {
                             items = response.getJSONArray("_items");
                             if (items.length() == 0) {
                                 emailExists = false;
-                            }
-                            else {
+                            } else {
                                 JSONObject jsonobject = items.getJSONObject(0);
                                 if (jsonobject.has("email")) {
                                     email = jsonobject.getString("email");
@@ -384,7 +381,7 @@ public class databaseOperations {
                     }
                 }) {
             @Override
-            public Map<String, String> getHeaders()  {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put(
                         "Authorization",
@@ -403,8 +400,8 @@ public class databaseOperations {
         //        postparams.put("e_category", "cse");
 
 
-
     }
+
     public static void fetchEventData(markPaid markPaid, String email_url) {
 
         Log.e("Call Successful", "Verify coordinator mail");
@@ -427,8 +424,7 @@ public class databaseOperations {
                             Log.e("Items length:", String.valueOf(items.length()));
                             if (items.length() == 0) {
                                 pageDetails.eventsFound = false;
-                            }
-                            else {
+                            } else {
                                 pageDetails.eventsFound = true;
                             }
                             pageDetails.registeredEvent = items;
@@ -447,7 +443,7 @@ public class databaseOperations {
                     }
                 }) {
             @Override
-            public Map<String, String> getHeaders()  {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put(
                         "Authorization",
@@ -466,8 +462,8 @@ public class databaseOperations {
         //        postparams.put("e_category", "cse");
 
 
-
     }
+
     public static void userTypeChange(teacher_coordinator teacher_coordinator, final String e_tag, final String url) {
 
         Log.e("Call Successful", "Verify coordinator mail");
@@ -527,25 +523,24 @@ public class databaseOperations {
         JSONObject postparams = null;
         try {
             postparams = new JSONObject();
-            postparams.put("event_name",pageDetails.event_name);
+            postparams.put("event_name", pageDetails.event_name);
             postparams.put("event_type", pageDetails.event_type);
             //String group_list[]= {};
-            ArrayList<String> group_list =  new ArrayList<String>();
+            ArrayList<String> group_list = pageDetails.group_list;
             group_list.add("abc");
             group_list.add("pqr");
             group_list.add("lmn");
             JSONArray list = new JSONArray(group_list);
 
             //  postparams.put("group_list", group_list);
-            postparams.put("group_list",list);
+            postparams.put("group_list", list);
             postparams.put("paid_by", "null");
             postparams.put("payment_status", "Unpaid");
-            postparams.put("username", "akshayy29@gmail.com");
-            Log.e("EVENT REGISTERED", "event_register() returned:\nEvent name " + pageDetails.event_name+"\nEvent type "+pageDetails.event_type+"\nUsername "+pageDetails.reg_email+" / "+pageDetails.entered_Email+"\nParams "+postparams);
+            postparams.put("username", pageDetails.username);
+            Log.e("EVENT REGISTERED", "event_register() returned:\nEvent name " + pageDetails.event_name + "\nEvent type " + pageDetails.event_type + "\nUsername " + pageDetails.reg_email + " / " + pageDetails.entered_Email + "\nParams " + postparams);
+        } catch (Exception e) {
+            Log.e("event_register:", e.toString());
         }
-        catch (Exception e) {
-            Log.e("event_register:" , e.toString());
-            }
 
         RequestQueue requestQueue = Volley.newRequestQueue(event);
 
@@ -564,7 +559,7 @@ public class databaseOperations {
                     }
                 }) {
             @Override
-            public Map<String, String> getHeaders()  {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put(
                         "Authorization",
@@ -574,7 +569,8 @@ public class databaseOperations {
 
                 return params;
             }
-        };requestQueue.add(jsonObjectRequest);
+        };
+        requestQueue.add(jsonObjectRequest);
 
     }
 
@@ -599,8 +595,7 @@ public class databaseOperations {
                             items = response.getJSONArray("_items");
                             if (items.length() == 0) {
                                 emailExists = false;
-                            }
-                            else {
+                            } else {
                                 JSONObject jsonobject = items.getJSONObject(0);
                                 if (jsonobject.has("email")) {
                                     email = jsonobject.getString("email");
@@ -610,7 +605,7 @@ public class databaseOperations {
                                     }
                                 }
                             }
-                            userPanelEdit.changeInfo(etag,String.valueOf(URL_users+ "/"+objectId));
+                            userPanelEdit.changeInfo(etag, String.valueOf(URL_users + "/" + objectId));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -626,7 +621,7 @@ public class databaseOperations {
                     }
                 }) {
             @Override
-            public Map<String, String> getHeaders()  {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put(
                         "Authorization",
@@ -645,9 +640,9 @@ public class databaseOperations {
         //        postparams.put("e_category", "cse");
 
 
-
     }
-    public static void updateUserInfo(final UserPanelEdit userPanelEdit, final String etag, String URL, final String fname, final String lname, final String phoneno, final String collegename, final String branch){
+
+    public static void updateUserInfo(final UserPanelEdit userPanelEdit, final String etag, String URL, final String fname, final String lname, final String phoneno, final String collegename, final String branch) {
 
         Log.e("Updating user info", etag);
         Log.e("Updating user info", String.valueOf(fname + " " + lname + " " + phoneno + " " + collegename + " " + branch));
@@ -671,7 +666,6 @@ public class databaseOperations {
         pageDetails.mobile = phoneno;
 
 
-
         JSONObject postparams = null;
         try {
             postparams = new JSONObject();
@@ -681,7 +675,7 @@ public class databaseOperations {
             postparams.put("college", collegename);
             postparams.put("branch", branch);
 
-            Log.e("updateUserInfo: ","### here after getting var" );
+            Log.e("updateUserInfo: ", "### here after getting var");
 
 
         } catch (JSONException e) {
@@ -723,6 +717,75 @@ public class databaseOperations {
         jsonObjectRequest.setShouldCache(false);
 
         requestQueue.add(jsonObjectRequest);
+
+    }
+
+    public static void verify_group(Event event, String email_url) {
+
+        Log.e("Call Successful", "Verify coordinator mail");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(event);
+
+        final String URL_email = email_url;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        JSONArray items = null;
+//                        String email = null;
+//                        Integer user_type = null;
+                        Boolean emailExists = true;
+//                        String username, objectId = null;
+//                        String etag = null;
+                        try {
+                            items = response.getJSONArray("_items");
+                            if (items.length() == 0) {
+                                emailExists =pageDetails.email_exists= false;
+                            } else {
+                                emailExists =pageDetails.email_exists= true;
+//                                JSONObject jsonobject = items.getJSONObject(0);
+//                                if (jsonobject.has("email")) {
+//                                    email = jsonobject.getString("email");
+//                                    if (String.valueOf(fetched_email).equals(String.valueOf(email))) {
+//                                        etag = jsonobject.getString("_etag");
+//                                        objectId = jsonobject.getString("_id");
+//                                    }
+//                                }
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
+//            postparams.put("e_id", "A5");
+        //          postparams.put("e_type", "group");
+        //        postparams.put("e_category", "cse");
+
 
     }
 }

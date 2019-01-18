@@ -2,18 +2,23 @@ package com.mit.persona;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,6 +27,8 @@ public class Event extends AppCompatActivity {
     public static MyAppDatabase myAppDatabase;
     public  loginActivity loginactivity;
     private List<Table_Sessions> session;
+    private List<EditText> group_email = new ArrayList<EditText>();
+
 
 //    private String name = getIntent().getStringExtra("e_name"), desc=getIntent().getStringExtra("e_desc");
 
@@ -61,6 +68,7 @@ public class Event extends AppCompatActivity {
         TextView rule_title = findViewById(R.id.rule_title);
         TextView student_title = findViewById(R.id.student_title);
         TextView faculty_title = findViewById(R.id.faculty_title);
+
 
         //Button reg_btn = findViewById(R.id.event_reg_btn);
 
@@ -310,18 +318,93 @@ public class Event extends AppCompatActivity {
                 }
                 else if(getIntent().getStringExtra("e_type").equals("Team")) {
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                    EditText p2 = findViewById(R.id.email_participant_2);
+//                    EditText p3 = findViewById(R.id.email_participant_3);
+//                    EditText p4 = findViewById(R.id.email_participant_4);
+//                    EditText p5 = findViewById(R.id.email_participant_5);
+//                    EditText p6 = findViewById(R.id.email_participant_6);
+//
+//                    final String s2 = p2.getText().toString();
+//                    final String s3 = p3.getText().toString();
+//                    final String s4 = p4.getText().toString();
+//                    final String s5 = p5.getText().toString();
+//                    final String s6 = p6.getText().toString();
+//                    String s1 = p2.getText().toString();
+//                    String s1 = p2.getText().toString();
 
-                        builder.setTitle("" + getIntent().getStringExtra("e_name"));
-                        builder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name")+". Please enter email ids for all the team members. Make sure they have an account on the app.");
-                        LayoutInflater inflater = Event.this.getLayoutInflater();
+//                    for(int i=0; i<10;i++){
+//                        EditText pi =
+//                    }
 
-                        builder.setView(inflater.inflate(R.layout.dialog_group_registration, null))
-                                // Add action buttons
+
+
+                    alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
+                    alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name")+". Please enter email ids for all the team members. Make sure they have an account on the app.\n\nParticipant 1: "+pageDetails.username);
+
+                    Context context = this;
+                    LinearLayout layout = new LinearLayout(context);
+                    layout.setOrientation(LinearLayout.VERTICAL);
+
+
+                    final int max = 10;
+                    for(int i=2; i<=max;i++) {
+                        final EditText participant_email = new EditText(context);
+                        //participant_email.setId(i);
+                        group_email.add(participant_email);
+                        participant_email.setHint("Email of participant "+i);
+                        layout.addView(participant_email);
+                        Log.e("groupemail", "registerevent: "+group_email.size() );
+                    }
+
+                    alertDialogBuilder.setView(layout)
+
                                 .setPositiveButton("Register", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int id) {
-                                        // sign in the user ...
+                                        int size = group_email.size();
+                                        String[] string = new String[size];
+                                        for(int i=0; i < size; i++) {
+                                            string[i] = group_email.get(i).getText().toString();
+                                            Log.e("string size", "string : "+string[i]);
+                                        }
+                                        Log.e("string", " size: "+string.length );
+                                        int min = 2;
+                                        if(size<min)
+                                        {
+
+                                            Toast.makeText(Event.this, "Enter minimum "+min+" email ids to proceed", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else{
+
+                                            for(int i=0; i<size;i++){
+                                                String email_url = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + string[i] + "\"}";
+                                                databaseOperations.verify_group(Event.this, email_url);
+                                                if(!pageDetails.email_exists){
+                                                    Toast.makeText(Event.this, "Please make sure the users have registered on the app and try again.", Toast.LENGTH_SHORT).show();
+                                                }
+                                                else{
+                                                    for (i=0;i<size;i++){
+                                                        pageDetails.group_list.add(string[i]);
+                                                        databaseOperations.event_register(Event.this);
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+
+//                                        if(s2.isEmpty()&&s3.isEmpty()&&s4.isEmpty()&&s5.isEmpty()&&s6.isEmpty()){
+//                                            Toast.makeText(loginactivity, "Please enter minimum one email to form a group", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                        else{
+//                                            for (int i=0;i<10;i++)
+//                                            {
+//                                                if(!s2.isEmpty()){
+//
+//                                                }
+//                                            }
+//                                            Toast.makeText(Event.this, ""+pageDetails.username+"Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
+//                                        }
                                     }
                                 })
                                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -329,8 +412,8 @@ public class Event extends AppCompatActivity {
                                         dialog.cancel();
                                     }
                                 });
-                        builder.create();
-                        builder.show();
+                        alertDialogBuilder.create();
+                        alertDialogBuilder.show();
 
 
                 }
@@ -355,8 +438,8 @@ public class Event extends AppCompatActivity {
                         dialog.cancel();
                     }
                 });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                alertDialogBuilder.create();
+                alertDialogBuilder.show();
 
                 Log.d("Not registered with app", "No session found: ");
                 Toast.makeText(Event.this, "Please login to register for event "+pageDetails.username, Toast.LENGTH_SHORT).show();
