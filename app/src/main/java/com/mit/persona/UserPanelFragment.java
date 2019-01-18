@@ -44,6 +44,7 @@ public class UserPanelFragment extends Fragment {
         TextView user_email = view.findViewById(R.id.user_email);
         TextView user_mobile = view.findViewById(R.id.user_mobile);
         TextView add_volunteers = view.findViewById(R.id.addvolunteer);
+        TextView registeredEventsButton = view.findViewById(R.id.registeredEventsButton);
 
         myAppDatabase = Room.databaseBuilder(view.getContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
 
@@ -51,7 +52,17 @@ public class UserPanelFragment extends Fragment {
 
             signOut.setVisibility(view.GONE);
             header_panel.setVisibility(view.GONE);
-        }else {
+            registeredEventsButton.setVisibility(View.GONE);
+        }
+        else {
+
+            registeredEventsButton.setVisibility(View.VISIBLE);
+            registeredEventsButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    startActivity(new Intent(view.getContext(), registeredEvents.class ));
+                }
+            });
+
             Log.e("USER TYPE: ", String.valueOf(pageDetails.user_type) );
             if (pageDetails.user_type > 1 ) {
                 add_volunteers.setVisibility(view.GONE);

@@ -42,6 +42,8 @@ dependencies {
     implementation files('libs/activation.jar')
     implementation files('libs/additionnal.jar')
     implementation files('libs/mail.jar')
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

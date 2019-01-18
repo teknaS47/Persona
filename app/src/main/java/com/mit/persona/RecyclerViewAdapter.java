@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
@@ -39,9 +41,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         myViewHolder.e_name.setText(eventsList.get(i).getName());
         myViewHolder.e_date.setText(eventsList.get(i).getDate());
+
+        try {
+            String imagename = eventsList.get(i).getId().toLowerCase();;
+            int res = mContext.getResources().getIdentifier(imagename, "drawable", mContext.getPackageName());
+            //myViewHolder.e_img.setImageResource(res);
+            Picasso.get().load(res).fit().into(myViewHolder.e_img);
+
+        } catch (Exception e) {
+            Log.e("Image Set:", e.toString());
+        }
         //    myViewHolder.img.setImageResource(eventsList.get(i).getName());
-
-
     }
 
     @Override
@@ -54,7 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         private TextView e_name;
         private TextView e_date;
-        private ImageView img;
+        private ImageView e_img;
         private CardView cardView;
 
         public MyViewHolder(@NonNull final View itemView) {
@@ -62,6 +72,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             e_name = (TextView) itemView.findViewById(R.id.event_name);
             e_date = (TextView) itemView.findViewById(R.id.event_date);
+            e_img = itemView.findViewById(R.id.event_img);
     //        img = (TextView) itemView.findViewById(R.id.event_img);
 
             itemView.setOnClickListener(new View.OnClickListener() {

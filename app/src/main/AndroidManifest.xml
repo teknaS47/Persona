@@ -3,6 +3,7 @@
     package="com.mit.persona">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -15,7 +16,7 @@
         <activity
             android:name=".UserPanelEdit"
             android:label="@string/title_activity_user_panel_edit"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Persona" />
         <activity android:name=".loginActivity">
             <intent-filter>
@@ -52,6 +53,10 @@
             android:name=".markPaid"
             android:label="@string/title_activity_mark_paid"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".registeredEvents"
+            android:label="@string/title_activity_registered_events"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

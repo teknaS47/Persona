@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.arch.persistence.room.Room;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ public class Event extends AppCompatActivity {
     public static MyAppDatabase myAppDatabase;
     public  loginActivity loginactivity;
     private List<Table_Sessions> session;
+    private Intent emailIntent;
 
 //    private String name = getIntent().getStringExtra("e_name"), desc=getIntent().getStringExtra("e_desc");
 
@@ -30,9 +32,9 @@ public class Event extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
-        TextView event_name = findViewById(R.id.event_name);
-        TextView event_desc = findViewById(R.id.event_desc);
-        TextView event_date = findViewById(R.id.event_date);
+        final TextView event_name = findViewById(R.id.event_name);
+        final TextView event_desc = findViewById(R.id.event_desc);
+        final TextView event_date = findViewById(R.id.event_date);
         TextView prizeTitle = findViewById(R.id.prizeTitle);
         TextView prize_1_amt = findViewById(R.id.prize_1_amt);
         TextView prize_2_amt = findViewById(R.id.prize_2_amt);
@@ -42,25 +44,111 @@ public class Event extends AppCompatActivity {
         TextView prize_3_title = findViewById(R.id.prize_3_title);
         ImageView faculty_1_image = findViewById(R.id.faculty_1_image);
         TextView faculty_1_name = findViewById(R.id.faculty_1_name);
-        TextView faculty_1_email = findViewById(R.id.faculty_1_email);
-        TextView faculty_1_phone = findViewById(R.id.faculty_1_phone);
+        final TextView faculty_1_email = findViewById(R.id.faculty_1_email);
+        final TextView faculty_1_phone = findViewById(R.id.faculty_1_phone);
         ImageView faculty_2_image = findViewById(R.id.faculty_2_image);
         TextView faculty_2_name = findViewById(R.id.faculty_2_name);
-        TextView faculty_2_email = findViewById(R.id.faculty_2_email);
-        TextView faculty_2_phone = findViewById(R.id.faculty_2_phone);
+        final TextView faculty_2_email = findViewById(R.id.faculty_2_email);
+        final TextView faculty_2_phone = findViewById(R.id.faculty_2_phone);
         ImageView student_1_image = findViewById(R.id.student_1_image);
         TextView student_1_name = findViewById(R.id.student_1_name);
-        TextView student_1_email = findViewById(R.id.student_1_email);
-        TextView student_1_phone = findViewById(R.id.student_1_phone);
+        final TextView student_1_email = findViewById(R.id.student_1_email);
+        final TextView student_1_phone = findViewById(R.id.student_1_phone);
         ImageView student_2_image = findViewById(R.id.student_2_image);
         TextView student_2_name = findViewById(R.id.student_2_name);
-        TextView student_2_email = findViewById(R.id.student_2_email);
-        TextView student_2_phone = findViewById(R.id.student_2_phone);
+        final TextView student_2_email = findViewById(R.id.student_2_email);
+        final TextView student_2_phone = findViewById(R.id.student_2_phone);
         TextView totallikes = findViewById(R.id.totallikes);
         TextView rules = findViewById(R.id.rules);
         TextView rule_title = findViewById(R.id.rule_title);
         TextView student_title = findViewById(R.id.student_title);
         TextView faculty_title = findViewById(R.id.faculty_title);
+        ImageView share_icon = findViewById(R.id.share);
+
+        emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+        emailIntent.setType("plain/text");
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "[Query] Persona Fest 2019");
+        final Intent callIntent = new Intent(Intent.ACTION_DIAL);
+
+
+        final String shareBody = ("\n\nFor More information download our app: https://play.google.com/store/apps/details?id=com.mit.persona" + "\nOr log into our website: http://www.mituniversity.edu.in/mitpersonafest/ ") ;
+
+        final Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+
+        share_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, String.valueOf("MIT Persona Fest 2019 Presents to you " + event_name.getText() + ":\n" + event_desc.getText() + "\n" + shareBody));
+                startActivity(Intent.createChooser(sharingIntent, "Share Using:"));
+            }
+        });
+
+
+
+        faculty_1_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callIntent.setData(Uri.parse(String.valueOf("tel:"+faculty_1_phone.getText())));
+                startActivity(callIntent);
+            }
+        });
+
+        faculty_2_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callIntent.setData(Uri.parse(String.valueOf("tel:"+faculty_2_phone.getText())));
+                startActivity(callIntent);
+            }
+        });
+
+        student_1_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callIntent.setData(Uri.parse(String.valueOf("tel:"+student_1_phone.getText())));
+                startActivity(callIntent);
+            }
+        });
+
+        student_2_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callIntent.setData(Uri.parse(String.valueOf("tel:"+student_2_phone.getText())));
+                startActivity(callIntent);
+            }
+        });
+
+
+
+        faculty_1_email.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{String.valueOf(faculty_1_email.getText())});
+                startActivity(Intent.createChooser(emailIntent, "Send a mail?"));
+            }
+        });
+
+        faculty_2_email.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{String.valueOf(faculty_2_email.getText())});
+                startActivity(Intent.createChooser(emailIntent, "Send a mail?"));
+            }
+        });
+
+        student_1_email.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{String.valueOf(student_1_email.getText())});
+                startActivity(Intent.createChooser(emailIntent, "Send a mail?"));
+            }
+        });
+
+        student_2_email.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{String.valueOf(student_2_email.getText())});
+                startActivity(Intent.createChooser(emailIntent, "Send a mail?"));
+            }
+        });
+
+
 
         //Button reg_btn = findViewById(R.id.event_reg_btn);
 
@@ -89,8 +177,6 @@ public class Event extends AppCompatActivity {
             totallikes.setText(getIntent().getStringExtra("totallikes"));
             Log.e("No of Likes",String.valueOf(getIntent().getStringExtra("totallikes")));
         }
-
-
 
         //staff1
 
