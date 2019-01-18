@@ -289,12 +289,14 @@ public class Event extends AppCompatActivity {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     pageDetails.event_name = getIntent().getStringExtra("e_name");
                                     pageDetails.event_type = getIntent().getStringExtra("e_type");
+
+
 //                                pageDetails.event_name=getIntent().getStringExtra("e_name");
 //                                pageDetails.event_name=getIntent().getStringExtra("e_name");
 //                                pageDetails.event_name=getIntent().getStringExtra("e_name");
 
                                     databaseOperations.event_register(Event.this);
-                                    Toast.makeText(Event.this, "Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Event.this, ""+pageDetails.username+"Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
                                 }
                             });
                     alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -344,6 +346,7 @@ public class Event extends AppCompatActivity {
                             public void onClick(DialogInterface arg0, int arg1) {
                                 Intent i = new Intent(Event.this, loginActivity.class);
                                 startActivity(i);
+                                finish();
                             }
                         });
                 alertDialogBuilder.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
@@ -356,7 +359,7 @@ public class Event extends AppCompatActivity {
                 alertDialog.show();
 
                 Log.d("Not registered with app", "No session found: ");
-                Toast.makeText(Event.this, "Please login to register for event ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Event.this, "Please login to register for event "+pageDetails.username, Toast.LENGTH_SHORT).show();
 
             }
 
