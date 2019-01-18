@@ -92,6 +92,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
                 
                 pageDetails.user_info = null;
                 startActivity(new Intent(loginActivity.this, Persona.class ));
+                finish();
             }
         });
 

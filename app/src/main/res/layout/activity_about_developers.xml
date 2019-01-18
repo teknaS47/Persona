@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutDevelopers">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:paddingTop="20dp"
+            android:paddingBottom="15dp"
+            android:id="@+id/user_info_header">
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="About Developer"
+                    android:textColor="#ffffff"
+                    android:textSize="30dp"
+                    android:paddingLeft="30dp"
+                    android:id="@+id/aboutDevelopersTitle"
+                    android:textAlignment="center"/>
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/apptitle"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="App Developers"
+            android:textSize="13dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:gravity="left|center_vertical">
+        </TextView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/devCard1">
+            <TextView
+                android:id="@+id/name1"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Akshay Yewale"
+                android:textSize="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/email1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:text="akshayy29@gmail.com"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/college_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:text="MIT SOE"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/devCard2">
+            <TextView
+                android:id="@+id/name2"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Nayan Agarwal"
+                android:textSize="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/email2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:text="nayan.agarwal98@gmail.com"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/college_name2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:text="MIT SOE"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/devCard3">
+            <TextView
+                android:id="@+id/name3"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Ketan Singrole"
+                android:textSize="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/email3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:text="singroleketan@gmail.com"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/college_name3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:text="MIT SOE"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/devCard4">
+            <TextView
+                android:id="@+id/name4"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Kunj Shah"
+                android:textSize="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/email4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:text="kunjshah45@gmail.com"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/college_name4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:text="MIT SOE"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/devCard5">
+            <TextView
+                android:id="@+id/name5"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Sanket Saikia"
+                android:textSize="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/email5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:text="sanketsaikia13@gmail.com"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/college_name5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:text="MIT SOE"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+
+        </android.support.v7.widget.CardView>
+
+
+
+        <LinearLayout
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+        <TextView
+            android:id="@+id/postertitle"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="Poster"
+            android:textSize="13dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:gravity="left|center_vertical">
+        </TextView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/posterCard1">
+            <TextView
+                android:id="@+id/poster_name1"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Akash Singh"
+                android:textSize="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/poster_email1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:text="akashemaradee@gmail.com"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/poster_college_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:text="MIT ID"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/poster_posterCard2">
+            <TextView
+                android:id="@+id/poster_name2"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Kshitija Whaval"
+                android:textSize="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/poster_email2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:text="kshitijawhaval84@gmail.com"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/poster_college_name2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:text="MIT ID"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/poster_posterCard3">
+            <TextView
+                android:id="@+id/poster_name3"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Lubaina Harnesswala"
+                android:textSize="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/poster_email3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:text="lubainah11@gmail.com"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/poster_college_name3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:text="MIT ID"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/poster_posterCard4">
+            <TextView
+                android:id="@+id/poster_name4"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Saamarthya Dobhal"
+                android:textSize="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/poster_email4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:text="saamarthyadobhal@gmail.com"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/poster_college_name4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:text="MIT ID"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/poster_posterCard5">
+            <TextView
+                android:id="@+id/poster_name5"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Shail Agnihotri"
+                android:textSize="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="15dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/poster_email5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:text="shailagnihotri0@gmail.com"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/poster_college_name5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:text="MIT ID"
+                android:textSize="13dp"
+                android:gravity="left|center_vertical">
+            </TextView>
+
+        </android.support.v7.widget.CardView>
+
+
+
+        <LinearLayout
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:background="@color/colorGrey"
+            >
+        </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

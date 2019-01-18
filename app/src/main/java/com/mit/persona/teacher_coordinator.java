@@ -33,11 +33,11 @@ public class teacher_coordinator extends AppCompatActivity {
     {
 
         email = t.getText().toString();
-        pageDetails.entered_Email = email;
+        //pageDetails.entered_Email = email;
         if(!email.isEmpty()) {
             try {
                 email_url = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + email + "\"}";
-                databaseOperations.verify(this, email_url, pageDetails.entered_Email);
+                databaseOperations.verify(this, email_url, email);
             } catch (Exception e) {
                 e.printStackTrace();
             }

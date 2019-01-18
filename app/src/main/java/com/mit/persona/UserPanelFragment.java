@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -119,6 +120,17 @@ public class UserPanelFragment extends Fragment {
 
 
                 startActivity(new Intent(view.getContext(), UserPanelEdit.class));
+            }
+        });
+
+        CardView aboutdevelopercard = view.findViewById(R.id.aboutdevelopercard);
+
+        aboutdevelopercard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                startActivity(new Intent(view.getContext(), AboutDevelopers.class));
             }
         });
 

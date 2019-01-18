@@ -2,6 +2,8 @@ package com.mit.persona;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
+
 public class pageDetails {
     public static String reg_firstname;
     public static String reg_lastname;
@@ -20,9 +22,10 @@ public class pageDetails {
 
     public static String event_name;
     public static String event_type;
-    public static String group_list;
+    public static ArrayList<String> group_list;
     public static String paid_by;
     public static String payment_status;
+    public static boolean email_exists;
 
     public static String username;
     public static String firstname;
@@ -31,7 +34,6 @@ public class pageDetails {
     public static String college;
     public static String branch;
     public static Integer user_type;
-
 
     public static boolean alreadyExists;
     public static String otp;

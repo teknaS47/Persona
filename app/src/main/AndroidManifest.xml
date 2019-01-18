@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".AboutDevelopers"></activity>
         <activity
             android:name=".UserPanelEdit"
             android:label="@string/title_activity_user_panel_edit"
