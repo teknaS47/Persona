@@ -41,6 +41,8 @@ public class pageDetails {
 
     public static boolean insertEvents;
 
+    public static String registeredEventName;
+
     public static boolean login_successful;
     public static JSONArray registeredEvent;
     public static  boolean eventsFound;

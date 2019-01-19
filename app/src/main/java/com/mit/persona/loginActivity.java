@@ -1,5 +1,6 @@
 package com.mit.persona;
 
+import android.app.ProgressDialog;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +31,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     public  loginActivity loginactivity;
     private List<Table_Sessions> session;
     private static final boolean VERBOSE = true;
+    public ProgressDialog progress;
 
 
     private static Context mContext;
@@ -39,6 +41,8 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         setContentView(R.layout.activity_login);
         myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
         session = myAppDatabase.myDao().getsession();
+
+         progress = new ProgressDialog(loginActivity.this);
 
         if (session.size() == 1) {
             pageDetails.username = session.get(0).getUsername();
@@ -91,8 +95,11 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             public void onClick(View v) {
                 
                 pageDetails.user_info = null;
+                progress.setTitle("Loading");
+                progress.setMessage("Wait while loading...");
+                progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+                progress.show();
                 startActivity(new Intent(loginActivity.this, Persona.class ));
-                finish();
             }
         });
 
@@ -102,6 +109,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     @Override
     public void onResume() {
         super.onResume();
+        progress.dismiss();
         Log.e("onResume (Session Size)",String.valueOf(session.size()));
 
         if (session.size() == 1) {
