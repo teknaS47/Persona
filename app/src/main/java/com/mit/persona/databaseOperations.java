@@ -526,14 +526,13 @@ public class databaseOperations {
             postparams.put("event_name", pageDetails.event_name);
             postparams.put("event_type", pageDetails.event_type);
             //String group_list[]= {};
-            ArrayList<String> group_list = pageDetails.group_list;
+/*            ArrayList<String> group_list = pageDetails.group_list;
             group_list.add("abc");
             group_list.add("pqr");
             group_list.add("lmn");
-            JSONArray list = new JSONArray(group_list);
+            JSONArray list = new JSONArray(group_list);*/
 
             //  postparams.put("group_list", group_list);
-            postparams.put("group_list", list);
             postparams.put("paid_by", "null");
             postparams.put("payment_status", "Unpaid");
             postparams.put("username", pageDetails.username);
@@ -550,6 +549,10 @@ public class databaseOperations {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.e("REST Response: ", response.toString());
+                        Table_registeredEvents event = new Table_registeredEvents();
+                        event.setEvent_name(pageDetails.event_name);
+                        event.setEvent_type(pageDetails.event_type);
+                        Persona.myAppDatabase.myDao().addRegisteredEvent(event);
                     }
                 },
                 new Response.ErrorListener() {
@@ -788,4 +791,64 @@ public class databaseOperations {
 
 
     }
+
+    public static void registerEventDatabase(Context mContext, final String URL_verification) {
+
+        Log.e("Call Successful: ", "registerEventVerification");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_verification, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("RESPONSE CHECK: ", response.toString());
+                        try {
+                            JSONArray items = response.getJSONArray("_items");
+                            JSONObject jsonobject;
+
+                            for (int i = 1; i < items.length(); i++) {
+                                jsonobject = items.getJSONObject(i);
+                                Table_registeredEvents event = new Table_registeredEvents();
+                                event.setEvent_name(jsonobject.getString("event_name"));
+                                event.setEvent_type(jsonobject.getString("event_type"));
+                                myAppDatabase.myDao().addRegisteredEvent(event);
+                                Log.i(String.valueOf(i), ". REGISTERED EVENTS updated :)\n");
+                            }
+                        }catch (Exception e) {
+                                Log.e("Registered Events:", e.toString());
+                            }
+                        }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    //String email_url = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + string[i] + "\"}";
+
+
+
+
+
+
 }

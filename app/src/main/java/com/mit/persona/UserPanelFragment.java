@@ -56,8 +56,8 @@ public class UserPanelFragment extends Fragment {
             registeredEventsButton.setVisibility(View.GONE);
         }
         else {
-
-            registeredEventsButton.setVisibility(View.VISIBLE);
+            registeredEventsButton.setVisibility(View.GONE);
+//            registeredEventsButton.setVisibility(View.VISIBLE);
             registeredEventsButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     startActivity(new Intent(view.getContext(), registeredEvents.class ));
@@ -88,6 +88,7 @@ public class UserPanelFragment extends Fragment {
 
                 Toast.makeText(getContext(), "Log out Successful", Toast.LENGTH_SHORT).show();
                 myAppDatabase.myDao().clearSessionTable();
+                myAppDatabase.myDao().clearRegisteredEventsTable();
                 session_list = myAppDatabase.myDao().getsession();
                 pageDetails.firstname = null;
                 pageDetails.lastname = null;

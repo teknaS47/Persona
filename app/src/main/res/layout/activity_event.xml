@@ -24,11 +24,13 @@
                 android:id="@+id/event_reg_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:background="@drawable/shapecol"
+                android:backgroundTint="@color/colorPrimary"
+                android:onClick="registerevent"
                 android:text="Register"
-                android:background="@color/colorPrimary"
-                android:layout_marginLeft="10dp"
-                android:onClick="registerevent"/>
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/button4"
@@ -38,6 +40,7 @@
                 android:text="Add to wishlist"
                 android:background="@color/eventYellow"
                 android:layout_marginLeft="10dp"
+                android:visibility="gone"
                 android:layout_marginRight="10dp"/>
         </LinearLayout>
     </android.support.design.widget.BottomNavigationView>
@@ -377,10 +380,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="top|bottom"
+                                android:padding="10dp"
                                 android:text="Faculty Co-ordinator"
-                                android:textStyle="bold"
                                 android:textSize="17dp"
-                                android:padding="10dp"/>
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -388,101 +391,98 @@
                                 android:orientation="vertical">
 
 
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/faculty_1_image"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:padding="10dp"
+                                        app:srcCompat="@mipmap/ic_launcher" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:orientation="horizontal">
+                                        android:orientation="vertical">
 
-                                        <ImageView
-                                            android:id="@+id/faculty_1_image"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            app:srcCompat="@mipmap/ic_launcher"
-                                            android:padding="10dp"/>
-
-                                        <LinearLayout
+                                        <TextView
+                                            android:id="@+id/faculty_1_name"
                                             android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:orientation="vertical">
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="10dp"
+                                            android:paddingBottom="4dp"
+                                            android:text="Name of Faculty1" />
 
-                                            <TextView
-                                                android:id="@+id/faculty_1_name"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="Name of Faculty1"
-                                                android:paddingLeft="10dp"
-                                                android:paddingBottom="4dp"/>
+                                        <TextView
+                                            android:id="@+id/faculty_1_email"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="10dp"
+                                            android:paddingBottom="4dp"
+                                            android:text="Email id" />
 
-                                            <TextView
-                                                android:id="@+id/faculty_1_email"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="Email id"
-                                                android:paddingLeft="10dp"
-                                                android:paddingBottom="4dp"/>
-
-                                            <TextView
-                                                android:id="@+id/faculty_1_phone"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="Phone Number"
-                                                android:paddingLeft="10dp"
-                                                android:paddingBottom="4dp"/>
-                                        </LinearLayout>
-
+                                        <TextView
+                                            android:id="@+id/faculty_1_phone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="10dp"
+                                            android:paddingBottom="4dp"
+                                            android:text="Phone Number" />
                                     </LinearLayout>
 
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:id="@+id/faculty_2_image"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:contentDescription="TODO"
+                                        android:padding="10dp"
+                                        app:srcCompat="@mipmap/ic_launcher" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:orientation="horizontal">
+                                        android:orientation="vertical">
 
-                                        <ImageView
-                                            android:id="@+id/faculty_2_image"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            app:srcCompat="@mipmap/ic_launcher"
-                                            android:contentDescription="TODO"
-                                            android:padding="10dp"/>
-
-                                        <LinearLayout
+                                        <TextView
+                                            android:id="@+id/faculty_2_name"
                                             android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:orientation="vertical">
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="10dp"
+                                            android:paddingBottom="4dp"
+                                            android:text="Name of Faculty 2" />
 
-                                            <TextView
-                                                android:id="@+id/faculty_2_name"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="Name of Faculty 2"
-                                                android:paddingLeft="10dp"
-                                                android:paddingBottom="4dp"/>
+                                        <TextView
+                                            android:id="@+id/faculty_2_email"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="10dp"
+                                            android:paddingBottom="4dp"
+                                            android:text="Email id" />
 
-                                            <TextView
-                                                android:id="@+id/faculty_2_email"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="Email id"
-                                                android:paddingLeft="10dp"
-                                                android:paddingBottom="4dp"/>
-
-                                            <TextView
-                                                android:id="@+id/faculty_2_phone"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="Phone Number"
-                                                android:paddingLeft="10dp"
-                                                android:paddingBottom="4dp"/>
-                                        </LinearLayout>
-
+                                        <TextView
+                                            android:id="@+id/faculty_2_phone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="10dp"
+                                            android:paddingBottom="4dp"
+                                            android:text="Phone Number" />
                                     </LinearLayout>
 
+                                </LinearLayout>
 
 
                             </LinearLayout>
-
 
 
                         </LinearLayout>

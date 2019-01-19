@@ -85,19 +85,6 @@
                 android:textColor="@color/colorPrimary" />
 
             <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="E-mail ID"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/colorPrimary"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"/>
-
-            <EditText
                 android:id="@+id/phoneno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

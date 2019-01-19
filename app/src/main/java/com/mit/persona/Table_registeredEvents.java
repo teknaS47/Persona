@@ -10,6 +10,9 @@ public class Table_registeredEvents {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    @ColumnInfo(name= "event_id")
+    private String event_id;
+
     @ColumnInfo(name = "event_name")
     private String event_name;
 
@@ -30,6 +33,14 @@ public class Table_registeredEvents {
 
     @ColumnInfo(name = "event_group_5")
     private String event_group_5;
+
+    public String getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(String event_id) {
+        this.event_id = event_id;
+    }
 
     public int getId() {
         return id;

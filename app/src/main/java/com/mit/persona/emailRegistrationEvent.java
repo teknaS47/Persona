@@ -44,7 +44,7 @@ public class emailRegistrationEvent extends AsyncTask<String,Void,String> {
 
                     String fromEmail = "" + from;
 
-                    String addressTo = ""+pageDetails.reg_email;
+                    String addressTo = ""+pageDetails.username;
                     InternetAddress to = new InternetAddress(addressTo);
 
                     InternetAddress fromAddr = new InternetAddress(fromEmail);

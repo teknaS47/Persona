@@ -25,6 +25,7 @@ public class Persona extends AppCompatActivity {
     private static String DEFAULT_CHANNEL_ID = "default_channel";
     private static String DEFAULT_CHANNEL_NAME = "Default";
     private List<Table_Sessions> session;
+    private List<Table_registeredEvents> registeredEventsList;
 
     int count = 1;
     @Override
@@ -60,8 +61,17 @@ public class Persona extends AppCompatActivity {
 
         //databaseOperations.updateLocalDB(this);
         // DATABASE
+
+
         myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
         session = myAppDatabase.myDao().getsession();
+        registeredEventsList = myAppDatabase.myDao().getRegisteredEvents();
+
+        String email_url;
+        email_url = "http://139.59.82.57:5000/event_registrations?where={" + "\"username\"" + ":\"" + pageDetails.username + "\"}";
+        databaseOperations.registerEventDatabase(this, email_url);
+        Log.e("registeredEventsList", String.valueOf(registeredEventsList.size()));
+
         Log.e("Session: ", String.valueOf(session));
         try {
             Log.e("Session: ", String.valueOf(session.get(0).getId()));
