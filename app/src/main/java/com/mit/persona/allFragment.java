@@ -186,7 +186,7 @@ public class allFragment extends Fragment {
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 
         v_flipper.addView(imageView);
-        v_flipper.setFlipInterval(3400);
+        v_flipper.setFlipInterval(2000);
         v_flipper.setAutoStart(true);
 
         v_flipper.setInAnimation(getActivity(), android.R.anim.slide_in_left);

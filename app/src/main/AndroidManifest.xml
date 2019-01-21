@@ -54,7 +54,9 @@
         <activity
             android:name=".markPaid"
             android:label="@string/title_activity_mark_paid"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme">
+
+        </activity>
         <activity
             android:name=".registeredEvents"
             android:label="@string/title_activity_registered_events"
