@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="MANET And Institute of Design"
                 android:hapticFeedbackEnabled="true"
-                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
                 android:typeface="monospace"
                 android:textSize="20dp"
                 />
