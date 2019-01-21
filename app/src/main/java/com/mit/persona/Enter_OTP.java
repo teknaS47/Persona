@@ -30,7 +30,7 @@ public class Enter_OTP extends AppCompatActivity {
         Log.d("OTP generated",""+pageDetails.otp);
         if(currentOtp.equals(pageDetails.otp)){
             Toast toast = Toast.makeText(getApplicationContext(),
-                    "OTP Matched",
+                    "You've been successfully registered!!",
                     Toast.LENGTH_SHORT);
             toast.show();
             databaseOperations.register(this);

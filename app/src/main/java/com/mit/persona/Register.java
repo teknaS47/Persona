@@ -106,10 +106,9 @@ public class Register extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                String myFormat = "dd/mm/yy"; //In which you need put here
+                String myFormat = "dd-MM-yyyy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                 EditText dob = (EditText) findViewById(R.id.editText6);
-
                 dob.setText(sdf.format(myCalendar.getTime()));
 
             }

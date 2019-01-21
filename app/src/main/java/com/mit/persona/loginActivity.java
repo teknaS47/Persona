@@ -196,6 +196,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
                 }
 
             } else {
+                progress.dismiss();
                 Toast toast = Toast.makeText(mContext,
                         "Enter mail or password",
                         Toast.LENGTH_SHORT);
