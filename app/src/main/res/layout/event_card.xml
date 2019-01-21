@@ -13,18 +13,20 @@
         >
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round"
+            android:id="@+id/event_img"
+            android:layout_width="100dp"
+            android:layout_height="140dp"
+            android:scaleType = "centerCrop"
+            android:background="@drawable/posterbackground"
             android:paddingHorizontal="10dp"
-            />
+            android:src="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/event_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Event Name"
-            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
             android:ellipsize="end"
             android:maxLines="1"
             android:autoSizeTextType="uniform"

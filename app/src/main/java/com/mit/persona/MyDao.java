@@ -45,6 +45,15 @@ public interface MyDao {
     @Query("DELETE FROM table_session")
     public void clearSessionTable();
 
+    @Query("DELETE FROM table_registeredEvents")
+    public void clearRegisteredEventsTable();
+
+    @Query("select * from table_registeredEvents")
+    public List<Table_registeredEvents> getRegisteredEvents();
+
+    @Insert
+    public void addRegisteredEvent(Table_registeredEvents event);
+
     @Query("UPDATE table_version SET 'version' = :updated_version WHERE id=1")
     public void updateVersion(Double updated_version);
 

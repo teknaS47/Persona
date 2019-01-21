@@ -3,6 +3,8 @@
     package="com.mit.persona">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -52,7 +54,13 @@
         <activity
             android:name=".markPaid"
             android:label="@string/title_activity_mark_paid"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme">
+
+        </activity>
+        <activity
+            android:name=".registeredEvents"
+            android:label="@string/title_activity_registered_events"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

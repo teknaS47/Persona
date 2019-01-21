@@ -4,7 +4,7 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
 
-@Database(entities = {Events.class, Table_Messages.class, Table_Sessions.class, Table_DbVersionCheck.class}, version = 1)
+@Database(entities = {Events.class, Table_Messages.class, Table_Sessions.class, Table_DbVersionCheck.class, Table_registeredEvents.class}, version = 1)
 
 public abstract class MyAppDatabase extends RoomDatabase {
 

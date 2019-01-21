@@ -1,10 +1,13 @@
 package com.mit.persona;
 
+import android.app.ProgressDialog;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,6 +23,7 @@ import java.util.List;
 
 public class loginActivity extends AppCompatActivity /*implements OnClickListener*/{
     static loginActivity instance;
+    private static List<Table_registeredEvents> registeredEventsList;
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
@@ -30,6 +34,8 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     public  loginActivity loginactivity;
     private List<Table_Sessions> session;
     private static final boolean VERBOSE = true;
+    public static ProgressDialog progress;
+
 
 
     private static Context mContext;
@@ -39,6 +45,8 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         setContentView(R.layout.activity_login);
         myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
         session = myAppDatabase.myDao().getsession();
+
+         progress = new ProgressDialog(loginActivity.this);
 
         if (session.size() == 1) {
             pageDetails.username = session.get(0).getUsername();
@@ -91,16 +99,21 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             public void onClick(View v) {
                 
                 pageDetails.user_info = null;
+                progress.setTitle("Generating Events");
+                progress.setMessage("Wait for it...");
+                progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+                progress.show();
                 startActivity(new Intent(loginActivity.this, Persona.class ));
             }
         });
 
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
+        databaseOperations.updateLocalDB(this);
+        progress.dismiss();
         Log.e("onResume (Session Size)",String.valueOf(session.size()));
 
         if (session.size() == 1) {
@@ -123,9 +136,25 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     }
 
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+
     public void gotoregister(View view) {
-        Intent i = new Intent(this, Register.class);
-        startActivity(i);
+
+        if (isNetworkAvailable()) {
+            Intent i = new Intent(this, Register.class);
+            startActivity(i);
+        }
+        else {
+            Toast.makeText(this, "Please connect to the internet! :) ", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
     /*public void gotopersona(View view) {
         Intent i = new Intent(this, Persona.class);
@@ -133,35 +162,46 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     }
     */
     public void loginprocess(View view) {
-        instance = this;
-        String entered_Email;
-        String entered_Password;
-        EditText email_EditText = (EditText) findViewById(R.id.email_text);
-        entered_Email = email_EditText.getText().toString();
-        pageDetails.entered_Email=entered_Email;
-        EditText password_EditText = (EditText) findViewById(R.id.password_text);
-        entered_Password = password_EditText.getText().toString();
-        pageDetails.entered_Password = entered_Password;
-        if(!entered_Email.isEmpty() && !entered_Password.isEmpty()){
-            try {  //find user
-                Log.d("finding user for login", "starting finding user");
-                entered_Email = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + entered_Email + "\"}";
-                Log.d("created email query", "" + entered_Email);
-                //Log.d("searched data", "" + pageDetails.user_info);
-                databaseOperations.login(this, entered_Email, pageDetails.entered_Password);
 
-            }catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-
+        if(!isNetworkAvailable()) {
+            Toast.makeText(this, "Please connect to the internet! :) ", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast toast = Toast.makeText(mContext,
-                    "Enter mail or password",
-                    Toast.LENGTH_SHORT);
-            toast.show();
-            //Toast.makeText(getApplicationContext(),"Enter Password or email ID and try again",Toast.LENGTH_LONG).show();
+
+            progress.setTitle("Logging in...");
+            progress.setMessage("Wait while logging in...");
+            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+            progress.show();
+
+
+            instance = this;
+            String entered_Email;
+            String entered_Password;
+            EditText email_EditText = (EditText) findViewById(R.id.email_text);
+            entered_Email = email_EditText.getText().toString();
+            pageDetails.entered_Email = entered_Email;
+            EditText password_EditText = (EditText) findViewById(R.id.password_text);
+            entered_Password = password_EditText.getText().toString();
+            pageDetails.entered_Password = entered_Password;
+            if (!entered_Email.isEmpty() && !entered_Password.isEmpty()) {
+                try {  //find user
+                    Log.d("finding user for login", "starting finding user");
+                    entered_Email = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + entered_Email + "\"}";
+                    Log.d("created email query", "" + entered_Email);
+                    //Log.d("searched data", "" + pageDetails.user_info);
+                    databaseOperations.login(this, entered_Email, pageDetails.entered_Password);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                Toast toast = Toast.makeText(mContext,
+                        "Enter mail or password",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+                //Toast.makeText(getApplicationContext(),"Enter Password or email ID and try again",Toast.LENGTH_LONG).show();
+            }
         }
 
     }
@@ -169,11 +209,13 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     public static void FinishLogin(Integer user_type, String username, String firstname, String lastname, String mobile, String college, String branch)    {
 
         myAppDatabase = Room.databaseBuilder(loginActivity.mContext, MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
+        registeredEventsList = myAppDatabase.myDao().getRegisteredEvents();
 
         loginActivity l = new loginActivity();
         Log.e("LOGIN_SUCCESSFUL:", String.valueOf(pageDetails.login_successful));
         if (pageDetails.login_successful == true) {
             myAppDatabase.myDao().clearSessionTable();
+            myAppDatabase.myDao().clearRegisteredEventsTable();
             Table_Sessions session = new Table_Sessions();
             session.setUsername(username);
             session.setUser_type(user_type);
@@ -194,10 +236,13 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 
             Log.d("password status","password matched going to main page");
             Intent i = new Intent(mContext,Persona.class);
+
             mContext.startActivity(i);
+
 
         }
         else {
+            progress.dismiss();
             Toast toast = Toast.makeText(mContext,
                     "Email or Password is Wrong",
                     Toast.LENGTH_SHORT);

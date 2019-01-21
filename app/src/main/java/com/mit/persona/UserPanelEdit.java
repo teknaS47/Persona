@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class UserPanelEdit extends AppCompatActivity {
 
@@ -23,9 +24,6 @@ public class UserPanelEdit extends AppCompatActivity {
 
         EditText lastname = findViewById(R.id.lastname);
         lastname.setText(pageDetails.lastname);
-
-        EditText email = findViewById(R.id.email);
-        email.setText(pageDetails.username);
 
         EditText reg_phno = findViewById(R.id.phoneno);
         reg_phno.setText(pageDetails.mobile);
@@ -70,7 +68,7 @@ public class UserPanelEdit extends AppCompatActivity {
 
         databaseOperations.updateUserInfo(this, etag, URL_users,fname1,lname1,phone1,collegename1,branch1);
 
-
+        Toast.makeText(UserPanelEdit.this, "Changes will be reflected the next time you log in", Toast.LENGTH_LONG).show();
 
     }
 
