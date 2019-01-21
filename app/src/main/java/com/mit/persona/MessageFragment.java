@@ -41,7 +41,7 @@ public class MessageFragment extends Fragment {
         listView = (ListView) view.findViewById(R.id.message_list);
         ListViewCustomAdapter listViewCustomAdapter= new ListViewCustomAdapter(getActivity(), message);
         listView.setAdapter(listViewCustomAdapter);
-        // Inflate the layout for this fragment
+
         return view;
     }
 
