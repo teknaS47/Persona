@@ -54,6 +54,13 @@ public class Persona extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        String email_url = "http://139.59.82.57:5000/event_registrations?where={" + "\"username\"" + ":\"" + pageDetails.username + "\"}";
+        databaseOperations.registerEventDatabase(this, email_url);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         System.out.print("######################  On Create ###################");

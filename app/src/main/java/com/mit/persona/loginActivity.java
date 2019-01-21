@@ -34,7 +34,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     public  loginActivity loginactivity;
     private List<Table_Sessions> session;
     private static final boolean VERBOSE = true;
-    public ProgressDialog progress;
+    public static ProgressDialog progress;
 
 
 
@@ -99,8 +99,8 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             public void onClick(View v) {
                 
                 pageDetails.user_info = null;
-                progress.setTitle("Loading");
-                progress.setMessage("Wait while loading...");
+                progress.setTitle("Generating Events");
+                progress.setMessage("Wait for it...");
                 progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
                 progress.show();
                 startActivity(new Intent(loginActivity.this, Persona.class ));
@@ -109,10 +109,10 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
+        databaseOperations.updateLocalDB(this);
         progress.dismiss();
         Log.e("onResume (Session Size)",String.valueOf(session.size()));
 
@@ -242,6 +242,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 
         }
         else {
+            progress.dismiss();
             Toast toast = Toast.makeText(mContext,
                     "Email or Password is Wrong",
                     Toast.LENGTH_SHORT);
