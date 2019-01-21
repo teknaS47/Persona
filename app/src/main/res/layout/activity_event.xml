@@ -109,6 +109,7 @@
                                     android:textAlignment="textStart"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
+                                    android:textColor="@color/colorBlack"
                                     android:paddingLeft="10dp"/>
 
                                 <Space
@@ -174,6 +175,7 @@
                                         android:text="Venue"
                                         android:textAlignment="textStart"
                                         android:textSize="16dp"
+                                        android:textColor="@color/colorBlack"
                                         android:textStyle="bold"
                                         android:paddingLeft="10dp"/>
 
@@ -232,6 +234,7 @@
                                     android:text="Description"
                                     android:textStyle="bold"
                                     android:padding="10dp"
+                                    android:textColor="@color/colorBlack"
                                     android:textSize="17dp"
                                     android:background="#FFFFFF"/>
                                 <TextView
@@ -267,6 +270,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Prizes"
+                                android:textColor="@color/colorBlack"
                                 android:textStyle="bold"
                                 android:padding="10dp"
                                 android:textSize="17dp"/>
@@ -383,6 +387,7 @@
                                 android:padding="10dp"
                                 android:text="Faculty Co-ordinator"
                                 android:textSize="17dp"
+                                android:textColor="@color/colorBlack"
                                 android:textStyle="bold" />
 
                             <LinearLayout
@@ -505,6 +510,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Student Co-ordinator"
                                 android:textStyle="bold"
+                                android:textColor="@color/colorBlack"
                                 android:textSize="17dp"
                                 android:padding="10dp"/>
 
@@ -637,6 +643,7 @@
                             android:textStyle="bold"
                             android:textSize="17dp"
                             android:text="Rules And Regulation"
+                            android:textColor="@color/colorBlack"
                             android:padding="10dp"/>
                         <TextView
                             android:id="@+id/rules"

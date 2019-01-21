@@ -65,7 +65,7 @@ public class allFragment extends Fragment {
     private allFragment.OnFragmentInteractionListener mListener;
 
 
-    int images[] = {R.drawable.persona_2019, R.drawable.slider1, R.drawable.slider2, R.drawable.slider4};
+    int images[] = { R.drawable.slider1, R.drawable.slider2};
 
 
 
