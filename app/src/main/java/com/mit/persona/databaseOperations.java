@@ -402,7 +402,7 @@ public class databaseOperations {
 
     }
 
-    public static void fetchEventData(markPaid markPaid, String email_url) {
+    public static void fetchEventData(final markPaid markPaid, String email_url) {
 
         Log.e("Call Successful", "Verify coordinator mail");
 
@@ -426,8 +426,11 @@ public class databaseOperations {
                                 pageDetails.eventsFound = false;
                             } else {
                                 pageDetails.eventsFound = true;
+                                pageDetails.registeredEvent = items;
+                                Log.e("eventsFound", String.valueOf(pageDetails.eventsFound)+" continue search");
+                                com.mit.persona.markPaid.continueSearch();
                             }
-                            pageDetails.registeredEvent = items;
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
