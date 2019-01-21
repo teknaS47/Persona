@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:paddingLeft="20dp"
-                android:text="About Developers"
+                android:text="About Creators"
                 android:textSize="16dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
