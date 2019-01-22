@@ -67,15 +67,12 @@ public class SearchFragment extends Fragment {
         items = myArray;
 
         listItems = new ArrayList<>(Arrays.asList(myArray));
-
         adapter = new ArrayAdapter<>(view.getContext(), R.layout.list_items, R.id.txtitem, myArray);
-
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
 
                 int temppos = 0;
                 Intent i;
@@ -370,7 +367,6 @@ public class SearchFragment extends Fragment {
             }
 
         });
-
 
         return view;
     }

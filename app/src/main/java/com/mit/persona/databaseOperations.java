@@ -1,6 +1,8 @@
 package com.mit.persona;
 
 import android.arch.persistence.room.Room;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Base64;
 import android.util.Log;
 
@@ -226,6 +228,7 @@ public class databaseOperations {
                         String lastname = null;
                         String branch = null;
                         String username = null;
+                        String verified_by = "null";
                         String mobile = null;
                         try {
                             items = response.getJSONArray("_items");
@@ -238,6 +241,9 @@ public class databaseOperations {
                             college = jsonobject.getString("college");
                             mobile = jsonobject.getString("mobile");
                             user_type = jsonobject.getInt("user_type");
+                            if(jsonobject.has("verified_by")){
+                                verified_by = jsonobject.getString("verified_by");
+                            }
                             Log.e("USER TYPE: ", String.valueOf(user_type));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -252,7 +258,7 @@ public class databaseOperations {
 
                         }
 
-                        com.mit.persona.loginActivity.FinishLogin(user_type, username, firstname, lastname, mobile, college, branch);
+                        com.mit.persona.loginActivity.FinishLogin(user_type, username, firstname, lastname, mobile, college, branch, verified_by);
                     }
                 },
                 new Response.ErrorListener() {
@@ -401,7 +407,7 @@ public class databaseOperations {
 
     }
 
-    public static void fetchEventData(markPaid markPaid, String email_url) {
+    public static void fetchEventData(final markPaid markPaid, String email_url) {
 
         Log.e("Call Successful", "Verify coordinator mail");
 
@@ -413,6 +419,7 @@ public class databaseOperations {
                     @Override
                     public void onResponse(JSONObject response) {
                         JSONArray items = null;
+                        JSONObject jsonobject;
                         String email = null;
                         Integer user_type = null;
                         Boolean emailExists = true;
@@ -425,8 +432,16 @@ public class databaseOperations {
                                 pageDetails.eventsFound = false;
                             } else {
                                 pageDetails.eventsFound = true;
+                                pageDetails.registeredEventsList.clear();
+                                //pageDetails.registeredEvent = items;
+                                for (int i= 0; i<items.length(); i++)   {
+                                    jsonobject = items.getJSONObject(i);
+                                    Log.e("onResponse: ", jsonobject.getString("event_name"));
+                                    pageDetails.registeredEventsList.add(jsonobject.getString("event_name"));
+                                }
+                                Log.e("Events found?  ", String.valueOf(pageDetails.eventsFound));
+                                com.mit.persona.markPaid.displayEvents(markPaid, pageDetails.registeredEventsList, pageDetails.eventsFound);
                             }
-                            pageDetails.registeredEvent = items;
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -474,6 +489,7 @@ public class databaseOperations {
         try {
             postparams = new JSONObject();
             postparams.put("user_type", 2);
+            postparams.put("verified_by", pageDetails.username);
         } catch (JSONException e) {
             Log.e(e.toString(), "");
         }
@@ -525,14 +541,13 @@ public class databaseOperations {
             postparams.put("event_name", pageDetails.event_name);
             postparams.put("event_type", pageDetails.event_type);
             //String group_list[]= {};
-            ArrayList<String> group_list = pageDetails.group_list;
-//            group_list.add("abc");
-//            group_list.add("pqr");
-//            group_list.add("lmn");
-            JSONArray list = new JSONArray(group_list);
+/*            ArrayList<String> group_list = pageDetails.group_list;
+            group_list.add("abc");
+            group_list.add("pqr");
+            group_list.add("lmn");
+            JSONArray list = new JSONArray(group_list);*/
 
             //  postparams.put("group_list", group_list);
-            postparams.put("group_list", list);
             postparams.put("paid_by", "null");
             postparams.put("payment_status", "Unpaid");
             postparams.put("username", pageDetails.username);
@@ -549,6 +564,10 @@ public class databaseOperations {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.e("REST Response: ", response.toString());
+                        Table_registeredEvents event = new Table_registeredEvents();
+                        event.setEvent_name(pageDetails.event_name);
+                        event.setEvent_type(pageDetails.event_type);
+                        Persona.myAppDatabase.myDao().addRegisteredEvent(event);
                     }
                 },
                 new Response.ErrorListener() {
@@ -786,4 +805,170 @@ public class databaseOperations {
 
         return false;
     }
+
+    public static void registerEventDatabase(Context mContext, final String URL_verification) {
+
+        Log.e("Call Successful: ", "registerEventVerification");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_verification, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("RESPONSE CHECK: ", response.toString());
+                        try {
+                            JSONArray items = response.getJSONArray("_items");
+                            JSONObject jsonobject;
+
+                            for (int i = 1; i < items.length(); i++) {
+                                jsonobject = items.getJSONObject(i);
+                                Table_registeredEvents event = new Table_registeredEvents();
+                                event.setEvent_name(jsonobject.getString("event_name"));
+                                event.setEvent_type(jsonobject.getString("event_type"));
+                                myAppDatabase.myDao().addRegisteredEvent(event);
+                                Log.i(String.valueOf(i), ". REGISTERED EVENTS updated :)\n");
+                            }
+                        }catch (Exception e) {
+                                Log.e("Registered Events:", e.toString());
+                            }
+                        }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    public static void markAsPaid(final Context context, String url_payment) {
+
+        Log.e("Call Successful", "Mark as Paid");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        final String[] etag = new String[1];
+        final String[] objectId = new String[1];
+
+        Log.e("markAsPaid: ", url_payment);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url_payment, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        JSONArray items = null;
+                        try {
+                            items = response.getJSONArray("_items");
+                            Log.e("onResponse: ",response.toString() );
+                            if (items.length() == 0) {
+
+                            } else {
+                                JSONObject jsonobject;
+                                jsonobject = items.getJSONObject(0);
+                                etag[0] = jsonobject.getString("_etag");
+                                objectId[0] = jsonobject.getString("_id");
+                                //Log.e( "ETAG: ", etag[0]);
+                                //Log.e( "objectid: ", objectId[0]);
+                                markAsPaid2(context, etag[0], objectId[0]);
+                                    }
+                                } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    public static void markAsPaid2(Context context, final String etag, String objectID) {
+
+        RequestQueue requestQueue1 = Volley.newRequestQueue(context);
+
+        JSONObject postparams = null;
+        try {
+            postparams = new JSONObject();
+            postparams.put("paid_by", pageDetails.username);
+            postparams.put("payment_status", "paid");
+            postparams.put("transaction_id", pageDetails.transactionID);
+            postparams.put("payment_amount",pageDetails.eventAmountAccepted);
+        } catch (JSONException e) {
+            Log.e(e.toString(), "");
+        }
+
+        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.PATCH, String.valueOf(URL_registrations + "/" + objectID), postparams,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST Response: ", response.toString());
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                params.put("If-Match", etag);
+                return params;
+            }
+        };
+        jsonObjectRequest1.setShouldCache(false);
+
+        requestQueue1.add(jsonObjectRequest1);
+
+
+    }
+
+
+    //String email_url = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + string[i] + "\"}";
+
+
+
+
+
+
 }

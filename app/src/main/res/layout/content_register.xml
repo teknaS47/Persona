@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Register">
 
 
@@ -22,10 +21,6 @@
         android:paddingTop="20dp"
         android:paddingBottom="15dp"
         android:id="@+id/user_info_header">
-
-
-
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -150,7 +145,7 @@
                 android:editable="false"
                 android:inputType="none"
                 android:focusable="false"
-                android:onClick="showDatePickerDialog"
+                android:clickable="true"
                 android:textColor="@color/colorPrimary" />
 
             <EditText

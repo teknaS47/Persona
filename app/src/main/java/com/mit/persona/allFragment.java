@@ -58,8 +58,6 @@ public class allFragment extends Fragment {
     private List<Events> cse = Persona.myAppDatabase.myDao().getEvents("Computer & IT Engineering");
     private List<Events> foodTech = Persona.myAppDatabase.myDao().getEvents("Food Technology");
 
-
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -67,7 +65,7 @@ public class allFragment extends Fragment {
     private allFragment.OnFragmentInteractionListener mListener;
 
 
-    int images[] = {R.drawable.slider0, R.drawable.slider1, R.drawable.slider2, R.drawable.slider3};
+    int images[] = { R.drawable.slider1, R.drawable.slider2};
 
 
 

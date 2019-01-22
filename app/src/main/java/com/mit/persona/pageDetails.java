@@ -3,6 +3,7 @@ package com.mit.persona;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class pageDetails {
     public static String reg_firstname;
@@ -33,6 +34,7 @@ public class pageDetails {
     public static String mobile;
     public static String college;
     public static String branch;
+    public static String verifiedBy;
     public static Integer user_type;
 
     public static boolean alreadyExists;
@@ -41,7 +43,21 @@ public class pageDetails {
 
     public static boolean insertEvents;
 
+    public static String registeredEventName;
+
     public static boolean login_successful;
     public static JSONArray registeredEvent;
     public static  boolean eventsFound;
+
+    public static ArrayList<String> registeredEventsList = new ArrayList<String>();
+
+
+    public static boolean eventAlreadyRegistered = true;
+
+
+    public static String eventPaymentReceieved;
+    public static String transactionID;
+    public static String eventAmountAccepted;
+
+    public static String volunteer_userEmail;
 }

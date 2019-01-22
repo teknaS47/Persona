@@ -23,7 +23,9 @@ import java.nio.charset.StandardCharsets;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -93,7 +95,41 @@ public class Register extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mContext = this;
+
+        final Calendar myCalendar = Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                String myFormat = "dd-MM-yyyy"; //In which you need put here
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                EditText dob = (EditText) findViewById(R.id.editText6);
+                dob.setText(sdf.format(myCalendar.getTime()));
+
+            }
+
+        };
+        final EditText dob = (EditText) findViewById(R.id.editText6);
+
+        dob.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(Register.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
     }
+
+
 
     public void registerevent(View view) {
 
@@ -192,23 +228,22 @@ public class Register extends AppCompatActivity {
         pageDetails.reg_gender = "female";
     }
 
+    /*
     public void showDatePickerDialog(View view) {
-        DialogFragment newFragment = new DatePickerFragment(this);
+        DialogFragment newFragment = new DatePickerFragment(Register.this);
         newFragment.show(getSupportFragmentManager(), "datePicker");
-
-    }
+    }*/
 }
-@SuppressLint("ValidFragment")
+
+/*@SuppressLint("ValidFragment")
 class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
     Context context;
+
     public DatePickerFragment(Context context) {
         this.context = context;
-
     }
-
-
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -219,7 +254,7 @@ class DatePickerFragment extends DialogFragment
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        return new DatePickerDialog(context, this, year, month, day);
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -229,8 +264,6 @@ class DatePickerFragment extends DialogFragment
         pageDetails.reg_dob = date;
         TextView txtView = (TextView) (getActivity().findViewById(R.id.editText6));
         txtView.setText(date);
-
-
     }
 
-}
+}*/

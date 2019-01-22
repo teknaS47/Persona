@@ -21,13 +21,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class UserPanelFragment extends Fragment {
 
     private TextView t;
     public static MyAppDatabase myAppDatabase;
     private List<Table_Sessions> session_list;
-
-
 
     public UserPanelFragment() {
         // Required empty public constructor
@@ -49,38 +48,6 @@ public class UserPanelFragment extends Fragment {
 
         myAppDatabase = Room.databaseBuilder(view.getContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
 
-        if ( !pageDetails.login_successful )  {
-
-            signOut.setVisibility(view.GONE);
-            header_panel.setVisibility(view.GONE);
-            registeredEventsButton.setVisibility(View.GONE);
-        }
-        else {
-
-            registeredEventsButton.setVisibility(View.VISIBLE);
-            registeredEventsButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    startActivity(new Intent(view.getContext(), registeredEvents.class ));
-                }
-            });
-
-            Log.e("USER TYPE: ", String.valueOf(pageDetails.user_type) );
-            if (pageDetails.user_type > 1 ) {
-                add_volunteers.setVisibility(view.GONE);
-            }
-            else if (pageDetails.user_type == 1 || pageDetails.user_type == 0) {
-                add_volunteers.setVisibility(view.VISIBLE);
-                add_volunteers.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        pageDetails.user_info = null;
-                        startActivity(new Intent(view.getContext(), teacher_coordinator.class ));
-                    }
-                });
-            }
-            user_name.setText(String.valueOf(pageDetails.firstname + " " + pageDetails.lastname));
-            user_email.setText(String.valueOf(pageDetails.username));
-            user_mobile.setText(String.valueOf(pageDetails.mobile));
-        }
 
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +55,7 @@ public class UserPanelFragment extends Fragment {
 
                 Toast.makeText(getContext(), "Log out Successful", Toast.LENGTH_SHORT).show();
                 myAppDatabase.myDao().clearSessionTable();
+                myAppDatabase.myDao().clearRegisteredEventsTable();
                 session_list = myAppDatabase.myDao().getsession();
                 pageDetails.firstname = null;
                 pageDetails.lastname = null;
@@ -133,6 +101,58 @@ public class UserPanelFragment extends Fragment {
                 startActivity(new Intent(view.getContext(), AboutDevelopers.class));
             }
         });
+
+        TextView paymentVerification = view.findViewById(R.id.markPaid);
+
+        paymentVerification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                startActivity(new Intent(view.getContext(), markPaid.class));
+            }
+        });
+
+        if ( !pageDetails.login_successful )  {
+
+            signOut.setVisibility(view.GONE);
+            header_panel.setVisibility(view.GONE);
+            registeredEventsButton.setVisibility(View.GONE);
+            paymentVerification.setVisibility(View.GONE);
+        }
+        else {
+            registeredEventsButton.setVisibility(View.GONE);
+            paymentVerification.setVisibility(View.GONE);
+//            registeredEventsButton.setVisibility(View.VISIBLE);
+            registeredEventsButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    startActivity(new Intent(view.getContext(), registeredEvents.class ));
+                }
+            });
+
+            Log.e("USER TYPE: ", String.valueOf(pageDetails.user_type) );
+            if (pageDetails.user_type > 1 ) {
+                add_volunteers.setVisibility(view.GONE);
+            }
+            else if (pageDetails.user_type == 1 || pageDetails.user_type == 0) {
+                add_volunteers.setVisibility(view.VISIBLE);
+                add_volunteers.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        pageDetails.user_info = null;
+                        startActivity(new Intent(view.getContext(), teacher_coordinator.class ));
+                    }
+                });
+            }
+
+            if ( pageDetails.user_type <= 2) {
+                paymentVerification.setVisibility(View.VISIBLE);
+            }
+            user_name.setText(String.valueOf(pageDetails.firstname + " " + pageDetails.lastname));
+            user_email.setText(String.valueOf(pageDetails.username));
+            user_mobile.setText(String.valueOf(pageDetails.mobile));
+        }
+
+
 
         return view;
     }

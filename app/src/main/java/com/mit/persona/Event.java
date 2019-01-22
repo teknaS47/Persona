@@ -1,14 +1,16 @@
 package com.mit.persona;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +23,21 @@ import android.widget.Toast;
 import android.net.Uri;
 
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Event extends AppCompatActivity {
@@ -32,16 +47,34 @@ public class Event extends AppCompatActivity {
     private List<Table_Sessions> session;
     private Intent emailIntent;
     private List<EditText> group_email = new ArrayList<EditText>();
-    static Context mContext;
+    Context mContext;
+    private List<Table_registeredEvents> registeredEvents;;
     static boolean continue_group;
 
 //    private String name = getIntent().getStringExtra("e_name"), desc=getIntent().getStringExtra("e_desc");
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registeredEvents = myAppDatabase.myDao().getRegisteredEvents();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        registeredEvents = myAppDatabase.myDao().getRegisteredEvents();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         mContext = this;
+        myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
+        session = myAppDatabase.myDao().getsession();
+        registeredEvents = myAppDatabase.myDao().getRegisteredEvents();
+
 
         final TextView event_name = findViewById(R.id.event_name);
         final TextView event_desc = findViewById(R.id.event_desc);
@@ -313,46 +346,85 @@ public class Event extends AppCompatActivity {
 
     }
 
-    public void registerevent(View view) {
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
-        myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
-        session = myAppDatabase.myDao().getsession();
+    public void registerevent(final View view) {
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        if (isNetworkAvailable()) {
+
+            Log.e("registerevent: ", String.valueOf(pageDetails.eventAlreadyRegistered));
 
 
-        if (session.size() == 1) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-            if (getIntent().getStringExtra("e_type").equals("individual")) {
 
-                Log.e("Event register", "session found : ");
-                alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
-                alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name"));
-                alertDialogBuilder.setPositiveButton("yes",
-                        new DialogInterface.OnClickListener() {
+            if (session.size() == 1) {
+
+                if (getIntent().getStringExtra("e_type").equals("individual")) {
+
+                    if (registeredEvents.isEmpty()) {
+                        pageDetails.eventAlreadyRegistered = false;
+
+                    }
+                    else {
+                        for(int i=0; i<registeredEvents.size(); i++) {
+                            Log.e("registerevent: ", String.valueOf(registeredEvents.size()));
+                            if ( registeredEvents.get(i).getEvent_name().equals(getIntent().getStringExtra("e_name"))) {
+                                pageDetails.eventAlreadyRegistered = true;
+                                break;
+                            }
+                            else {
+                                pageDetails.eventAlreadyRegistered = false;
+                            }
+                        }
+                    }
+
+                    if(pageDetails.eventAlreadyRegistered) {
+                        Toast.makeText(Event.this, "You've already registered for this event", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+
+
+                        Log.e("Event register", "session found : ");
+                        alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
+                        alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name"));
+                        alertDialogBuilder.setPositiveButton("yes",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        pageDetails.event_name = getIntent().getStringExtra("e_name");
+                                        pageDetails.event_type = getIntent().getStringExtra("e_type");
+
+
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+
+                                        databaseOperations.event_register(Event.this);
+                                        pageDetails.registeredEventName = getIntent().getStringExtra("e_name");
+                                        emailRegistrationEvent backroundWorker = new emailRegistrationEvent(mContext);
+                                        backroundWorker.execute();
+                                        Toast.makeText(Event.this, "" + pageDetails.firstname + " registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
+                                        Button registerButton = view.findViewById(R.id.event_reg_btn);
+                                        registerButton.setVisibility(View.GONE);
+
+                                    }
+                                });
+                        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                pageDetails.event_name = getIntent().getStringExtra("e_name");
-                                pageDetails.event_type = getIntent().getStringExtra("e_type");
-
-
-//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
-//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
-//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
-
-                                databaseOperations.event_register(Event.this);
-                                Toast.makeText(Event.this, "" + pageDetails.username + "Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
                             }
                         });
-                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
                     }
-                });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-            } else if (getIntent().getStringExtra("e_type").equals("Team")) {
+                }else if (getIntent().getStringExtra("e_type").equals("Team")) {
 
                 alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
                 alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name") + ". Please enter email ids for all the team members. Make sure they have an account on the app.\n\nParticipant 1: " + pageDetails.username);
@@ -409,7 +481,7 @@ public class Event extends AppCompatActivity {
                                         databaseOperations.verify_group(Event.this, email_url);
 
                                     }
-                                    
+
                                     if (continue_group){
                                         for (int i = 0; i < count; i++) {
                                             pageDetails.group_list.add(string[i]);
@@ -458,6 +530,10 @@ public class Event extends AppCompatActivity {
             Log.d("Not registered with app", "No session found: ");
             Toast.makeText(Event.this, "Please login to register for event " + pageDetails.username, Toast.LENGTH_SHORT).show();
 
+        }
+
+        } else {
+            Toast.makeText(Event.this, "Please connect to the internet!", Toast.LENGTH_SHORT).show();
         }
 
     }

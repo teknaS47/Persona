@@ -7,7 +7,6 @@
     tools:context=".loginActivity"
     android:background="@color/white">
 
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -22,11 +21,11 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="50dp"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/login" />
+            app:srcCompat="@drawable/persona_logo_19" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout2"
@@ -179,5 +178,6 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>
