@@ -43,11 +43,11 @@ import java.util.Map;
 public class Event extends AppCompatActivity {
 
     public static MyAppDatabase myAppDatabase;
+    private static Context mContext;
     public loginActivity loginactivity;
     private List<Table_Sessions> session;
     private Intent emailIntent;
     private List<EditText> group_email = new ArrayList<EditText>();
-    Context mContext;
     private List<Table_registeredEvents> registeredEvents;;
     static boolean continue_group;
 
