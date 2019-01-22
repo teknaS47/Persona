@@ -1,4 +1,5 @@
 package com.mit.persona;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.arch.persistence.room.Room;
@@ -27,11 +28,12 @@ import java.util.List;
 public class Event extends AppCompatActivity {
 
     public static MyAppDatabase myAppDatabase;
-    public  loginActivity loginactivity;
+    public loginActivity loginactivity;
     private List<Table_Sessions> session;
     private Intent emailIntent;
     private List<EditText> group_email = new ArrayList<EditText>();
-
+    static Context mContext;
+    static boolean continue_group;
 
 //    private String name = getIntent().getStringExtra("e_name"), desc=getIntent().getStringExtra("e_desc");
 
@@ -39,6 +41,7 @@ public class Event extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        mContext = this;
 
         final TextView event_name = findViewById(R.id.event_name);
         final TextView event_desc = findViewById(R.id.event_desc);
@@ -79,7 +82,7 @@ public class Event extends AppCompatActivity {
         final Intent callIntent = new Intent(Intent.ACTION_DIAL);
 
 
-        final String shareBody = ("\n\nFor More information download our app: https://play.google.com/store/apps/details?id=com.mit.persona" + "\nOr log into our website: http://www.mituniversity.edu.in/mitpersonafest/ ") ;
+        final String shareBody = ("\n\nFor More information download our app: https://play.google.com/store/apps/details?id=com.mit.persona" + "\nOr log into our website: http://www.mituniversity.edu.in/mitpersonafest/ ");
 
         final Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
@@ -93,11 +96,10 @@ public class Event extends AppCompatActivity {
         });
 
 
-
         faculty_1_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callIntent.setData(Uri.parse(String.valueOf("tel:"+faculty_1_phone.getText())));
+                callIntent.setData(Uri.parse(String.valueOf("tel:" + faculty_1_phone.getText())));
                 startActivity(callIntent);
             }
         });
@@ -105,7 +107,7 @@ public class Event extends AppCompatActivity {
         faculty_2_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callIntent.setData(Uri.parse(String.valueOf("tel:"+faculty_2_phone.getText())));
+                callIntent.setData(Uri.parse(String.valueOf("tel:" + faculty_2_phone.getText())));
                 startActivity(callIntent);
             }
         });
@@ -113,7 +115,7 @@ public class Event extends AppCompatActivity {
         student_1_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callIntent.setData(Uri.parse(String.valueOf("tel:"+student_1_phone.getText())));
+                callIntent.setData(Uri.parse(String.valueOf("tel:" + student_1_phone.getText())));
                 startActivity(callIntent);
             }
         });
@@ -121,11 +123,10 @@ public class Event extends AppCompatActivity {
         student_2_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callIntent.setData(Uri.parse(String.valueOf("tel:"+student_2_phone.getText())));
+                callIntent.setData(Uri.parse(String.valueOf("tel:" + student_2_phone.getText())));
                 startActivity(callIntent);
             }
         });
-
 
 
         faculty_1_email.setOnClickListener(new View.OnClickListener() {
@@ -157,20 +158,15 @@ public class Event extends AppCompatActivity {
         });
 
 
-
-
         //Button reg_btn = findViewById(R.id.event_reg_btn);
-
 
 
         //rules
 
-        if (getIntent().getStringExtra("e_rules").equals("null"))
-        {
+        if (getIntent().getStringExtra("e_rules").equals("null")) {
             rules.setVisibility(View.GONE);
             rule_title.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             rule_title.setVisibility(View.VISIBLE);
             rules.setText(getIntent().getStringExtra("e_rules"));
         }
@@ -178,183 +174,135 @@ public class Event extends AppCompatActivity {
 
         //likes
 
-        if (getIntent().getStringExtra("event_e_likes").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_likes").equals("null")) {
             totallikes.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             totallikes.setText(getIntent().getStringExtra("totallikes"));
-            Log.e("No of Likes",String.valueOf(getIntent().getStringExtra("totallikes")));
+            Log.e("No of Likes", String.valueOf(getIntent().getStringExtra("totallikes")));
         }
-
 
 
         //staff1
 
-        if (getIntent().getStringExtra("event_e_staff_1").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_staff_1").equals("null")) {
             faculty_title.setVisibility(View.GONE);
             faculty_1_image.setVisibility(View.GONE);
             faculty_1_name.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             faculty_1_image.setVisibility(View.VISIBLE);
             faculty_1_name.setText(getIntent().getStringExtra("event_e_staff_1"));
-            Log.e("Staff 1",String.valueOf(getIntent().getStringExtra("event_e_staff_1")));
+            Log.e("Staff 1", String.valueOf(getIntent().getStringExtra("event_e_staff_1")));
 
         }
-        if (getIntent().getStringExtra("event_e_staff_1_email").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_staff_1_email").equals("null")) {
             faculty_1_email.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             faculty_1_email.setText(getIntent().getStringExtra("event_e_staff_1_email"));
-            Log.e("Staff 1",String.valueOf(getIntent().getStringExtra("event_e_staff_1_email")));
+            Log.e("Staff 1", String.valueOf(getIntent().getStringExtra("event_e_staff_1_email")));
         }
-        if (getIntent().getStringExtra("event_e_staff_1_phone").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_staff_1_phone").equals("null")) {
             faculty_1_phone.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             faculty_1_phone.setText(getIntent().getStringExtra("event_e_staff_1_phone"));
-            Log.e("Staff 1",String.valueOf(getIntent().getStringExtra("event_e_staff_1_phone")));
+            Log.e("Staff 1", String.valueOf(getIntent().getStringExtra("event_e_staff_1_phone")));
         }
 
         //staff2
 
-        if (getIntent().getStringExtra("event_e_staff_2").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_staff_2").equals("null")) {
             faculty_2_image.setVisibility(View.GONE);
             faculty_2_name.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             faculty_2_image.setVisibility(View.VISIBLE);
             faculty_2_name.setText(getIntent().getStringExtra("event_e_staff_2"));
-            Log.e("Staff 2",String.valueOf(getIntent().getStringExtra("event_e_staff_2")));
+            Log.e("Staff 2", String.valueOf(getIntent().getStringExtra("event_e_staff_2")));
 
         }
-        if (getIntent().getStringExtra("event_e_staff_2_email").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_staff_2_email").equals("null")) {
             faculty_2_email.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             faculty_2_email.setText(getIntent().getStringExtra("event_e_staff_2_email"));
-            Log.e("Staff 2",String.valueOf(getIntent().getStringExtra("event_e_staff_2_email")));
+            Log.e("Staff 2", String.valueOf(getIntent().getStringExtra("event_e_staff_2_email")));
         }
-        if (getIntent().getStringExtra("event_e_staff_2_phone").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_staff_2_phone").equals("null")) {
             faculty_2_phone.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             faculty_2_phone.setText(getIntent().getStringExtra("event_e_staff_2_phone"));
-            Log.e("Staff 2",String.valueOf(getIntent().getStringExtra("event_e_staff_2_phone")));
+            Log.e("Staff 2", String.valueOf(getIntent().getStringExtra("event_e_staff_2_phone")));
         }
-
 
 
         //student1
 
-        if (getIntent().getStringExtra("event_e_student_1").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_student_1").equals("null")) {
             student_title.setVisibility(View.GONE);
             student_1_image.setVisibility(View.GONE);
             student_1_name.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             student_1_image.setVisibility(View.VISIBLE);
             student_1_name.setText(getIntent().getStringExtra("event_e_student_1"));
-            Log.e("Student 1",String.valueOf(getIntent().getStringExtra("event_e_student_1")));
+            Log.e("Student 1", String.valueOf(getIntent().getStringExtra("event_e_student_1")));
 
         }
-        if (getIntent().getStringExtra("event_e_student_1_email").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_student_1_email").equals("null")) {
             student_1_email.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             student_1_email.setText(getIntent().getStringExtra("event_e_student_1_email"));
-            Log.e("Student 1",String.valueOf(getIntent().getStringExtra("event_e_staff_1_email")));
+            Log.e("Student 1", String.valueOf(getIntent().getStringExtra("event_e_staff_1_email")));
         }
-        if (getIntent().getStringExtra("event_e_student_1_phone").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_student_1_phone").equals("null")) {
             student_1_phone.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             student_1_phone.setText(getIntent().getStringExtra("event_e_student_1_phone"));
-            Log.e("Student 1",String.valueOf(getIntent().getStringExtra("event_e_staff_1_phone")));
+            Log.e("Student 1", String.valueOf(getIntent().getStringExtra("event_e_staff_1_phone")));
         }
 
         //student2
 
-        if (getIntent().getStringExtra("event_e_student_2").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_student_2").equals("null")) {
             student_2_image.setVisibility(View.GONE);
             student_2_name.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             student_2_image.setVisibility(View.VISIBLE);
             student_2_name.setText(getIntent().getStringExtra("event_e_student_2"));
-            Log.e("Student 2",String.valueOf(getIntent().getStringExtra("event_e_student_2")));
+            Log.e("Student 2", String.valueOf(getIntent().getStringExtra("event_e_student_2")));
 
         }
-        if (getIntent().getStringExtra("event_e_student_2_email").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_student_2_email").equals("null")) {
             student_2_email.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             student_2_email.setText(getIntent().getStringExtra("event_e_student_2_email"));
-            Log.e("Student 2",String.valueOf(getIntent().getStringExtra("event_e_staff_2_email")));
+            Log.e("Student 2", String.valueOf(getIntent().getStringExtra("event_e_staff_2_email")));
         }
-        if (getIntent().getStringExtra("event_e_student_2_phone").equals("null"))
-        {
+        if (getIntent().getStringExtra("event_e_student_2_phone").equals("null")) {
             student_2_phone.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             student_2_phone.setText(getIntent().getStringExtra("event_e_student_2_phone"));
-            Log.e("Student 2",String.valueOf(getIntent().getStringExtra("event_e_staff_2_phone")));
+            Log.e("Student 2", String.valueOf(getIntent().getStringExtra("event_e_staff_2_phone")));
         }
 
 
-
-
-        if (getIntent().getStringExtra("prize_1_amt").equals("null"))
-        {
+        if (getIntent().getStringExtra("prize_1_amt").equals("null")) {
             prizeTitle.setVisibility(View.GONE);
             prize_1_title.setVisibility(View.GONE);
             prize_1_amt.setVisibility(View.GONE);
-        }
-        else {
-                prizeTitle.setVisibility(View.VISIBLE);
-                prize_1_title.setVisibility(View.VISIBLE);
+        } else {
+            prizeTitle.setVisibility(View.VISIBLE);
+            prize_1_title.setVisibility(View.VISIBLE);
             prize_1_amt.setText(getIntent().getStringExtra("prize_1_amt"));
-            Log.e("Prize 1",String.valueOf(getIntent().getStringExtra("prize_1_amt")));
+            Log.e("Prize 1", String.valueOf(getIntent().getStringExtra("prize_1_amt")));
         }
-        if (getIntent().getStringExtra("prize_2_amt").equals("null"))
-        {
+        if (getIntent().getStringExtra("prize_2_amt").equals("null")) {
             prize_2_title.setVisibility(View.GONE);
             prize_2_amt.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             prize_2_title.setVisibility(View.VISIBLE);
             prize_2_amt.setText(getIntent().getStringExtra("prize_2_amt"));
         }
-        if (getIntent().getStringExtra("prize_3_amt").equals("null"))
-        {
+        if (getIntent().getStringExtra("prize_3_amt").equals("null")) {
             prize_3_title.setVisibility(View.GONE);
             prize_3_amt.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             prize_3_title.setVisibility(View.VISIBLE);
             prize_3_amt.setText(getIntent().getStringExtra("prize_3_amt"));
         }
@@ -363,178 +311,171 @@ public class Event extends AppCompatActivity {
         event_name.setText(getIntent().getStringExtra("e_name"));
 
 
-        }
+    }
 
-        public void registerevent(View view) {
+    public void registerevent(View view) {
 
-            myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
-            session = myAppDatabase.myDao().getsession();
+        myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
+        session = myAppDatabase.myDao().getsession();
 
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
-
-            if (session.size() == 1) {
-
-                if(getIntent().getStringExtra("e_type").equals("individual")) {
-
-                    Log.e("Event register", "session found : ");
-                    alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
-                    alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name"));
-                    alertDialogBuilder.setPositiveButton("yes",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    pageDetails.event_name = getIntent().getStringExtra("e_name");
-                                    pageDetails.event_type = getIntent().getStringExtra("e_type");
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
 
-//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
-//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
-//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+        if (session.size() == 1) {
 
-                                    databaseOperations.event_register(Event.this);
-                                    Toast.makeText(Event.this, ""+pageDetails.username+"Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
-                }
-                else if(getIntent().getStringExtra("e_type").equals("Team")) {
+            if (getIntent().getStringExtra("e_type").equals("individual")) {
 
-//                    EditText p2 = findViewById(R.id.email_participant_2);
-//                    EditText p3 = findViewById(R.id.email_participant_3);
-//                    EditText p4 = findViewById(R.id.email_participant_4);
-//                    EditText p5 = findViewById(R.id.email_participant_5);
-//                    EditText p6 = findViewById(R.id.email_participant_6);
-//
-//                    final String s2 = p2.getText().toString();
-//                    final String s3 = p3.getText().toString();
-//                    final String s4 = p4.getText().toString();
-//                    final String s5 = p5.getText().toString();
-//                    final String s6 = p6.getText().toString();
-//                    String s1 = p2.getText().toString();
-//                    String s1 = p2.getText().toString();
-
-//                    for(int i=0; i<10;i++){
-//                        EditText pi =
-//                    }
-
-
-
-                    alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
-                    alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name")+". Please enter email ids for all the team members. Make sure they have an account on the app.\n\nParticipant 1: "+pageDetails.username);
-
-                    Context context = this;
-                    LinearLayout layout = new LinearLayout(context);
-                    layout.setOrientation(LinearLayout.VERTICAL);
-
-
-                    final int max = 10;
-                    for(int i=2; i<=max;i++) {
-                        final EditText participant_email = new EditText(context);
-                        //participant_email.setId(i);
-                        group_email.add(participant_email);
-                        participant_email.setHint("Email of participant "+i);
-                        layout.addView(participant_email);
-                        Log.e("groupemail", "registerevent: "+group_email.size() );
-                    }
-
-                    alertDialogBuilder.setView(layout)
-
-                                .setPositiveButton("Register", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        int size = group_email.size();
-                                        String[] string = new String[size];
-                                        for(int i=0; i < size; i++) {
-                                            string[i] = group_email.get(i).getText().toString();
-                                            Log.e("string size", "string : "+string[i]);
-                                        }
-                                        Log.e("string", " size: "+string.length );
-                                        int min = 2;
-                                        if(size<min)
-                                        {
-
-                                            Toast.makeText(Event.this, "Enter minimum "+min+" email ids to proceed", Toast.LENGTH_SHORT).show();
-                                        }
-                                        else{
-
-                                            for(int i=0; i<size;i++){
-                                                String email_url = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + string[i] + "\"}";
-                                                databaseOperations.verify_group(Event.this, email_url);
-                                                if(!pageDetails.email_exists){
-                                                    Toast.makeText(Event.this, "Please make sure the users have registered on the app and try again.", Toast.LENGTH_SHORT).show();
-                                                }
-                                                else{
-                                                    for (i=0;i<size;i++){
-                                                        pageDetails.group_list.add(string[i]);
-                                                        databaseOperations.event_register(Event.this);
-                                                    }
-                                                }
-                                            }
-
-                                        }
-
-
-//                                        if(s2.isEmpty()&&s3.isEmpty()&&s4.isEmpty()&&s5.isEmpty()&&s6.isEmpty()){
-//                                            Toast.makeText(loginactivity, "Please enter minimum one email to form a group", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                        else{
-//                                            for (int i=0;i<10;i++)
-//                                            {
-//                                                if(!s2.isEmpty()){
-//
-//                                                }
-//                                            }
-//                                            Toast.makeText(Event.this, ""+pageDetails.username+"Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
-//                                        }
-                                    }
-                                })
-                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-                        alertDialogBuilder.create();
-                        alertDialogBuilder.show();
-
-
-                }
-            }
-            else {
-
-                Log.e("Event register", "session not found : ");
+                Log.e("Event register", "session found : ");
                 alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
-                alertDialogBuilder.setMessage("Please Log in to register for " + getIntent().getStringExtra("e_name")+". Do you want to log in or continue? ");
-                alertDialogBuilder.setPositiveButton("Log in",
+                alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name"));
+                alertDialogBuilder.setPositiveButton("yes",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
-                                Intent i = new Intent(Event.this, loginActivity.class);
-                                startActivity(i);
-                                finish();
+                                pageDetails.event_name = getIntent().getStringExtra("e_name");
+                                pageDetails.event_type = getIntent().getStringExtra("e_type");
+
+
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+//                                pageDetails.event_name=getIntent().getStringExtra("e_name");
+
+                                databaseOperations.event_register(Event.this);
+                                Toast.makeText(Event.this, "" + pageDetails.username + "Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
                             }
                         });
-                alertDialogBuilder.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            } else if (getIntent().getStringExtra("e_type").equals("Team")) {
+
+                alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
+                alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name") + ". Please enter email ids for all the team members. Make sure they have an account on the app.\n\nParticipant 1: " + pageDetails.username);
+
+                final Context context = this;
+                LinearLayout layout = new LinearLayout(context);
+                layout.setOrientation(LinearLayout.VERTICAL);
+
+
+                final int max = 10;
+                group_email.clear();
+                for (int i = 2; i <= max; i++) {
+                    final EditText participant_email = new EditText(context);
+                    participant_email.setMaxLines(1);
+                    participant_email.setInputType(32);
+                    participant_email.setId(i);
+                    participant_email.setSaveEnabled(true);
+                    group_email.add(participant_email);
+
+                    participant_email.setHint("Email of participant " + i);
+                    layout.addView(participant_email);
+                    Log.e("groupemail", "registerevent: " + group_email.size());
+                }
+
+                alertDialogBuilder.setView(layout)
+
+                        .setPositiveButton("Register", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                int size = group_email.size();
+                                int count = 0;
+                                String[] string = new String[size];
+                                for (int i = 0; i < size; i++) {
+                                    if (group_email.get(i).getText().toString().isEmpty()) {
+
+                                        continue;
+                                    } else {
+                                        string[i] = group_email.get(i).getText().toString();
+                                        count++;
+                                        Log.e("string count", "Count: " + count);
+                                    }
+                                }
+
+                                int min = 1;
+                                if (count < min) {
+
+                                    Toast.makeText(Event.this, "Enter minimum " + min + " email ids to proceed", Toast.LENGTH_SHORT).show();
+                                } else {
+
+
+                                    for (int i = 0; i < count; i++) {
+                                        String email_url = "http://139.59.82.57:5000/users?where={\"email\":\"" + string[i] + "\"}";
+                                        Log.e("", "EMAIL: "+string[i] );
+                                        databaseOperations.verify_group(Event.this, email_url);
+
+                                    }
+                                    
+                                    if (continue_group){
+                                        for (int i = 0; i < count; i++) {
+                                            pageDetails.group_list.add(string[i]);
+                                            Log.d("Continue group", "onClick: Entered String" +string[i]);
+                                        }
+                                        Log.e("", "onClick: databaseOperations call" );
+                                        databaseOperations.event_register(Event.this);
+                                    }
+
+                                }
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
                 alertDialogBuilder.create();
                 alertDialogBuilder.show();
 
-                Log.d("Not registered with app", "No session found: ");
-                Toast.makeText(Event.this, "Please login to register for event "+pageDetails.username, Toast.LENGTH_SHORT).show();
 
             }
+        } else {
 
+            Log.e("Event register", "session not found : ");
+            alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
+            alertDialogBuilder.setMessage("Please Log in to register for " + getIntent().getStringExtra("e_name") + ". Do you want to log in or continue? ");
+            alertDialogBuilder.setPositiveButton("Log in",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent i = new Intent(Event.this, loginActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                    });
+            alertDialogBuilder.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            alertDialogBuilder.create();
+            alertDialogBuilder.show();
+
+            Log.d("Not registered with app", "No session found: ");
+            Toast.makeText(Event.this, "Please login to register for event " + pageDetails.username, Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+    public static void emailVerificationTeam(Boolean verified)
+    {
+        Log.e("Email:", "onClick: "+verified );
+
+        if (!verified) {
+            continue_group=false;
+            //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder();
+            Toast.makeText(mContext, "Please make sure the users have registered on the app and try again.", Toast.LENGTH_LONG).show();
+            return;
+        } else {
+            continue_group=true;
+
+            Log.e("", "emailVerificationTeam: continue_group: "+continue_group );
+            return;
+        }
     }
 
 
