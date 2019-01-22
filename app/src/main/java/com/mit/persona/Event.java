@@ -43,12 +43,13 @@ import java.util.Map;
 public class Event extends AppCompatActivity {
 
     public static MyAppDatabase myAppDatabase;
+    private static Context mContext;
     public loginActivity loginactivity;
     private List<Table_Sessions> session;
     private Intent emailIntent;
     private List<EditText> group_email = new ArrayList<EditText>();
-    Context mContext;
-    private List<Table_registeredEvents> registeredEvents;
+    private List<Table_registeredEvents> registeredEvents;;
+    static boolean continue_group;
 
 //    private String name = getIntent().getStringExtra("e_name"), desc=getIntent().getStringExtra("e_desc");
 
@@ -423,142 +424,134 @@ public class Event extends AppCompatActivity {
                         AlertDialog alertDialog = alertDialogBuilder.create();
                         alertDialog.show();
                     }
-                } else if (getIntent().getStringExtra("e_type").equals("Team")) {
-//
-////                    EditText p2 = findViewById(R.id.email_participant_2);
-////                    EditText p3 = findViewById(R.id.email_participant_3);
-////                    EditText p4 = findViewById(R.id.email_participant_4);
-////                    EditText p5 = findViewById(R.id.email_participant_5);
-////                    EditText p6 = findViewById(R.id.email_participant_6);
-////
-////                    final String s2 = p2.getText().toString();
-////                    final String s3 = p3.getText().toString();
-////                    final String s4 = p4.getText().toString();
-////                    final String s5 = p5.getText().toString();
-////                    final String s6 = p6.getText().toString();
-////                    String s1 = p2.getText().toString();
-////                    String s1 = p2.getText().toString();
-//
-////                    for(int i=0; i<10;i++){
-////                        EditText pi =
-////                    }
-//
-//
-//
-//                    alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
-//                    alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name")+". Please enter email ids for all the team members. Make sure they have an account on the app.\n\nParticipant 1: "+pageDetails.username);
-//
-//                    Context context = this;
-//                    LinearLayout layout = new LinearLayout(context);
-//                    layout.setOrientation(LinearLayout.VERTICAL);
-//
-//
-//                    final int max = 10;
-//                    for(int i=2; i<=max;i++) {
-//                        final EditText participant_email = new EditText(context);
-//                        //participant_email.setId(i);
-//                        group_email.add(participant_email);
-//                        participant_email.setHint("Email of participant "+i);
-//                        layout.addView(participant_email);
-//                        Log.e("groupemail", "registerevent: "+group_email.size() );
-//                    }
-//
-//                    alertDialogBuilder.setView(layout)
-//
-//                                .setPositiveButton("Register", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int id) {
-//                                        int size = group_email.size();
-//                                        String[] string = new String[size];
-//                                        for(int i=0; i < size; i++) {
-//                                            string[i] = group_email.get(i).getText().toString();
-//                                            Log.e("string size", "string : "+string[i]);
-//                                        }
-//                                        Log.e("string", " size: "+string.length );
-//                                        int min = 2;
-//                                        if(size<min)
-//                                        {
-//
-//                                            Toast.makeText(Event.this, "Enter minimum "+min+" email ids to proceed", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                        else{
-//
-//                                            for(int i=0; i<size;i++){
-//                                                String email_url = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + string[i] + "\"}";
-//                                                databaseOperations.verify_group(Event.this, email_url);
-//                                                if(!pageDetails.email_exists){
-//                                                    Toast.makeText(Event.this, "Please make sure the users have registered on the app and try again.", Toast.LENGTH_SHORT).show();
-//                                                }
-//                                                else{
-//                                                    for (i=0;i<size;i++){
-//                                                        pageDetails.group_list.add(string[i]);
-//                                                        databaseOperations.event_register(Event.this);
-//                                                    }
-//                                                }
-//                                            }
-//
-//                                        }
-//
-//
-////                                        if(s2.isEmpty()&&s3.isEmpty()&&s4.isEmpty()&&s5.isEmpty()&&s6.isEmpty()){
-////                                            Toast.makeText(loginactivity, "Please enter minimum one email to form a group", Toast.LENGTH_SHORT).show();
-////                                        }
-////                                        else{
-////                                            for (int i=0;i<10;i++)
-////                                            {
-////                                                if(!s2.isEmpty()){
-////
-////                                                }
-////                                            }
-////                                            Toast.makeText(Event.this, ""+pageDetails.username+"Registered for " + getIntent().getStringExtra("e_name"), Toast.LENGTH_LONG).show();
-////                                        }
-//                                    }
-//                                })
-//                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                                    public void onClick(DialogInterface dialog, int id) {
-//                                        dialog.cancel();
-//                                    }
-//                                });
-//                        alertDialogBuilder.create();
-//                        alertDialogBuilder.show();
+                }else if (getIntent().getStringExtra("e_type").equals("Team")) {
 
-                    Toast.makeText(mContext, "Group registration will be live soon! ", Toast.LENGTH_LONG).show();
+                alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
+                alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name") + ". Please enter email ids for all the team members. Make sure they have an account on the app.\n\nParticipant 1: " + pageDetails.username);
 
+                final Context context = this;
+                LinearLayout layout = new LinearLayout(context);
+                layout.setOrientation(LinearLayout.VERTICAL);
+
+
+                final int max = 10;
+                group_email.clear();
+                for (int i = 2; i <= max; i++) {
+                    final EditText participant_email = new EditText(context);
+                    participant_email.setMaxLines(1);
+                    participant_email.setInputType(32);
+                    participant_email.setId(i);
+                    participant_email.setSaveEnabled(true);
+                    group_email.add(participant_email);
+
+                    participant_email.setHint("Email of participant " + i);
+                    layout.addView(participant_email);
+                    Log.e("groupemail", "registerevent: " + group_email.size());
                 }
 
+                alertDialogBuilder.setView(layout)
 
-            } else {
-
-                Log.e("Event register", "session not found : ");
-                alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
-                alertDialogBuilder.setMessage("Please Log in to register for " + getIntent().getStringExtra("e_name") + ". Do you want to log in or continue? ");
-                alertDialogBuilder.setPositiveButton("Log in",
-                        new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Register", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                Intent i = new Intent(Event.this, loginActivity.class);
-                                startActivity(i);
-                                finish();
+                            public void onClick(DialogInterface dialog, int id) {
+                                int size = group_email.size();
+                                int count = 0;
+                                String[] string = new String[size];
+                                for (int i = 0; i < size; i++) {
+                                    if (group_email.get(i).getText().toString().isEmpty()) {
+
+                                        continue;
+                                    } else {
+                                        string[i] = group_email.get(i).getText().toString();
+                                        count++;
+                                        Log.e("string count", "Count: " + count);
+                                    }
+                                }
+
+                                int min = 1;
+                                if (count < min) {
+
+                                    Toast.makeText(Event.this, "Enter minimum " + min + " email ids to proceed", Toast.LENGTH_SHORT).show();
+                                } else {
+
+
+                                    for (int i = 0; i < count; i++) {
+                                        String email_url = "http://139.59.82.57:5000/users?where={\"email\":\"" + string[i] + "\"}";
+                                        Log.e("", "EMAIL: "+string[i] );
+                                        databaseOperations.verify_group(Event.this, email_url);
+
+                                    }
+
+                                    if (continue_group){
+                                        for (int i = 0; i < count; i++) {
+                                            pageDetails.group_list.add(string[i]);
+                                            Log.d("Continue group", "onClick: Entered String" +string[i]);
+                                        }
+                                        Log.e("", "onClick: databaseOperations call" );
+                                        databaseOperations.event_register(Event.this);
+                                    }
+
+                                }
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
                             }
                         });
-                alertDialogBuilder.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
                 alertDialogBuilder.create();
                 alertDialogBuilder.show();
 
-                Log.d("Not registered with app", "No session found: ");
-                Toast.makeText(Event.this, "Please login to register for event " + pageDetails.username, Toast.LENGTH_SHORT).show();
 
             }
+        } else {
+
+            Log.e("Event register", "session not found : ");
+            alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
+            alertDialogBuilder.setMessage("Please Log in to register for " + getIntent().getStringExtra("e_name") + ". Do you want to log in or continue? ");
+            alertDialogBuilder.setPositiveButton("Log in",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent i = new Intent(Event.this, loginActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                    });
+            alertDialogBuilder.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            alertDialogBuilder.create();
+            alertDialogBuilder.show();
+
+            Log.d("Not registered with app", "No session found: ");
+            Toast.makeText(Event.this, "Please login to register for event " + pageDetails.username, Toast.LENGTH_SHORT).show();
+
+        }
 
         } else {
             Toast.makeText(Event.this, "Please connect to the internet!", Toast.LENGTH_SHORT).show();
         }
 
+    }
+    public static void emailVerificationTeam(Boolean verified)
+    {
+        Log.e("Email:", "onClick: "+verified );
+
+        if (!verified) {
+            continue_group=false;
+            //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder();
+            Toast.makeText(mContext, "Please make sure the users have registered on the app and try again.", Toast.LENGTH_LONG).show();
+            return;
+        } else {
+            continue_group=true;
+
+            Log.e("", "emailVerificationTeam: continue_group: "+continue_group );
+            return;
+        }
     }
 
 

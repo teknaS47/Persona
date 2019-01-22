@@ -807,29 +807,31 @@ public class databaseOperations {
 
     }
 
-    public static void verify_group(Event event, String email_url) {
+    public static boolean verify_group(Event event, String email_url) {
 
         Log.e("Call Successful", "Verify coordinator mail");
 
         RequestQueue requestQueue = Volley.newRequestQueue(event);
 
+
         final String URL_email = email_url;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, email_url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         JSONArray items = null;
-//                        String email = null;
-//                        Integer user_type = null;
-                        Boolean emailExists = true;
-//                        String username, objectId = null;
-//                        String etag = null;
                         try {
+                            Boolean email_found = false;
                             items = response.getJSONArray("_items");
+                            Log.e("", "onResponse: " + items);
                             if (items.length() == 0) {
-                                emailExists =pageDetails.email_exists= false;
+                                email_found = false;
+                                Log.e("", "email not found: ");
+
                             } else {
-                                emailExists =pageDetails.email_exists= true;
+                                email_found = true;
+                                Log.e("", "email found: ");
+
 //                                JSONObject jsonobject = items.getJSONObject(0);
 //                                if (jsonobject.has("email")) {
 //                                    email = jsonobject.getString("email");
@@ -839,12 +841,11 @@ public class databaseOperations {
 //                                    }
 //                                }
                             }
-
+                            com.mit.persona.Event.emailVerificationTeam(email_found);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
 
                     }
                 },
@@ -869,11 +870,9 @@ public class databaseOperations {
         jsonObjectRequest.setShouldCache(false);
 
         requestQueue.add(jsonObjectRequest);
-//            postparams.put("e_id", "A5");
-        //          postparams.put("e_type", "group");
-        //        postparams.put("e_category", "cse");
 
 
+        return false;
     }
 
     public static void registerEventDatabase(Context mContext, final String URL_verification) {
