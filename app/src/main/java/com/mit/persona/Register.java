@@ -131,7 +131,7 @@ public class Register extends AppCompatActivity {
 
 
 
-    public void registerevent(View view) {
+    public void registerevent(View view) throws NoSuchAlgorithmException {
 
         Log.d("On Click:", "Register Event");
 
@@ -205,6 +205,13 @@ public class Register extends AppCompatActivity {
                 && !pageDetails.reg_clgcity.isEmpty() && !pageDetails.reg_password.isEmpty() && !pageDetails.reg_gender.isEmpty()) {
             Log.d("Register Event:", "Detail Verification");
             String email_url = "http://139.59.82.57:5000/users?where={" + "\"email\"" + ":\"" + pageDetails.reg_email + "\"}";
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            byte[] digest = md.digest(pageDetails.reg_password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < digest.length; i++) {
+                sb.append(Integer.toString((digest[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            pageDetails.reg_password = sb.toString();
             databaseOperations.mailExists(this, email_url, pageDetails.reg_email);
             //databaseOperations.register(this);
         } else {

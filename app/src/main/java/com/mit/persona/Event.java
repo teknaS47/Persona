@@ -349,26 +349,24 @@ public class Event extends AppCompatActivity {
 
             if (session.size() == 1) {
 
-                if (getIntent().getStringExtra("e_type").equals("individual")) {
+                if (getIntent().getStringExtra("e_type").equals("individual") || getIntent().getStringExtra("e_type").equals("Team")) {
 
                     if (registeredEvents.isEmpty()) {
                         pageDetails.eventAlreadyRegistered = false;
 
-                    }
-                    else {
-                        for(int i=0; i<registeredEvents.size(); i++) {
+                    } else {
+                        for (int i = 0; i < registeredEvents.size(); i++) {
                             Log.e("registerevent: ", String.valueOf(registeredEvents.size()));
-                            if ( registeredEvents.get(i).getEvent_name().equals(getIntent().getStringExtra("e_name"))) {
+                            if (registeredEvents.get(i).getEvent_name().equals(getIntent().getStringExtra("e_name"))) {
                                 pageDetails.eventAlreadyRegistered = true;
                                 break;
-                            }
-                            else {
+                            } else {
                                 pageDetails.eventAlreadyRegistered = false;
                             }
                         }
                     }
 
-                    if(pageDetails.eventAlreadyRegistered) {
+                    if (pageDetails.eventAlreadyRegistered) {
                         Toast.makeText(Event.this, "You've already registered for this event", Toast.LENGTH_SHORT).show();
                     }
                     else {
@@ -408,7 +406,7 @@ public class Event extends AppCompatActivity {
                         AlertDialog alertDialog = alertDialogBuilder.create();
                         alertDialog.show();
                     }
-                }else if (getIntent().getStringExtra("e_type").equals("Team")) {
+/*                }else if (getIntent().getStringExtra("e_type").equals("Team")) {
 
                 alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
                 alertDialogBuilder.setMessage("Are you sure you want to register for " + getIntent().getStringExtra("e_name") + ". Please enter email ids for all the team members. Make sure they have an account on the app.\n\nParticipant 1: " + pageDetails.username);
@@ -427,7 +425,7 @@ public class Event extends AppCompatActivity {
                     participant_email.setId(i);
                     participant_email.setSaveEnabled(true);
                     group_email.add(participant_email);
-
+\
                     participant_email.setHint("Email of participant " + i);
                     layout.addView(participant_email);
                     Log.e("groupemail", "registerevent: " + group_email.size());
@@ -513,14 +511,18 @@ public class Event extends AppCompatActivity {
 
             Log.d("Not registered with app", "No session found: ");
             Toast.makeText(Event.this, "Please login to register for event " + pageDetails.username, Toast.LENGTH_SHORT).show();
+*/
+                }
+
+
+            } else {
+                Toast.makeText(Event.this, "Please connect to the internet!", Toast.LENGTH_SHORT).show();
+            }
 
         }
-
-        } else {
-            Toast.makeText(Event.this, "Please connect to the internet!", Toast.LENGTH_SHORT).show();
-        }
-
     }
+
+    /*
     public static void emailVerificationTeam(Boolean verified)
     {
         Log.e("Email:", "onClick: "+verified );
@@ -537,6 +539,7 @@ public class Event extends AppCompatActivity {
             return;
         }
     }
+    */
 
 
 }

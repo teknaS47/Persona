@@ -807,6 +807,7 @@ public class databaseOperations {
 
     }
 
+    /*
     public static boolean verify_group(Event event, String email_url) {
 
         Log.e("Call Successful", "Verify coordinator mail");
@@ -874,6 +875,7 @@ public class databaseOperations {
 
         return false;
     }
+    */
 
     public static void registerEventDatabase(Context mContext, final String URL_verification) {
 

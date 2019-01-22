@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class loginActivity extends AppCompatActivity /*implements OnClickListener*/{
@@ -216,7 +218,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         startActivity(i);
     }
     */
-    public void loginprocess(View view) {
+    public void loginprocess(View view) throws NoSuchAlgorithmException {
 
         if(!isNetworkAvailable()) {
             Toast.makeText(this, "Please connect to the internet! :) ", Toast.LENGTH_SHORT).show();
@@ -238,6 +240,17 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             EditText password_EditText = (EditText) findViewById(R.id.password_text);
             entered_Password = password_EditText.getText().toString();
             pageDetails.entered_Password = entered_Password;
+
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            byte[] digest = md.digest(pageDetails.entered_Password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < digest.length; i++) {
+                sb.append(Integer.toString((digest[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            pageDetails.entered_Password = sb.toString();
+
+
             if (!entered_Email.isEmpty() && !entered_Password.isEmpty()) {
                 try {  //find user
                     Log.d("finding user for login", "starting finding user");
