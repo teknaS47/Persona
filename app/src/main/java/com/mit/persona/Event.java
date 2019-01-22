@@ -52,6 +52,19 @@ public class Event extends AppCompatActivity {
 
 //    private String name = getIntent().getStringExtra("e_name"), desc=getIntent().getStringExtra("e_desc");
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registeredEvents = myAppDatabase.myDao().getRegisteredEvents();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        registeredEvents = myAppDatabase.myDao().getRegisteredEvents();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

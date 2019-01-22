@@ -31,6 +31,17 @@ public class Table_Sessions {
     @ColumnInfo(name = "branch")
     private String branch;
 
+    @ColumnInfo(name = "verified_by")
+    private String verifiedBy;
+
+    public String getVerifiedBy() {
+        return verifiedBy;
+    }
+
+    public void setVerifiedBy(String verifiedBy) {
+        this.verifiedBy = verifiedBy;
+    }
+
     public String getFirstname() {
         return firstname;
     }

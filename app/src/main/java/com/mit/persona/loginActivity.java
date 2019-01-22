@@ -168,7 +168,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         }
         else {
 
-            progress.setTitle("Logging in...");
+            progress.setTitle("Setting up everything...");
             progress.setMessage("Wait while logging in...");
             progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
             progress.show();
@@ -196,6 +196,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
                 }
 
             } else {
+                progress.dismiss();
                 Toast toast = Toast.makeText(mContext,
                         "Enter mail or password",
                         Toast.LENGTH_SHORT);
@@ -206,7 +207,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 
     }
 
-    public static void FinishLogin(Integer user_type, String username, String firstname, String lastname, String mobile, String college, String branch)    {
+    public static void FinishLogin(Integer user_type, String username, String firstname, String lastname, String mobile, String college, String branch, String verified_by)    {
 
         myAppDatabase = Room.databaseBuilder(loginActivity.mContext, MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
         registeredEventsList = myAppDatabase.myDao().getRegisteredEvents();
@@ -224,6 +225,12 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             session.setFirstname(firstname);
             session.setLastname(lastname);
             session.setMobile(mobile);
+            if (verified_by.equals("null")) {
+
+            }
+            else {
+                session.setVerifiedBy(verified_by);
+            }
             myAppDatabase.myDao().addSession(session);
             pageDetails.login_successful = true;
             pageDetails.username = username;
@@ -233,6 +240,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             pageDetails.lastname = lastname;
             pageDetails.mobile = mobile;
             pageDetails.user_type = user_type;
+            pageDetails.verifiedBy = verified_by;
 
             Log.d("password status","password matched going to main page");
             Intent i = new Intent(mContext,Persona.class);
