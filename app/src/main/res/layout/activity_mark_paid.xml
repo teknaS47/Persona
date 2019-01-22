@@ -9,6 +9,42 @@
     android:orientation="vertical"
     android:id="@+id/markPaidActivity">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:paddingTop="20dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/user_info_header">
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Mark Paid "
+                android:textColor="#ffffff"
+                android:textSize="30dp"
+                android:paddingLeft="30dp"
+                android:id="@+id/aboutDevelopersTitle"
+                android:textAlignment="center"/>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

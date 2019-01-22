@@ -478,6 +478,75 @@ public class databaseOperations {
 
     }
 
+
+    public static void fetchEventRegister(final registeredEvents registeredEvents,String email_url) {
+
+        Log.e("Call Successful", "List Rgistered events of the user.");
+        RequestQueue requestQueue = Volley.newRequestQueue(registeredEvents);
+
+
+        final String URL_email = email_url;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_email, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        JSONArray items = null;
+                        JSONObject jsonobject;
+
+                        try {
+                            items = response.getJSONArray("_items");
+                            Log.e("Items length:", String.valueOf(items.length()));
+                            if (items.length() == 0) {
+                                pageDetails.eventsFound = false;
+                            } else {
+                                pageDetails.eventsFound = true;
+                                pageDetails.displayRegisteredEvent.clear();
+                                //pageDetails.registeredEvent = items;
+                                for (int i= 0; i<items.length(); i++)   {
+                                    jsonobject = items.getJSONObject(i);
+                                    Log.e("onResponse: ", jsonobject.getString("event_name"));
+                                    pageDetails.displayRegisteredEvent.add(jsonobject.getString("event_name"));
+                                }
+                                Log.e("Events found?  ", String.valueOf(pageDetails.eventsFound));
+                                com.mit.persona.registeredEvents.displayEvents(registeredEvents, pageDetails.displayRegisteredEvent, pageDetails.eventsFound);
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST Error: ", error.toString());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put(
+                        "Authorization",
+                        String.format("Basic %s", Base64.encodeToString(
+                                String.format("%s:%s", "r00t", "abrakadabra!!").getBytes(), Base64.DEFAULT)));
+                //params.put("If-Match", "b7d17aa524b9bd9c5e4cc010ee3d0596422909cf");
+
+                return params;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+
+        requestQueue.add(jsonObjectRequest);
+//            postparams.put("e_id", "A5");
+        //          postparams.put("e_type", "group");
+        //        postparams.put("e_category", "cse");
+
+
+    }
+
     public static void userTypeChange(teacher_coordinator teacher_coordinator, final String e_tag, final String url) {
 
         Log.e("Call Successful", "Verify coordinator mail");
