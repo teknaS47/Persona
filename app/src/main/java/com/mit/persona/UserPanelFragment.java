@@ -44,7 +44,7 @@ public class UserPanelFragment extends Fragment {
         TextView user_email = view.findViewById(R.id.user_email);
         TextView user_mobile = view.findViewById(R.id.user_mobile);
         TextView add_volunteers = view.findViewById(R.id.addvolunteer);
-        TextView registeredEventsButton = view.findViewById(R.id.registeredEventsButton);
+        TextView registeredEventsButton = view.findViewById(R.id.registeredEventsTitle);
 
         myAppDatabase = Room.databaseBuilder(view.getContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
 
