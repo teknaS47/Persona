@@ -1,8 +1,10 @@
 package com.mit.persona;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
@@ -35,6 +37,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     private List<Table_Sessions> session;
     private static final boolean VERBOSE = true;
     public static ProgressDialog progress;
+    private List<Events> eventsList;
 
 
 
@@ -45,6 +48,7 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         setContentView(R.layout.activity_login);
         myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
         session = myAppDatabase.myDao().getsession();
+        eventsList = myAppDatabase.myDao().listEvents();
 
          progress = new ProgressDialog(loginActivity.this);
 
@@ -65,7 +69,31 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             Log.e("Session check: ", "session NOT found");
         }
 
-        databaseOperations.updateLocalDB(this);
+        Log.e("events size ", String.valueOf(eventsList.size()));
+
+        if (isNetworkAvailable()) {
+            databaseOperations.updateLocalDB(this);
+            Log.e("UPDATE LOCAL DB: ", "Internet Available" );
+        }
+        else if (!isNetworkAvailable() && eventsList.size() == 0 ) {
+            Log.e("UPDATE LOCAL DB: ", "Internet not Available" );
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("No Internet Connection");
+            alertDialogBuilder.setMessage("Connect to the internet & press okay!");
+            alertDialogBuilder.setPositiveButton("okay", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+
+                        finish();
+                        startActivity(getIntent());
+
+                }
+            });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
+        }
+
 
         /*try {
             myAppDatabase.myDao().clearSessionTable();K
@@ -97,13 +125,19 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
         TextView skip_bt = findViewById(R.id.skip);
         skip_bt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                if (isNetworkAvailable() || eventsList.size() > 1) {
+                    pageDetails.user_info = null;
+                    progress.setTitle("Generating Events");
+                    progress.setMessage("Wait for it...");
+                    progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+                    progress.show();
+                    startActivity(new Intent(loginActivity.this, Persona.class ));
+                }
+                else {
+                    Toast.makeText(mContext, "Please connect to the internet!", Toast.LENGTH_SHORT).show();
+                }
                 
-                pageDetails.user_info = null;
-                progress.setTitle("Generating Events");
-                progress.setMessage("Wait for it...");
-                progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
-                progress.show();
-                startActivity(new Intent(loginActivity.this, Persona.class ));
             }
         });
 
@@ -112,8 +146,29 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-        databaseOperations.updateLocalDB(this);
         progress.dismiss();
+        if (isNetworkAvailable()) {
+            databaseOperations.updateLocalDB(this);
+            Log.e("UPDATE LOCAL DB: ", "Internet Available" );
+        }
+        else {
+            Log.e("UPDATE LOCAL DB: ", "Internet not Available" );
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("No Internet Connection");
+            alertDialogBuilder.setMessage("Connect to the internet & press okay!");
+            alertDialogBuilder.setPositiveButton("okay",                                new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+
+                    finish();
+                    startActivity(getIntent());
+
+                }
+            });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
+        }
         Log.e("onResume (Session Size)",String.valueOf(session.size()));
 
         if (session.size() == 1) {
