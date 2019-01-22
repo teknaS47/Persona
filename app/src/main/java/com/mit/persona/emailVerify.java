@@ -36,7 +36,9 @@ public class emailVerify extends AsyncTask<String,Void,String> {
                     Random random = new Random();
                     String id = String.format("%04d", random.nextInt(10000));
                     final String from = "registration.mitpersonafest@mituniversity.edu.in";
-                    final String password = "PersonaFest2019";
+                    final String password = "yt4" +
+                            "77" +
+                            "410";
                     Properties props = new Properties();
                     props.put("mail.smtp.host", "smtp.gmail.com");
                     props.put("mail.smtp.auth", "true");
