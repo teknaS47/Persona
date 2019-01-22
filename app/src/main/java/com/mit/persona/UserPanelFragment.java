@@ -133,7 +133,7 @@ public class UserPanelFragment extends Fragment {
                 add_volunteers.setVisibility(view.GONE);
             }
             else if (pageDetails.user_type == 1 || pageDetails.user_type == 0) {
-                add_volunteers.setVisibility(view.VISIBLE);
+                paymentVerification.setVisibility(View.GONE);
                 add_volunteers.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         pageDetails.user_info = null;
@@ -143,7 +143,8 @@ public class UserPanelFragment extends Fragment {
             }
 
             if ( pageDetails.user_type <= 2) {
-                paymentVerification.setVisibility(View.VISIBLE);
+                paymentVerification.setVisibility(View.GONE);
+                add_volunteers.setVisibility(view.GONE);
             }
             user_name.setText(String.valueOf(pageDetails.firstname + " " + pageDetails.lastname));
             user_email.setText(String.valueOf(pageDetails.username));
