@@ -56,7 +56,7 @@ public class emailRegistrationEvent extends AsyncTask<String,Void,String> {
                     msg.setSubject("[Persona Fest 2019] Event Registration confirmation");
                     //msg.setContent(""+id,"text/plain");
                     pageDetails.otp = id;
-                    msg.setContent("Thank you for registering to " + pageDetails.registeredEventName + "\nSee you soon! :) :)", "text/plain");
+                    msg.setContent("Thank you for registering to " + pageDetails.registeredEventName + "\nSee you soon! :) :)\nTo complete your registration, please pay at the registration desk.", "text/plain");
 //TODO: try it for text/html.
 
                     Transport tr = s.getTransport("smtp");
