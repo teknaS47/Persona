@@ -116,7 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/registeredEventsButton"
+                android:id="@+id/registeredEventsTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -125,7 +125,6 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
-                android:visibility="gone"
                 android:gravity="left|center_vertical"/>
         </android.support.v7.widget.CardView>
 
@@ -173,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:paddingLeft="20dp"
-                android:text="About Developers"
+                android:text="About Creators"
                 android:textSize="16dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"

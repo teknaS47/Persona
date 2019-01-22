@@ -51,6 +51,8 @@ public class pageDetails {
 
     public static ArrayList<String> registeredEventsList = new ArrayList<String>();
 
+    public static ArrayList<String> displayRegisteredEvent = new ArrayList<String>();
+
 
     public static boolean eventAlreadyRegistered = true;
 
