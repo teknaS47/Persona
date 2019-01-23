@@ -146,6 +146,36 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        if (isNetworkAvailable()) {
+            databaseOperations.updateLocalDB(this);
+            Log.e("UPDATE LOCAL DB: ", "Internet Available" );
+        }
+        else if (!isNetworkAvailable() && eventsList.size() == 0 ) {
+            Log.e("UPDATE LOCAL DB: ", "Internet not Available" );
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("No Internet Connection");
+            alertDialogBuilder.setMessage("Connect to the internet & press okay!");
+            alertDialogBuilder.setPositiveButton("okay", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+
+                    finish();
+                    startActivity(getIntent());
+
+                }
+            });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
+        }
+
+
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         progress.dismiss();
