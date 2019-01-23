@@ -56,8 +56,6 @@ public class firebaseNotification extends FirebaseMessagingService {
             Log.e("\nNOTIFICATION ADDED :)", "");
 
 
-
-
             //1.Get reference to Notification Manager
             mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             Persona.createNotificationChannel(mNotificationManager);
@@ -71,8 +69,6 @@ public class firebaseNotification extends FirebaseMessagingService {
 
             //Send the notification.
             mNotificationManager.notify(1, notification);
-
-
 
         }
 

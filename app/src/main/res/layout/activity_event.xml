@@ -189,12 +189,12 @@
                                     android:orientation="horizontal">
 
                                     <TextView
-                                        android:id="@+id/venue_location"
+                                        android:id="@+id/event_venue"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Dr APJ Kamal Hall"
-                                        android:textSize="16sp"
-                                        android:paddingLeft="10dp"/>
+                                        android:paddingLeft="10dp"
+                                        android:text="MIT ADT University"
+                                        android:textSize="16sp" />
                                 </LinearLayout>
 
                             </LinearLayout>

@@ -92,6 +92,7 @@ public class Event extends AppCompatActivity {
         TextView student_title = findViewById(R.id.student_title);
         TextView faculty_title = findViewById(R.id.faculty_title);
         ImageView share_icon = findViewById(R.id.share);
+        final TextView event_venue = findViewById(R.id.event_venue);
 
         emailIntent = new Intent(android.content.Intent.ACTION_SEND);
         emailIntent.setType("plain/text");
@@ -103,6 +104,10 @@ public class Event extends AppCompatActivity {
 
         final Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
+
+        // venue
+
+        event_venue.setText(getIntent().getStringExtra("e_venue"));
 
         share_icon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -510,15 +515,39 @@ public class Event extends AppCompatActivity {
             alertDialogBuilder.show();
 
             Log.d("Not registered with app", "No session found: ");
-            Toast.makeText(Event.this, "Please login to register for event " + pageDetails.username, Toast.LENGTH_SHORT).show();
+
 */
                 }
 
 
             } else {
-                Toast.makeText(Event.this, "Please connect to the internet!", Toast.LENGTH_SHORT).show();
+                alertDialogBuilder.setTitle("" + getIntent().getStringExtra("e_name"));
+                alertDialogBuilder.setMessage("Please Log in to register for " + getIntent().getStringExtra("e_name") + ". Do you want to log in or continue? ");
+                alertDialogBuilder.setPositiveButton("Log in",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent i = new Intent(Event.this, loginActivity.class);
+                                startActivity(i);
+                                finish();
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                alertDialogBuilder.create();
+                alertDialogBuilder.show();
+
+                Toast.makeText(Event.this, "Please login to register for event " + pageDetails.username, Toast.LENGTH_SHORT).show();
             }
 
+
+
+        }else {
+            Toast.makeText(Event.this, "Please connect to the internet!", Toast.LENGTH_SHORT).show();
         }
     }
 
