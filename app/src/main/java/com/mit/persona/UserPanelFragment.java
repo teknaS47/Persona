@@ -44,7 +44,7 @@ public class UserPanelFragment extends Fragment {
         TextView user_email = view.findViewById(R.id.user_email);
         TextView user_mobile = view.findViewById(R.id.user_mobile);
         TextView add_volunteers = view.findViewById(R.id.addvolunteer);
-        TextView registeredEventsButton = view.findViewById(R.id.registeredEventsButton);
+        TextView registeredEventsTitle = view.findViewById(R.id.registeredEventsTitle);
 
         myAppDatabase = Room.databaseBuilder(view.getContext(), MyAppDatabase.class, "eventdb").allowMainThreadQueries().build();
 
@@ -117,14 +117,12 @@ public class UserPanelFragment extends Fragment {
 
             signOut.setVisibility(view.GONE);
             header_panel.setVisibility(view.GONE);
-            registeredEventsButton.setVisibility(View.GONE);
+            registeredEventsTitle.setVisibility(View.GONE);
             paymentVerification.setVisibility(View.GONE);
         }
         else {
-            registeredEventsButton.setVisibility(View.GONE);
-            paymentVerification.setVisibility(View.GONE);
-//            registeredEventsButton.setVisibility(View.VISIBLE);
-            registeredEventsButton.setOnClickListener(new View.OnClickListener() {
+            registeredEventsTitle.setVisibility(View.VISIBLE);
+            registeredEventsTitle.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     startActivity(new Intent(view.getContext(), registeredEvents.class ));
                 }
@@ -135,7 +133,7 @@ public class UserPanelFragment extends Fragment {
                 add_volunteers.setVisibility(view.GONE);
             }
             else if (pageDetails.user_type == 1 || pageDetails.user_type == 0) {
-                add_volunteers.setVisibility(view.VISIBLE);
+                paymentVerification.setVisibility(View.GONE);
                 add_volunteers.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         pageDetails.user_info = null;
@@ -145,7 +143,8 @@ public class UserPanelFragment extends Fragment {
             }
 
             if ( pageDetails.user_type <= 2) {
-                paymentVerification.setVisibility(View.VISIBLE);
+                paymentVerification.setVisibility(View.GONE);
+                add_volunteers.setVisibility(view.GONE);
             }
             user_name.setText(String.valueOf(pageDetails.firstname + " " + pageDetails.lastname));
             user_email.setText(String.valueOf(pageDetails.username));

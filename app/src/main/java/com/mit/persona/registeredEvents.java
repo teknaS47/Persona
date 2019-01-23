@@ -1,13 +1,20 @@
 package com.mit.persona;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class registeredEvents extends AppCompatActivity {
+
+    private static String tmpemail;
+    private static Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +23,48 @@ public class registeredEvents extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+
+        ctx = this;
+
+
+        String tempEmail = pageDetails.username;
+        tmpemail = tempEmail;
+        String email_url = "http://139.59.82.57:5000/event_registrations?where={" + "\"username\"" + ":\"" + tempEmail + "\"}";
+
+        Log.e("email_url", email_url);
+        Log.e("eventsFound", String.valueOf(pageDetails.eventsFound));
+
+        pageDetails.volunteer_userEmail = tmpemail;
+        databaseOperations.fetchEventRegister(this,email_url);
+
+
+
+
     }
+
+
+    public static void displayEvents(registeredEvents view, final ArrayList<String> displayRegisteredEvent, boolean eventsFound) {
+
+        if(!eventsFound) {
+            Log.e("Events called", "Not registered for any events!" );
+            Toast.makeText(ctx, "Not registered for any events!", Toast.LENGTH_LONG).show();
+        }
+        else {
+            ArrayAdapter adapter = new ArrayAdapter<String>(ctx, R.layout.volunteer_registered, displayRegisteredEvent);
+
+            ListView listView = view.findViewById(R.id.displayRegisteredEvents);
+            listView.setAdapter(adapter);
+
+
+
+            Log.e("displayEvents: ", displayRegisteredEvent.toString());
+
+        }
+
+
+    }
+
+
 
 }

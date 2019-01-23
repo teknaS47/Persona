@@ -57,7 +57,6 @@ public class emailRegistrationEvent extends AsyncTask<String,Void,String> {
                     //msg.setContent(""+id,"text/plain");
                     pageDetails.otp = id;
                     msg.setContent("Thank you for registering to " + pageDetails.registeredEventName + "\nSee you soon! :) :)\nTo complete your registration, please pay at the registration desk.", "text/plain");
-//TODO: try it for text/html.
 
                     Transport tr = s.getTransport("smtp");
                     String smtp_server = props.getProperty("mail.smtp.host");

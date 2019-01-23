@@ -15,8 +15,6 @@ public class AboutDevelopers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_developers);
 
-
-
         CardView c1 = (CardView) findViewById(R.id.devCard1);
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,7 +23,6 @@ public class AboutDevelopers extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
-
 
         CardView c2 = (CardView) findViewById(R.id.devCard2);
         c2.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +33,6 @@ public class AboutDevelopers extends AppCompatActivity {
             }
         });
 
-
         CardView c3 = (CardView) findViewById(R.id.devCard3);
         c3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +42,6 @@ public class AboutDevelopers extends AppCompatActivity {
             }
         });
 
-
         CardView c4 = (CardView) findViewById(R.id.devCard4);
         c4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +50,6 @@ public class AboutDevelopers extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
-
 
         CardView c5 = (CardView) findViewById(R.id.devCard5);
         c5.setOnClickListener(new View.OnClickListener() {
