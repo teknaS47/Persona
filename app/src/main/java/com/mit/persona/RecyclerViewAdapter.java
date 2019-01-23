@@ -1,14 +1,21 @@
 package com.mit.persona;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,6 +43,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return viewHolder;
     }
 
+
+
+
+
+
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
@@ -48,6 +61,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             //myViewHolder.e_img.setImageResource(res);
             Picasso.get().load(res).fit().into(myViewHolder.e_img);
 
+
+
         } catch (Exception e) {
             Log.e("Image Set:", e.toString());
         }
@@ -59,6 +74,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         return eventsList.size();
     }
+
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -73,6 +90,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             e_name = (TextView) itemView.findViewById(R.id.event_name);
             e_date = (TextView) itemView.findViewById(R.id.event_date);
             e_img = itemView.findViewById(R.id.event_img);
+
+
+
+
+
     //        img = (TextView) itemView.findViewById(R.id.event_img);
 
             itemView.setOnClickListener(new View.OnClickListener() {
