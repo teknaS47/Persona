@@ -172,7 +172,6 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
 
         }
 
-
     }
 
     @Override
