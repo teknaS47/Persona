@@ -52,9 +52,8 @@ public class firebaseNotification extends FirebaseMessagingService {
             Table_Messages message = new Table_Messages();
             message.setTitle(remoteMessage.getNotification().getTitle());
             message.setMessage(remoteMessage.getNotification().getBody());
-            myAppDatabase.myDao().addMessage(message);
+            Persona.myAppDatabase.myDao().addMessage(message);
             Log.e("\nNOTIFICATION ADDED :)", "");
-
 
             //1.Get reference to Notification Manager
             mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

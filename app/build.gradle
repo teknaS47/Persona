@@ -7,9 +7,9 @@ android {
         applicationId "com.mit.persona"
         minSdkVersion 21
         targetSdkVersion 28
-        versionName '2.1'
+        versionName '2.2'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 23
+        versionCode 24
     }
     buildTypes {
         release {
