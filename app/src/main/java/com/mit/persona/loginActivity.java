@@ -266,10 +266,12 @@ public class loginActivity extends AppCompatActivity /*implements OnClickListene
             instance = this;
             String entered_Email;
             String entered_Password;
-            EditText email_EditText = (EditText) findViewById(R.id.email_text);
+
+            EditText email_EditText = findViewById(R.id.email_text);
             entered_Email = email_EditText.getText().toString();
             pageDetails.entered_Email = entered_Email;
-            EditText password_EditText = (EditText) findViewById(R.id.password_text);
+
+            EditText password_EditText = findViewById(R.id.password_text);
             entered_Password = password_EditText.getText().toString();
             pageDetails.entered_Password = entered_Password;
 
